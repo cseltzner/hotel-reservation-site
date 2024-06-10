@@ -1,0 +1,48 @@
+services:
+  server:
+    build:
+      context: ./API
+      target: final
+    ports:
+      - 7000:8080
+    depends_on:
+      db:
+        condition: service_healthy
+
+  db:
+    image: postgres
+    restart: always
+    user: postgres
+    secrets:
+      - db-password
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=hotel_db_dev
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    ports:
+      - 7001:5432
+    healthcheck:
+      test: ["CMD", "pg_isready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4:latest
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=dev_password
+    ports:
+      - "5050:80"
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  db-data:
+secrets:
+  db-password:
+    file: db/password.dev.txt
