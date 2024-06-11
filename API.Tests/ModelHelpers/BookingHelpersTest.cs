@@ -5,7 +5,7 @@ namespace API.Tests.ModelHelpers;
 
 public class BookingHelpersTest
 {
-
+    // calculateNumOfNights Tests //
     [Fact]
     public void calculateNumOfNights_returns2_whenPassedTwoDates48HoursApart()
     {
@@ -45,6 +45,7 @@ public class BookingHelpersTest
         Assert.Equal(expectedResult, result);
     }
 
+    // calculateRoomTotalPrice Tests //
     [Fact]
     public void calculateRoomTotalPrice_returnsCorrectly()
     {
@@ -88,6 +89,41 @@ public class BookingHelpersTest
         Assert.Equal(430.0, result);
     }
 
+    [Fact]
+    public void calculateRoomTotalPrice_ThrowsArgException_IfNumGuestsLessThan1()
+    {
+        var numGuests = 0;
+        var room = new Room();
+        var numNights = 1;
+        var roomServices = new List<Service>();
+
+        Assert.Throws<ArgumentException>(() => BookingHelpers.CalculateRoomTotalPrice(
+                room: room,
+                numNights: numNights,
+                numGuests: numGuests,
+                extraServices: roomServices
+            )
+        );
+    }
+
+    [Fact]
+    public void calculateRoomTotalPrice_ThrowsArgException_IfNumNightsLessThan1()
+    {
+        var numNights = 0;
+        var numGuests = 1;
+        var room = new Room();
+        var roomServices = new List<Service>();
+
+        Assert.Throws<ArgumentException>(() => BookingHelpers.CalculateRoomTotalPrice(
+                room: room,
+                numNights: numNights,
+                numGuests: numGuests,
+                extraServices: roomServices
+            )
+        );
+    }
+
+    // calculateBookingTotal Tests //
     [Fact]
     public void calculateBookingTotal_returnsCorrectly()
     {
