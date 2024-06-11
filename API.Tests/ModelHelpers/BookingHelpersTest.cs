@@ -1,4 +1,5 @@
 using API.ModelHelpers;
+using API.Models;
 
 namespace API.Tests.ModelHelpers;
 
@@ -44,5 +45,47 @@ public class BookingHelpersTest
         Assert.Equal(expectedResult, result);
     }
 
+    [Fact]
+    public void calculateRoomTotalPrice_returnsCorrectly()
+    {
+        // Base price = $100.00
+        var room = new Room
+        {
+            BasePrice = 100.0,
+            AdditionalGuestPrice = 50.0
+        };
+
+        // Plus 2 total guests (AKA 1 extra guest)
+        // $100.00 + (50 * 1) = $150
+        var numGuests = 2;
+
+        // Plus 2 services worth $25.00 and $40.00
+        // $150 + 25 + 40 = $215.00
+        var roomServices = new List<Service>
+        {
+            new Service
+            {
+                Cost = 25.0
+            },
+            new Service
+            {
+                Cost = 40.0
+            }
+        };
+
+        // Multiply all costs by 2 nights
+        // $215.00 * 2 = $430.00 *Final price*
+        var numNights = 2;
+
+
+        var result = BookingHelpers.CalculateRoomTotalPrice(
+            room: room,
+            numNights: numNights,
+            numGuests: numGuests,
+            extraServices: roomServices
+        );
+
+        Assert.Equal(430.0, result);
+    }
 
 }
