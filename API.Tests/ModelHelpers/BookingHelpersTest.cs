@@ -88,4 +88,23 @@ public class BookingHelpersTest
         Assert.Equal(430.0, result);
     }
 
+    [Fact]
+    public void calculateBookingTotal_returnsCorrectly()
+    {
+        var bookingRooms = new List<BookingRoom>
+        {
+            new BookingRoom
+            {
+                TotalPrice = 250.0
+            },
+            new BookingRoom
+            {
+                TotalPrice = 500.0
+            }
+        };
+
+        var result = BookingHelpers.CalculateBookingTotal(bookingRooms);
+
+        Assert.Equal(750.0, result);
+    }
 }

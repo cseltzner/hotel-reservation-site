@@ -20,4 +20,14 @@ public static class BookingHelpers
 
         return (room.BasePrice + ((numGuests - 1) * room.AdditionalGuestPrice) + extraServicesCost) * numNights;
     }
+
+    public static double CalculateBookingTotal(List<BookingRoom> rooms)
+    {
+        var total = 0.0;
+        rooms.ForEach(room =>
+        {
+            total += room.TotalPrice;
+        });
+        return total;
+    }
 }
