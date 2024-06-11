@@ -22,4 +22,17 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// Migrate database if unused migrations exist
+var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<BookingContext>();
+var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+try
+{
+    await context.Database.MigrateAsync();
+}
+catch (Exception ex)
+{
+    logger.LogError(ex, "A problem occurred during migration, see exception message");
+}
+
 app.Run();
