@@ -1,4 +1,5 @@
 using API.Context;
+using API.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,8 @@ builder.Services.AddDbContext<BookingContext>(options =>
 {
     options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection"));
 });
+
+builder.Services.AddApplicationServices(); // Add custom services to the service collection
 
 var app = builder.Build();
 
