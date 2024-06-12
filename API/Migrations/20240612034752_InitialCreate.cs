@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -58,7 +59,9 @@ namespace API.Migrations
                     BasePrice = table.Column<double>(type: "double precision", nullable: false),
                     AdditionalGuestPrice = table.Column<double>(type: "double precision", nullable: false),
                     MaxGuests = table.Column<int>(type: "integer", nullable: false),
-                    NumBeds = table.Column<int>(type: "integer", nullable: false)
+                    NumBeds = table.Column<int>(type: "integer", nullable: false),
+                    PrimaryImageUrl = table.Column<string>(type: "text", nullable: false),
+                    SecondaryImageUrls = table.Column<List<string>>(type: "text[]", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -71,6 +74,7 @@ namespace API.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    BookingCreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     GuestId = table.Column<int>(type: "integer", nullable: false),
                     BookingTotal = table.Column<double>(type: "double precision", nullable: false),
                     PaymentMethodId = table.Column<int>(type: "integer", nullable: false),
