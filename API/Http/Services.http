@@ -1,0 +1,22 @@
+@base_url = http://localhost:7000/api
+
+# Get all services
+GET {{base_url}}/Services
+Accept: application/json
+
+###
+
+# Get single service
+GET {{base_url}}/Services/1
+Accept: application/json
+
+###
+
+# Get single service - 404 not found
+GET {{base_url}}/Services/123123123
+Accept: application/json
+
+###
+
+
+
