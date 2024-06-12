@@ -122,8 +122,8 @@ namespace API.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CheckInDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    CheckOutDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    CheckInDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    CheckOutDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     NumOfNights = table.Column<int>(type: "integer", nullable: false),
                     NumGuests = table.Column<int>(type: "integer", nullable: false),
                     TotalPrice = table.Column<double>(type: "double precision", nullable: false),

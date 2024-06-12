@@ -3,8 +3,8 @@ namespace API.Models;
 public class BookingRoom
 {
     public int Id { get; set; }
-    public DateOnly CheckInDate { get; set; }
-    public DateOnly CheckOutDate { get; set; }
+    public DateTime CheckInDate { get; set; }
+    public DateTime CheckOutDate { get; set; }
     public int NumOfNights { get; set; }
     public int NumGuests { get; set; }
     public double TotalPrice { get; set; }

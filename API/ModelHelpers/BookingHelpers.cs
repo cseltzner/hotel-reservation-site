@@ -12,7 +12,7 @@ public static class BookingHelpers
     /// <returns>Int that represents the number of nights stayed</returns>
     public static int CalculateNumOfNights(DateTime checkInDate, DateTime checkOutDate)
     {
-        return DateOnly.FromDateTime(checkOutDate).DayNumber - DateOnly.FromDateTime(checkInDate).DayNumber;
+        return (checkOutDate - checkInDate).Days;
     }
 
     /// <summary>

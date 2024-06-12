@@ -66,11 +66,11 @@ namespace API.Migrations
                     b.Property<int?>("BookingId")
                         .HasColumnType("integer");
 
-                    b.Property<DateOnly>("CheckInDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("CheckInDate")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateOnly>("CheckOutDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("CheckOutDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("NumGuests")
                         .HasColumnType("integer");
