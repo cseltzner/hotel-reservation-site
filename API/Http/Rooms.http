@@ -1,0 +1,46 @@
+@base_url = http://localhost:7000/api
+
+# Get all rooms
+GET {{base_url}}/Rooms
+Accept: application/json
+
+###
+
+# Get all rooms (filter by name)
+GET {{base_url}}/Rooms?roomname=suite
+Accept: application/json
+
+###
+
+# Get all rooms (filter by price)
+GET {{base_url}}/Rooms?minprice=300&maxprice=500
+Accept: application/json
+
+###
+
+# Get all rooms (sort by price descending)
+GET {{base_url}}/Rooms?sortby=price&isdescending=true
+Accept: application/json
+
+###
+
+# Get all rooms (paginate results)
+GET {{base_url}}/Rooms?pagesize=2&pagesize=2
+Accept: application/json
+
+###
+
+# Get single room
+GET {{base_url}}/Rooms/1
+Accept: application/json
+
+###
+
+# Get single room - 404 not found
+GET {{base_url}}/Rooms/123123123
+Accept: application/json
+
+###
+
+
+
