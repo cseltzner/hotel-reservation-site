@@ -29,7 +29,8 @@ public class ServicesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetServices()
     {
-        return Ok(await _serviceRepository.GetServices());
+        var services = await _serviceRepository.GetServices();
+        return StatusCode(200, services);
     }
 
     /// <summary>
@@ -45,8 +46,8 @@ public class ServicesController : ControllerBase
     {
         var service = await _serviceRepository.GetService(id);
 
-        if (service == null) return NotFound();
+        if (service == null) return StatusCode(404);
 
-        return Ok(service);
+        return StatusCode(200, service);
     }
 }
