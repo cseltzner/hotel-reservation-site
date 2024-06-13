@@ -9,5 +9,7 @@ public class BookingRoom
     public int NumGuests { get; set; }
     public double TotalPrice { get; set; }
     public List<Service> ExtraServices { get; set; }
+
+    public int RoomId { get; set; }
     public Room Room { get; set; }
 }
