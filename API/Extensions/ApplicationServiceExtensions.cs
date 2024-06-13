@@ -12,6 +12,7 @@ public static class ApplicationServiceExtensions
     {
         // Repository services
         services.AddScoped<IServiceRepository, ServiceRepository>();
+        services.AddScoped<IRoomRepository, RoomRepository>();
 
         return services;
     }
