@@ -5,15 +5,16 @@ namespace API.Responses;
 /// <summary>
 /// List object that includes pagination metadata including TotalCount, PageNumber, and PageSize
 /// </summary>
-public class PagedList<T> : List<T>
+public class PagedList<T> where T : class
 {
     public int TotalCount { get; private set; }
     public int PageNumber { get; private set; }
     public int PageSize { get; private set; }
+    public IReadOnlyList<T> Data { get; set; }
 
-    public PagedList(List<T> items, int count, int pageNumber, int pageSize)
+    public PagedList(IReadOnlyList<T> items, int count, int pageNumber, int pageSize)
     {
-        AddRange(items);
+        this.Data = items;
         this.TotalCount = count;
         this.PageNumber = pageNumber;
         this.PageSize = pageSize;

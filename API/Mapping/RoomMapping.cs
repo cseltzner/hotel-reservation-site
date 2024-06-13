@@ -24,7 +24,7 @@ public static class RoomMapping
 
     public static PagedList<RoomDto> MapPagedRoomEntitiesToPagedRoomDtos(PagedList<Room> pagedRooms)
     {
-        var roomDtoList = pagedRooms.Select(room => MapRoomToDto(room));
+        var roomDtoList = pagedRooms.Data.Select(room => MapRoomToDto(room));
         return new PagedList<RoomDto>(roomDtoList.ToList(), pagedRooms.TotalCount, pagedRooms.PageNumber, pagedRooms.PageSize);
     }
 }
