@@ -1,10 +1,11 @@
 using API.Models;
 using API.Queries;
+using API.Responses;
 
 namespace API.Interfaces.Repositories;
 
 public interface IRoomRepository
 {
-    public Task<List<Room>> GetRooms(RoomQuery query);
+    public Task<PagedList<Room>> GetRooms(RoomQuery query);
     public Task<Room?> GetRoom(int id);
 }

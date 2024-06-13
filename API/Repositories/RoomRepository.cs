@@ -2,6 +2,7 @@ using API.Context;
 using API.Interfaces.Repositories;
 using API.Models;
 using API.Queries;
+using API.Responses;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Repositories;
@@ -15,7 +16,7 @@ public class RoomRepository : IRoomRepository
         _context = context;
     }
 
-    public async Task<List<Room>> GetRooms(RoomQuery query)
+    public async Task<PagedList<Room>> GetRooms(RoomQuery query)
     {
         var rooms = _context.Rooms
             .AsQueryable();
@@ -68,12 +69,9 @@ public class RoomRepository : IRoomRepository
         }
 
         // Pagination
-        var skipNumber = (query.PageNumber - 1) * query.PageSize;
+        var paginatedRooms = await PagedList<Room>.ToPagedList(rooms, query.PageNumber, query.PageSize);
 
-        return await rooms
-            .Skip(skipNumber)
-            .Take(query.PageSize)
-            .ToListAsync();
+        return paginatedRooms;
     }
 
     public async Task<Room?> GetRoom(int id)
