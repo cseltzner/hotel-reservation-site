@@ -15,10 +15,17 @@ public class ServicesController : ControllerBase
         _serviceRepository = serviceRepository;
     }
 
+    ////////////
+    // Routes //
+    ////////////
+
     /// <summary>
-    /// Returns a list of services
+    /// @route   GET /api/services              <br/>
+    /// @desc    Get all room services          <br/>
+    /// @access  Public                         <br/>
+    ///                                         <br/>
+    /// @status  200 - returns List of Services <br/>
     /// </summary>
-    /// <returns>200 - List of services</returns>
     [HttpGet]
     public async Task<IActionResult> GetServices()
     {
@@ -26,13 +33,13 @@ public class ServicesController : ControllerBase
     }
 
     /// <summary>
-    /// Returns service with the specified id
+    /// @route   GET /api/services                     <br/>
+    /// @desc    Get single service by Id              <br/>
+    /// @access  Public                                <br/>
+    ///                                                <br/>
+    /// @status  200 - returns service with given Id   <br/>
+    /// @status  404 - Service with given Id not found <br/>
     /// </summary>
-    /// <param name="id">Id of the service</param>
-    /// <returns>
-    ///   <para>200 - Service with the given Id</para>
-    ///   404 - No service found with given Id
-    /// </returns>
     [HttpGet("{id}")]
     public async Task<IActionResult> GetService(int id)
     {
