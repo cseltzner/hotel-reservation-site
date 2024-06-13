@@ -22,9 +22,9 @@ public static class RoomMapping
         };
     }
 
-    public static PagedRoomDtos MapPagedRoomEntitiesToPagedRoomDtos(PagedList<Room> pagedRooms)
+    public static PagedList<RoomDto> MapPagedRoomEntitiesToPagedRoomDtos(PagedList<Room> pagedRooms)
     {
         var roomDtoList = pagedRooms.Select(room => MapRoomToDto(room));
-        return new PagedRoomDtos(roomDtoList.ToList(), pagedRooms.TotalCount, pagedRooms.PageNumber, pagedRooms.PageSize);
+        return new PagedList<RoomDto>(roomDtoList.ToList(), pagedRooms.TotalCount, pagedRooms.PageNumber, pagedRooms.PageSize);
     }
 }
