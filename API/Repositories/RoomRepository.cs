@@ -42,7 +42,7 @@ public class RoomRepository : IRoomRepository
         // Can be sorted by "Name", "Price", "MaxGuests", and "Beds" (not case sensitive)
         if (!string.IsNullOrWhiteSpace(query.SortBy))
         {
-            if (query.SortBy.Equals("name", StringComparison.OrdinalIgnoreCase))
+            if (query.SortBy.Equals("roomname", StringComparison.OrdinalIgnoreCase))
             {
                 rooms = query.IsDescending
                     ? rooms.OrderByDescending(room => room.Name)

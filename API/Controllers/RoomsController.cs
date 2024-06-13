@@ -21,11 +21,20 @@ public class RoomsController : ControllerBase
     ////////////
 
     /// <summary>
-    /// @route   GET /api/rooms                         <br/>
-    /// @desc    Get all rooms as a paginated list      <br/>
-    /// @access  Public                                 <br/>
-    ///                                                 <br/>
-    /// @status  200 - returns Paged Room Dto list      <br/>
+    /// @route   GET /api/rooms                                               <br/>
+    /// @desc    Get all rooms as a paginated list                            <br/>
+    /// @access  Public                                                       <br/>
+    ///                                                                       <br/>
+    /// @query   RoomName - Filter by room's name                             <br/>
+    /// @query   MaxPrice - Only show rooms with base price below max price   <br/>
+    /// @query   MinPrice - Only show rooms with base price above min price   <br/>
+    /// @query   SortBy - case-insensitive                                    <br/>
+    ///          values: "RoomName", "Price", "MaxGuests", "Beds"             <br/>                                        <br/>
+    /// @query   IsDescending - Sorts in descending order                     <br/>
+    /// @query   PageNumber - Page to return                                  <br/>
+    /// @query   PageSize - Size of each page to return                       <br/>
+    ///                                                                       <br/>
+    /// @status  200 - returns Paged Room Dto list                            <br/>
     /// </summary>
     [HttpGet]
     public async Task<IActionResult> GetRooms([FromQuery] RoomQuery roomQuery)
