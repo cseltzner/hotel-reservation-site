@@ -11,4 +11,6 @@ public class BookingContext: DbContext
     public DbSet<Guest> Guests { get; set; }
     public DbSet<Service> Services { get; set; }
     public DbSet<Room> Rooms { get; set; }
+    public DbSet<PaymentMethod> PaymentMethods { get; set; }
+    public DbSet<Feature> Features { get; set; }
 }
