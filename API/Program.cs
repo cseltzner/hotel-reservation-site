@@ -25,13 +25,15 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-// Migrate database if unused migrations exist
+// Migrate database if unused migrations exist, and seed database
 var scope = app.Services.CreateScope();
 var context = scope.ServiceProvider.GetRequiredService<BookingContext>();
 var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 try
 {
     await context.Database.MigrateAsync();
+    await SeedData.Seed(context);
+
 }
 catch (Exception ex)
 {
