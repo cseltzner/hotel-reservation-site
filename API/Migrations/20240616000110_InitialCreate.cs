@@ -14,6 +14,19 @@ namespace API.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Features",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    FeatureName = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Features", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Guests",
                 columns: table => new
                 {
@@ -37,7 +50,7 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PaymentMethod",
+                name: "PaymentMethods",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
@@ -46,7 +59,7 @@ namespace API.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PaymentMethod", x => x.Id);
+                    table.PrimaryKey("PK_PaymentMethods", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -75,10 +88,10 @@ namespace API.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     BookingCreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    GuestId = table.Column<int>(type: "integer", nullable: false),
                     BookingTotal = table.Column<double>(type: "double precision", nullable: false),
-                    PaymentMethodId = table.Column<int>(type: "integer", nullable: false),
-                    OrderNotes = table.Column<string>(type: "text", nullable: true)
+                    OrderNotes = table.Column<string>(type: "text", nullable: true),
+                    GuestId = table.Column<int>(type: "integer", nullable: false),
+                    PaymentMethodId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,30 +103,35 @@ namespace API.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Bookings_PaymentMethod_PaymentMethodId",
+                        name: "FK_Bookings_PaymentMethods_PaymentMethodId",
                         column: x => x.PaymentMethodId,
-                        principalTable: "PaymentMethod",
+                        principalTable: "PaymentMethods",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Feature",
+                name: "FeatureRoom",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FeatureName = table.Column<string>(type: "text", nullable: false),
-                    RoomId = table.Column<int>(type: "integer", nullable: true)
+                    FeaturesId = table.Column<int>(type: "integer", nullable: false),
+                    RoomsWithFeatureId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Feature", x => x.Id);
+                    table.PrimaryKey("PK_FeatureRoom", x => new { x.FeaturesId, x.RoomsWithFeatureId });
                     table.ForeignKey(
-                        name: "FK_Feature_Rooms_RoomId",
-                        column: x => x.RoomId,
+                        name: "FK_FeatureRoom_Features_FeaturesId",
+                        column: x => x.FeaturesId,
+                        principalTable: "Features",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_FeatureRoom_Rooms_RoomsWithFeatureId",
+                        column: x => x.RoomsWithFeatureId,
                         principalTable: "Rooms",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -187,9 +205,9 @@ namespace API.Migrations
                 column: "PaymentMethodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Feature_RoomId",
-                table: "Feature",
-                column: "RoomId");
+                name: "IX_FeatureRoom_RoomsWithFeatureId",
+                table: "FeatureRoom",
+                column: "RoomsWithFeatureId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Services_BookingRoomId",
@@ -201,10 +219,13 @@ namespace API.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Feature");
+                name: "FeatureRoom");
 
             migrationBuilder.DropTable(
                 name: "Services");
+
+            migrationBuilder.DropTable(
+                name: "Features");
 
             migrationBuilder.DropTable(
                 name: "BookingRoom");
@@ -219,7 +240,7 @@ namespace API.Migrations
                 name: "Guests");
 
             migrationBuilder.DropTable(
-                name: "PaymentMethod");
+                name: "PaymentMethods");
         }
     }
 }

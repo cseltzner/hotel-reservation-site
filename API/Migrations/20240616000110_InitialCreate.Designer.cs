@@ -13,8 +13,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Migrations
 {
     [DbContext(typeof(BookingContext))]
-    [Migration("20240614042045_AddPaymentMethodsAndFeatures")]
-    partial class AddPaymentMethodsAndFeatures
+    [Migration("20240616000110_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -108,12 +108,7 @@ namespace API.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("RoomId")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("RoomId");
 
                     b.ToTable("Features");
                 });
@@ -252,6 +247,21 @@ namespace API.Migrations
                     b.ToTable("Services");
                 });
 
+            modelBuilder.Entity("FeatureRoom", b =>
+                {
+                    b.Property<int>("FeaturesId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RoomsWithFeatureId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("FeaturesId", "RoomsWithFeatureId");
+
+                    b.HasIndex("RoomsWithFeatureId");
+
+                    b.ToTable("FeatureRoom");
+                });
+
             modelBuilder.Entity("API.Models.Booking", b =>
                 {
                     b.HasOne("API.Models.Guest", "Guest")
@@ -286,18 +296,26 @@ namespace API.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("API.Models.Feature", b =>
-                {
-                    b.HasOne("API.Models.Room", null)
-                        .WithMany("Features")
-                        .HasForeignKey("RoomId");
-                });
-
             modelBuilder.Entity("API.Models.Service", b =>
                 {
                     b.HasOne("API.Models.BookingRoom", null)
                         .WithMany("ExtraServices")
                         .HasForeignKey("BookingRoomId");
+                });
+
+            modelBuilder.Entity("FeatureRoom", b =>
+                {
+                    b.HasOne("API.Models.Feature", null)
+                        .WithMany()
+                        .HasForeignKey("FeaturesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Room", null)
+                        .WithMany()
+                        .HasForeignKey("RoomsWithFeatureId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("API.Models.Booking", b =>
@@ -313,11 +331,6 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.Guest", b =>
                 {
                     b.Navigation("Bookings");
-                });
-
-            modelBuilder.Entity("API.Models.Room", b =>
-                {
-                    b.Navigation("Features");
                 });
 #pragma warning restore 612, 618
         }
