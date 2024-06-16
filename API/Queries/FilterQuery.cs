@@ -22,7 +22,7 @@ public class FilterQuery
     /// Generates a unique cache string based on the query's properties.
     /// </summary>
     /// <returns>Unique cache string</returns>
-    public string ToCacheKey()
+    public virtual string ToCacheKey()
     {
         var jsonString = System.Text.Json.JsonSerializer.Serialize(this);
         var md5HashBytes = System.Security.Cryptography.MD5.HashData(System.Text.Encoding.UTF8.GetBytes(jsonString));

@@ -13,6 +13,8 @@ builder.Services.AddDbContext<BookingContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DbConnection"));
 });
 
+builder.Services.AddMemoryCache(); // Adds IMemoryCache to service collection
+
 builder.Services.AddApplicationServices(); // Add custom services to the service collection
 
 var app = builder.Build();

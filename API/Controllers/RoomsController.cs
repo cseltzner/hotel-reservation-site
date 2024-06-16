@@ -1,7 +1,10 @@
 using API.Interfaces.Repositories;
 using API.Mapping;
+using API.Models;
 using API.Queries;
+using API.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace API.Controllers;
 
@@ -10,10 +13,12 @@ namespace API.Controllers;
 public class RoomsController : ControllerBase
 {
     private readonly IRoomRepository _roomRepository;
+    private readonly IMemoryCache _cache;
 
-    public RoomsController(IRoomRepository roomRepository)
+    public RoomsController(IRoomRepository roomRepository, IMemoryCache cache)
     {
         _roomRepository = roomRepository;
+        _cache = cache;
     }
 
     ////////////
@@ -39,7 +44,16 @@ public class RoomsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetRooms([FromQuery] RoomQuery roomQuery)
     {
-        var rooms = await _roomRepository.GetRooms(roomQuery);
+        // Check cache
+        var rooms = _cache.Get<PagedList<Room>>($"room:{roomQuery.ToCacheKey()}");
+
+        // If cache is empty, retrieve from database
+        if (rooms == null)
+        {
+            rooms = await _roomRepository.GetRooms(roomQuery);
+            // Write response to cache
+            _cache.Set($"room:{roomQuery.ToCacheKey()}", rooms, TimeSpan.FromMinutes(10));
+        }
 
         var roomDtos = RoomMapping.MapPagedRoomEntitiesToPagedRoomDtos(rooms);
 
@@ -58,7 +72,16 @@ public class RoomsController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetRoom([FromRoute] int id)
     {
-        var room = await _roomRepository.GetRoom(id);
+        // Check cache
+        var room = _cache.Get<Room>($"room:{id}");
+
+        // If cache is empty, retrive from database
+        if (room == null)
+        {
+            room = await _roomRepository.GetRoom(id);
+            // Write db response to cache
+            _cache.Set($"room:{id}", room, TimeSpan.FromMinutes(10));
+        }
 
         if (room == null) return StatusCode(404);
 

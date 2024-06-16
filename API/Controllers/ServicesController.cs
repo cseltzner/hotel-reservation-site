@@ -1,6 +1,7 @@
 using API.Interfaces.Repositories;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace API.Controllers;
 
@@ -9,10 +10,12 @@ namespace API.Controllers;
 public class ServicesController : ControllerBase
 {
     private readonly IServiceRepository _serviceRepository;
+    private readonly IMemoryCache _cache;
 
-    public ServicesController(IServiceRepository serviceRepository)
+    public ServicesController(IServiceRepository serviceRepository, IMemoryCache cache)
     {
         _serviceRepository = serviceRepository;
+        _cache = cache;
     }
 
     ////////////
@@ -29,7 +32,17 @@ public class ServicesController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetServices()
     {
-        var services = await _serviceRepository.GetServices();
+        // Check cache
+        var services = _cache.Get<List<Service>>("service");
+
+        // If cache is empty, retrieve from database
+        if (services == null)
+        {
+            services = await _serviceRepository.GetServices();
+            // Write response to cache
+            _cache.Set("service", services, TimeSpan.FromMinutes(10));
+        }
+
         return StatusCode(200, services);
     }
 
@@ -44,7 +57,15 @@ public class ServicesController : ControllerBase
     [HttpGet("{id}")]
     public async Task<IActionResult> GetService(int id)
     {
-        var service = await _serviceRepository.GetService(id);
+        // Get service from cache
+        var service = _cache.Get<Service>($"service:{id}");
+
+        // No cache data found, use database
+        if (service == null)
+        {
+            service = await _serviceRepository.GetService(id);
+            _cache.Set($"service:{id}", service, TimeSpan.FromMinutes(10)); // Write from DB to cache
+        }
 
         if (service == null) return StatusCode(404);
 
