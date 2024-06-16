@@ -19,6 +19,7 @@ public class RoomRepository : IRoomRepository
     public async Task<PagedList<Room>> GetRooms(RoomQuery query)
     {
         var rooms = _context.Rooms
+            .Include(r => r.Features)
             .AsQueryable();
 
         // Filter
@@ -77,6 +78,7 @@ public class RoomRepository : IRoomRepository
     public async Task<Room?> GetRoom(int id)
     {
         var room = await _context.Rooms
+            .Include(r => r.Features)
             .FirstOrDefaultAsync(room => room.Id == id);
 
         return room;
