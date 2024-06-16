@@ -26,7 +26,7 @@ public class RoomRepository : IRoomRepository
         // Can be filtered by "RoomName", "MaxPrice", "MinPrice"
         if (!string.IsNullOrWhiteSpace(query.RoomName))
         {
-            rooms = rooms.Where(room => room.Name.Contains(query.RoomName));
+            rooms = rooms.Where(room => room.Name.ToLower().Contains(query.RoomName.ToLower()));
         }
 
         if (query.MaxPrice != null)
