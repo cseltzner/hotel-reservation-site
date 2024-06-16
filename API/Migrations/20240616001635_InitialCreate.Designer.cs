@@ -13,7 +13,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Migrations
 {
     [DbContext(typeof(BookingContext))]
-    [Migration("20240616000110_InitialCreate")]
+    [Migration("20240616001635_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -252,12 +252,12 @@ namespace API.Migrations
                     b.Property<int>("FeaturesId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("RoomsWithFeatureId")
+                    b.Property<int>("RoomId")
                         .HasColumnType("integer");
 
-                    b.HasKey("FeaturesId", "RoomsWithFeatureId");
+                    b.HasKey("FeaturesId", "RoomId");
 
-                    b.HasIndex("RoomsWithFeatureId");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("FeatureRoom");
                 });
@@ -313,7 +313,7 @@ namespace API.Migrations
 
                     b.HasOne("API.Models.Room", null)
                         .WithMany()
-                        .HasForeignKey("RoomsWithFeatureId")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

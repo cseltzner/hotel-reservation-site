@@ -249,12 +249,12 @@ namespace API.Migrations
                     b.Property<int>("FeaturesId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("RoomsWithFeatureId")
+                    b.Property<int>("RoomId")
                         .HasColumnType("integer");
 
-                    b.HasKey("FeaturesId", "RoomsWithFeatureId");
+                    b.HasKey("FeaturesId", "RoomId");
 
-                    b.HasIndex("RoomsWithFeatureId");
+                    b.HasIndex("RoomId");
 
                     b.ToTable("FeatureRoom");
                 });
@@ -310,7 +310,7 @@ namespace API.Migrations
 
                     b.HasOne("API.Models.Room", null)
                         .WithMany()
-                        .HasForeignKey("RoomsWithFeatureId")
+                        .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

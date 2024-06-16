@@ -115,11 +115,11 @@ namespace API.Migrations
                 columns: table => new
                 {
                     FeaturesId = table.Column<int>(type: "integer", nullable: false),
-                    RoomsWithFeatureId = table.Column<int>(type: "integer", nullable: false)
+                    RoomId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FeatureRoom", x => new { x.FeaturesId, x.RoomsWithFeatureId });
+                    table.PrimaryKey("PK_FeatureRoom", x => new { x.FeaturesId, x.RoomId });
                     table.ForeignKey(
                         name: "FK_FeatureRoom_Features_FeaturesId",
                         column: x => x.FeaturesId,
@@ -127,8 +127,8 @@ namespace API.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_FeatureRoom_Rooms_RoomsWithFeatureId",
-                        column: x => x.RoomsWithFeatureId,
+                        name: "FK_FeatureRoom_Rooms_RoomId",
+                        column: x => x.RoomId,
                         principalTable: "Rooms",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -205,9 +205,9 @@ namespace API.Migrations
                 column: "PaymentMethodId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_FeatureRoom_RoomsWithFeatureId",
+                name: "IX_FeatureRoom_RoomId",
                 table: "FeatureRoom",
-                column: "RoomsWithFeatureId");
+                column: "RoomId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Services_BookingRoomId",
