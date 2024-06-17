@@ -14,6 +14,7 @@ public static class ApplicationServiceExtensions
         services.AddScoped<IServiceRepository, ServiceRepository>();
         services.AddScoped<IRoomRepository, RoomRepository>();
         services.AddScoped<IBookingRepository, BookingRepository>();
+        services.AddScoped<IGuestRepository, GuestRepository>();
 
         return services;
     }
