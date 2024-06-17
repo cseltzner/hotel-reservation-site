@@ -1,0 +1,15 @@
+@base_url = http://localhost:7000/api
+
+###
+
+# Get single booking
+GET {{base_url}}/Bookings/1
+Accept: application/json
+
+###
+
+# Get single booking - 404 not found
+GET {{base_url}}/Bookings/123123123
+Accept: application/json
+
+###

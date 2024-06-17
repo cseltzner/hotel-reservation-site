@@ -75,7 +75,7 @@ public class RoomsController : ControllerBase
         // Check cache
         var room = _cache.Get<Room>($"room:{id}");
 
-        // If cache is empty, retrive from database
+        // If cache is empty, retrieve from database
         if (room == null)
         {
             room = await _roomRepository.GetRoom(id);
