@@ -13,3 +13,14 @@ GET {{base_url}}/Bookings/123123123
 Accept: application/json
 
 ###
+
+# Get bookings by Guest Id
+GET {{base_url}}/Bookings/guest/1
+Accept: application/json
+
+###
+# Get bookings by Guest Email and Last name
+GET {{base_url}}/Bookings/guest?email=test@test.com&lastname=test
+Accept: application/json
+
+###
