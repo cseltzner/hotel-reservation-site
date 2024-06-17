@@ -1,6 +1,7 @@
 using API.Context;
 using API.Dtos;
 using API.Interfaces.Repositories;
+using API.ModelHelpers;
 using API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -45,9 +46,11 @@ public class BookingRepository : IBookingRepository
             .ToListAsync();
     }
 
-    public async Task<Booking> CreateBooking(CreateBookingDto bookingDto)
+    public async Task<Booking> CreateBooking(Booking booking)
     {
-        throw new NotImplementedException();
+        var createdBooking = _context.Bookings.Add(booking);
+        await _context.SaveChangesAsync();
+        return createdBooking.Entity;
     }
 
     private IQueryable<Booking> AddIncludes(IQueryable<Booking> query)
