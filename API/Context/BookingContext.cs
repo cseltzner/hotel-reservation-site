@@ -20,5 +20,8 @@ public class BookingContext: DbContext
         modelBuilder.Entity<Room>()
             .HasMany(e => e.Features)
             .WithMany();
+        modelBuilder.Entity<BookingRoom>()
+            .HasMany(e => e.ExtraServices)
+            .WithMany();
     }
 }

@@ -82,6 +82,20 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Services",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Cost = table.Column<double>(type: "double precision", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Services", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Bookings",
                 columns: table => new
                 {
@@ -165,23 +179,27 @@ namespace API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Services",
+                name: "BookingRoomService",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "text", nullable: false),
-                    Cost = table.Column<double>(type: "double precision", nullable: false),
-                    BookingRoomId = table.Column<int>(type: "integer", nullable: true)
+                    BookingRoomId = table.Column<int>(type: "integer", nullable: false),
+                    ExtraServicesId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Services", x => x.Id);
+                    table.PrimaryKey("PK_BookingRoomService", x => new { x.BookingRoomId, x.ExtraServicesId });
                     table.ForeignKey(
-                        name: "FK_Services_BookingRoom_BookingRoomId",
+                        name: "FK_BookingRoomService_BookingRoom_BookingRoomId",
                         column: x => x.BookingRoomId,
                         principalTable: "BookingRoom",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BookingRoomService_Services_ExtraServicesId",
+                        column: x => x.ExtraServicesId,
+                        principalTable: "Services",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
@@ -193,6 +211,11 @@ namespace API.Migrations
                 name: "IX_BookingRoom_RoomId",
                 table: "BookingRoom",
                 column: "RoomId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BookingRoomService_ExtraServicesId",
+                table: "BookingRoomService",
+                column: "ExtraServicesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bookings_GuestId",
@@ -208,27 +231,25 @@ namespace API.Migrations
                 name: "IX_FeatureRoom_RoomId",
                 table: "FeatureRoom",
                 column: "RoomId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Services_BookingRoomId",
-                table: "Services",
-                column: "BookingRoomId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "BookingRoomService");
+
+            migrationBuilder.DropTable(
                 name: "FeatureRoom");
+
+            migrationBuilder.DropTable(
+                name: "BookingRoom");
 
             migrationBuilder.DropTable(
                 name: "Services");
 
             migrationBuilder.DropTable(
                 name: "Features");
-
-            migrationBuilder.DropTable(
-                name: "BookingRoom");
 
             migrationBuilder.DropTable(
                 name: "Bookings");

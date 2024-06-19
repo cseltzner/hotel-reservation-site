@@ -227,9 +227,6 @@ namespace API.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("BookingRoomId")
-                        .HasColumnType("integer");
-
                     b.Property<double>("Cost")
                         .HasColumnType("double precision");
 
@@ -239,9 +236,22 @@ namespace API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BookingRoomId");
-
                     b.ToTable("Services");
+                });
+
+            modelBuilder.Entity("BookingRoomService", b =>
+                {
+                    b.Property<int>("BookingRoomId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("ExtraServicesId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("BookingRoomId", "ExtraServicesId");
+
+                    b.HasIndex("ExtraServicesId");
+
+                    b.ToTable("BookingRoomService");
                 });
 
             modelBuilder.Entity("FeatureRoom", b =>
@@ -293,11 +303,19 @@ namespace API.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("API.Models.Service", b =>
+            modelBuilder.Entity("BookingRoomService", b =>
                 {
                     b.HasOne("API.Models.BookingRoom", null)
-                        .WithMany("ExtraServices")
-                        .HasForeignKey("BookingRoomId");
+                        .WithMany()
+                        .HasForeignKey("BookingRoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API.Models.Service", null)
+                        .WithMany()
+                        .HasForeignKey("ExtraServicesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("FeatureRoom", b =>
@@ -318,11 +336,6 @@ namespace API.Migrations
             modelBuilder.Entity("API.Models.Booking", b =>
                 {
                     b.Navigation("BookingRooms");
-                });
-
-            modelBuilder.Entity("API.Models.BookingRoom", b =>
-                {
-                    b.Navigation("ExtraServices");
                 });
 
             modelBuilder.Entity("API.Models.Guest", b =>
