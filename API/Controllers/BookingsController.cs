@@ -147,28 +147,49 @@ public class BookingsController : ControllerBase
         var services = await _bookingRepository.GetBookingServices();
         var paymentMethod = await _bookingRepository.GetPaymentMethodById(bookingDto.PaymentMethodId);
 
+        // Check if all room Ids given by client are valid
+        // If less rooms were found in database than room Ids given by client, then one or more room Id is invalid
+        if (rooms.Count < bookingDto.BookingRooms.Count)
+        {
+            return StatusCode(400, "One or more room Ids are invalid");
+        }
+
+        // Check if paymentMethodId passed is valid
+        if (paymentMethod == null) return StatusCode(400, "PaymentMethodId is invalid");
+
+        var brServicesCount = 0; // Used to verify if all service Ids are valid
+        var brDtoServicesCount = 0; // Used to verify if all service Ids are valid
         var bookingRooms = bookingDto.BookingRooms.Select(br =>
         {
             var brServices = services.Where(s => br.ExtraServiceIds.Contains(s.Id)).ToList();
+            brServicesCount += brServices.Count;
+            brDtoServicesCount += br.ExtraServiceIds.Count;
             var brRoom = rooms.Find(r => r.Id == br.RoomId);
             var numNights = BookingHelpers.CalculateNumOfNights(br.CheckInDate, br.CheckOutDate);
 
             return new BookingRoom
             {
-                Room = brRoom,
+                Room = brRoom!,
                 CheckInDate = br.CheckInDate,
                 CheckOutDate = br.CheckOutDate,
                 NumOfNights = numNights,
                 NumGuests = br.NumGuests,
                 ExtraServices = brServices,
                 TotalPrice = BookingHelpers.CalculateRoomTotalPrice(
-                        brRoom,
+                        brRoom!,
                         br.NumGuests,
                         numNights,
                         brServices
                     )
             };
         }).ToList();
+
+        // Check if all service Ids given by client are valid
+        // If less services were found in the database than service Ids given by client, then one or more service Id's are invalid
+        if (brServicesCount < brDtoServicesCount)
+        {
+            return StatusCode(400, "One or more service Ids are invalid");
+        }
 
         var booking = new Booking
         {
