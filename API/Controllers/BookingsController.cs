@@ -139,6 +139,7 @@ public class BookingsController : ControllerBase
     /// @body - CreateBookingDto                                                            <br/>
     ///                                                                                     <br/>
     /// @status  200 - returns the created booking                                          <br/>
+    /// @status  400 - one or more Ids given were not found                                 <br/>
     /// </summary>
     [HttpPost]
     public async Task<IActionResult> CreateBooking([FromBody] CreateBookingDto bookingDto)
