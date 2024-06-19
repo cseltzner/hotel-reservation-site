@@ -83,4 +83,12 @@ public class RoomRepository : IRoomRepository
 
         return room;
     }
+
+    public async Task<List<Room>> GetListOfRoomsByRoomIds(List<int> roomIds)
+    {
+        return await _context.Rooms
+            .Include(r => r.Features)
+            .Where(r => roomIds.Contains(r.Id))
+            .ToListAsync();
+    }
 }

@@ -55,6 +55,18 @@ public class BookingRepository : IBookingRepository
         return createdBooking.Entity;
     }
 
+    public async Task<List<Service>> GetBookingServicesByIds(List<int> serviceIds)
+    {
+        return await _context.Services
+            .Where(s => serviceIds.Contains(s.Id))
+            .ToListAsync();
+    }
+
+    public async Task<List<Service>> GetBookingServices()
+    {
+        return await _context.Services.ToListAsync();
+    }
+
     private IQueryable<Booking> AddIncludes(IQueryable<Booking> query)
     {
         return query.Include(b => b.Guest)

@@ -8,4 +8,6 @@ public interface IBookingRepository
     public Task<List<Booking>?> GetBookingsByGuestId(int id);
     public Task<List<Booking>?> GetBookingsByGuestEmailAndLastName(string email, string lastName);
     public Task<Booking> CreateBooking(Booking booking);
+    public Task<List<Service>> GetBookingServicesByIds(List<int> serviceIds);
+    public Task<List<Service>> GetBookingServices();
 }

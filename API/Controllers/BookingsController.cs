@@ -1,5 +1,7 @@
+using API.Dtos;
 using API.Interfaces.Repositories;
 using API.Mapping;
+using API.ModelHelpers;
 using API.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
@@ -11,11 +13,19 @@ namespace API.Controllers;
 public class BookingsController : ControllerBase
 {
     private readonly IBookingRepository _bookingRepository;
+    private readonly IGuestRepository _guestRepository;
+    private readonly IRoomRepository _roomRepository;
     private readonly IMemoryCache _cache;
 
-    public BookingsController(IBookingRepository bookingRepository, IMemoryCache cache)
+    public BookingsController(
+        IBookingRepository bookingRepository,
+        IGuestRepository guestRepository,
+        IRoomRepository roomRepository,
+        IMemoryCache cache)
     {
         _bookingRepository = bookingRepository;
+        _guestRepository = guestRepository;
+        _roomRepository = roomRepository;
         _cache = cache;
     }
 
@@ -119,5 +129,59 @@ public class BookingsController : ControllerBase
         });
 
         return StatusCode(200, bookingDtos);
+    }
+
+    /// <summary>
+    /// @route   POST /api/bookings                                                         <br/>
+    /// @desc    Create a booking                                                           <br/>
+    /// @access  Public                                                                     <br/>
+    ///                                                                                     <br/>
+    /// @body - CreateBookingDto                                                            <br/>
+    ///                                                                                     <br/>
+    /// @status  200 - returns the created booking                                          <br/>
+    /// </summary>
+    [HttpPost]
+    public async Task<IActionResult> CreateBooking([FromBody] CreateBookingDto bookingDto)
+    {
+        var rooms = await _roomRepository.GetListOfRoomsByRoomIds(bookingDto.BookingRooms.Select(r => r.RoomId).ToList());
+        var services = await _bookingRepository.GetBookingServices();
+
+        var bookingRooms = bookingDto.BookingRooms.Select(br =>
+        {
+            var brServices = services.Where(s => br.ExtraServiceIds.Contains(s.Id)).ToList();
+            var brRoom = rooms.Find(r => r.Id == br.RoomId);
+            var numNights = BookingHelpers.CalculateNumOfNights(br.CheckInDate, br.CheckOutDate);
+
+            return new BookingRoom
+            {
+                Room = brRoom,
+                CheckInDate = br.CheckInDate,
+                CheckOutDate = br.CheckOutDate,
+                NumOfNights = numNights,
+                NumGuests = br.NumGuests,
+                ExtraServices = brServices,
+                TotalPrice = BookingHelpers.CalculateRoomTotalPrice(
+                        brRoom,
+                        br.NumGuests,
+                        numNights,
+                        brServices
+                    )
+            };
+        }).ToList();
+
+        var booking = new Booking
+        {
+            Guest = BookingMapping.MapGuestDtoToGuest(bookingDto.Guest),
+            PaymentMethodId = bookingDto.PaymentMethodId,
+            BookingRooms = bookingRooms,
+            BookingTotal = BookingHelpers.CalculateBookingTotal(bookingRooms),
+            OrderNotes = bookingDto.OrderNotes
+        };
+
+        await _bookingRepository.CreateBooking(booking);
+
+        var dto = BookingMapping.MapBookingToDto(booking);
+
+        return StatusCode(200, bookingDto);
     }
 }

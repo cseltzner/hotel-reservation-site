@@ -24,3 +24,46 @@ GET {{base_url}}/Bookings/guest?email=test@test.com&lastname=test
 Accept: application/json
 
 ###
+
+# Create booking
+POST {{base_url}}/Bookings
+Content-Type: application/json
+
+{
+  "guest": {
+    "email": "test@test.com",
+    "firstName": "first",
+    "lastName": "last",
+    "companyName": "test company",
+    "country": "United States",
+    "address": "123 Test Dr.",
+    "City": "Testville",
+    "State": "Ca",
+    "Zip": "12345",
+    "Phone": "1234567890"
+  },
+  "bookingRooms": [
+    {
+      "roomId": 1,
+      "checkInDate": "2024-01-20T20:42:25.238Z",
+      "checkOutDate": "2024-01-21T20:42:25.238Z",
+      "numGuests": 2,
+      "extraServiceIds": [
+        1, 2
+      ]
+    },
+    {
+      "roomId": 2,
+      "checkInDate": "2024-01-20T20:42:25.238Z",
+      "checkOutDate": "2024-01-22T20:42:25.238Z",
+      "numGuests": 2,
+      "extraServiceIds": [
+        1, 3
+      ]
+    }
+  ],
+  "paymentMethodId": 1,
+  "orderNotes": "This is a test booking"
+}
+
+###

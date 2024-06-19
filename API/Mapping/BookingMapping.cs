@@ -1,3 +1,4 @@
+using API.Dtos;
 using API.Dtos.ResponseDtos;
 using API.Models;
 
@@ -35,6 +36,24 @@ public static class BookingMapping
             CompanyName = guest.CompanyName,
             FirstName = guest.FirstName,
             LastName = guest.LastName
+        };
+    }
+
+    public static Guest MapGuestDtoToGuest(CreateGuestDto guestDto)
+    {
+        return new Guest
+        {
+            Address = guestDto.Address,
+            Address2 = guestDto.Address2,
+            City = guestDto.City,
+            Country = guestDto.Country,
+            Email = guestDto.Email,
+            Phone = guestDto.Phone,
+            State = guestDto.State,
+            Zip = guestDto.Zip,
+            CompanyName = guestDto.CompanyName,
+            FirstName = guestDto.FirstName,
+            LastName = guestDto.LastName
         };
     }
 }
