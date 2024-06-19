@@ -145,6 +145,7 @@ public class BookingsController : ControllerBase
     {
         var rooms = await _roomRepository.GetListOfRoomsByRoomIds(bookingDto.BookingRooms.Select(r => r.RoomId).ToList());
         var services = await _bookingRepository.GetBookingServices();
+        var paymentMethod = await _bookingRepository.GetPaymentMethodById(bookingDto.PaymentMethodId);
 
         var bookingRooms = bookingDto.BookingRooms.Select(br =>
         {
@@ -172,16 +173,16 @@ public class BookingsController : ControllerBase
         var booking = new Booking
         {
             Guest = BookingMapping.MapGuestDtoToGuest(bookingDto.Guest),
-            PaymentMethodId = bookingDto.PaymentMethodId,
+            PaymentMethod = paymentMethod,
             BookingRooms = bookingRooms,
             BookingTotal = BookingHelpers.CalculateBookingTotal(bookingRooms),
             OrderNotes = bookingDto.OrderNotes
         };
 
-        await _bookingRepository.CreateBooking(booking);
+        booking = await _bookingRepository.CreateBooking(booking);
 
         var dto = BookingMapping.MapBookingToDto(booking);
 
-        return StatusCode(200, bookingDto);
+        return StatusCode(200, dto);
     }
 }

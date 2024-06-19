@@ -67,6 +67,11 @@ public class BookingRepository : IBookingRepository
         return await _context.Services.ToListAsync();
     }
 
+    public async Task<PaymentMethod?> GetPaymentMethodById(int id)
+    {
+        return await _context.PaymentMethods.FirstOrDefaultAsync(p => p.Id == id);
+    }
+
     private IQueryable<Booking> AddIncludes(IQueryable<Booking> query)
     {
         return query.Include(b => b.Guest)

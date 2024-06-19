@@ -10,4 +10,5 @@ public interface IBookingRepository
     public Task<Booking> CreateBooking(Booking booking);
     public Task<List<Service>> GetBookingServicesByIds(List<int> serviceIds);
     public Task<List<Service>> GetBookingServices();
+    public Task<PaymentMethod?> GetPaymentMethodById(int id);
 }
