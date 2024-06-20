@@ -110,6 +110,7 @@ public class BookingsController : ControllerBase
     /// @query   PageSize - Size of each page to return                                     <br/>
     ///                                                                                     <br/>
     /// @status  200 - returns list of BookingDto                                           <br/>
+    /// @status  400 - Email or Last Name were not provided in query string                 <br/>
     /// @status  404 - Guest with given email and last name not found                       <br/>
     /// </summary>
     [HttpGet("guest")]
@@ -120,7 +121,8 @@ public class BookingsController : ControllerBase
         )
     {
         // Return 404 if any query strings are empty
-        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(lastName)) return StatusCode(404);
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(lastName))
+            return StatusCode(400, "Email and Last Name are required query parameters");
 
         // Check cache
         var bookings = _cache.Get<PagedList<Booking>>($"booking/guest:{email}-{lastName}/{bookingQuery.ToCacheKey()}");
