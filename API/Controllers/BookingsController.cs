@@ -15,18 +15,15 @@ namespace API.Controllers;
 public class BookingsController : ControllerBase
 {
     private readonly IBookingRepository _bookingRepository;
-    private readonly IGuestRepository _guestRepository;
     private readonly IRoomRepository _roomRepository;
     private readonly IMemoryCache _cache;
 
     public BookingsController(
         IBookingRepository bookingRepository,
-        IGuestRepository guestRepository,
         IRoomRepository roomRepository,
         IMemoryCache cache)
     {
         _bookingRepository = bookingRepository;
-        _guestRepository = guestRepository;
         _roomRepository = roomRepository;
         _cache = cache;
     }
