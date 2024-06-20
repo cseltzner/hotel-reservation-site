@@ -41,8 +41,8 @@ public class BookingRepository : IBookingRepository
         bookingQuery = AddIncludes(bookingQuery);
 
         var bookings = await bookingQuery
-            .Where(b => b.Guest.Email == email)
-            .Where(b => b.Guest.LastName == lastName)
+            .Where(b => b.Guest.Email.ToLower() == email.ToLower())
+            .Where(b => b.Guest.LastName.ToLower() == lastName.ToLower())
             .ToListAsync();
 
         return bookings.Count == 0 ? null : bookings;
