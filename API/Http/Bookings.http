@@ -15,12 +15,12 @@ Accept: application/json
 ###
 
 # Get bookings by Guest Id
-GET {{base_url}}/Bookings/guest/1
+GET {{base_url}}/Bookings/guest/1?pageNumber=1&pageSize=3
 Accept: application/json
 
 ###
 # Get bookings by Guest Email and Last name
-GET {{base_url}}/Bookings/guest?email=guest1@guest.com&lastname=one
+GET {{base_url}}/Bookings/guest?email=guest1@guest.com&lastname=one&pageSize=2&pageNumber=1
 Accept: application/json
 
 ###

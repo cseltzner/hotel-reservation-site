@@ -1,6 +1,8 @@
 using API.Context;
 using API.Interfaces.Repositories;
 using API.Models;
+using API.Queries;
+using API.Responses;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Repositories;
@@ -23,29 +25,77 @@ public class BookingRepository : IBookingRepository
             .FirstOrDefaultAsync(b => b.Id == id);
     }
 
-    public async Task<List<Booking>?> GetBookingsByGuestId(int id)
+    public async Task<PagedList<Booking>?> GetBookingsByGuestId(int id, BookingQuery query)
     {
+        // Check if Id exists
+        if (!await _context.Guests.AnyAsync(g => g.Id == id)) return null;
+
+
         var bookingQuery = _context.Bookings.AsQueryable();
         bookingQuery = AddIncludes(bookingQuery);
 
-        var bookings = await bookingQuery
-            .Where(b => b.GuestId == id)
-            .ToListAsync();
+        // Filter
+        bookingQuery = bookingQuery.Where(b => b.GuestId == id);
 
-        return bookings.Count == 0 ? null : bookings;
+        // Sort
+        if (!string.IsNullOrWhiteSpace(query.SortBy))
+        {
+            if (query.SortBy.Equals("BookingTotal", StringComparison.OrdinalIgnoreCase))
+            {
+                bookingQuery = query.IsDescending
+                    ? bookingQuery.OrderByDescending(b => b.BookingTotal)
+                    : bookingQuery.OrderBy(b => b.BookingTotal);
+            }
+
+            if (query.SortBy.Equals("DateCreated", StringComparison.OrdinalIgnoreCase))
+            {
+                bookingQuery = query.IsDescending
+                    ? bookingQuery.OrderByDescending(b => b.BookingCreatedDate)
+                    : bookingQuery.OrderBy(b => b.BookingCreatedDate);
+            }
+        }
+
+        // Pagination
+        var paginatedBookings = await PagedList<Booking>.ToPagedList(bookingQuery, query.PageNumber, query.PageSize);
+
+        return paginatedBookings;
     }
 
-    public async Task<List<Booking>?> GetBookingsByGuestEmailAndLastName(string email, string lastName)
+    public async Task<PagedList<Booking>?> GetBookingsByGuestEmailAndLastName(string email, string lastName, BookingQuery query)
     {
         var bookingQuery = _context.Bookings.AsQueryable();
         bookingQuery = AddIncludes(bookingQuery);
 
-        var bookings = await bookingQuery
+        // Filter
+        bookingQuery = bookingQuery
             .Where(b => b.Guest.Email.ToLower() == email.ToLower())
-            .Where(b => b.Guest.LastName.ToLower() == lastName.ToLower())
-            .ToListAsync();
+            .Where(b => b.Guest.LastName.ToLower() == lastName.ToLower());
 
-        return bookings.Count == 0 ? null : bookings;
+        // Check if query returns any results before continuing
+        if (!await bookingQuery.AnyAsync()) return null;
+
+        // Sort
+        if (!string.IsNullOrWhiteSpace(query.SortBy))
+        {
+            if (query.SortBy.Equals("BookingTotal", StringComparison.OrdinalIgnoreCase))
+            {
+                bookingQuery = query.IsDescending
+                    ? bookingQuery.OrderByDescending(b => b.BookingTotal)
+                    : bookingQuery.OrderBy(b => b.BookingTotal);
+            }
+
+            if (query.SortBy.Equals("DateCreated", StringComparison.OrdinalIgnoreCase))
+            {
+                bookingQuery = query.IsDescending
+                    ? bookingQuery.OrderByDescending(b => b.BookingCreatedDate)
+                    : bookingQuery.OrderBy(b => b.BookingCreatedDate);
+            }
+        }
+
+        // Pagination
+        var paginatedBookings = await PagedList<Booking>.ToPagedList(bookingQuery, query.PageNumber, query.PageSize);
+
+        return paginatedBookings;
     }
 
     public async Task<Booking> CreateBooking(Booking booking)

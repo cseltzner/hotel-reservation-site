@@ -1,6 +1,7 @@
 using API.Dtos;
 using API.Dtos.ResponseDtos;
 using API.Models;
+using API.Responses;
 
 namespace API.Mapping;
 
@@ -18,6 +19,13 @@ public static class BookingMapping
             PaymentMethod = booking.PaymentMethod,
             OrderNotes = booking.OrderNotes
         };
+    }
+
+    public static PagedList<BookingDto> MapPagedBookingToPagedDto(PagedList<Booking> bookings)
+    {
+        var pagedBookingsList = bookings.Data.Select(booking => MapBookingToDto(booking));
+        return new PagedList<BookingDto>(pagedBookingsList.ToList(), bookings.TotalCount, bookings.PageNumber,
+            bookings.PageSize);
     }
 
     public static GuestDto MapGuestToDto(Guest guest)

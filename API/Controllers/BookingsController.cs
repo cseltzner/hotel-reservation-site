@@ -3,6 +3,8 @@ using API.Interfaces.Repositories;
 using API.Mapping;
 using API.ModelHelpers;
 using API.Models;
+using API.Queries;
+using API.Responses;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -59,33 +61,36 @@ public class BookingsController : ControllerBase
     }
 
     /// <summary>
-    /// @route   GET /api/bookings/guest/:id            <br/>
-    /// @desc    Get list of bookings by guest id       <br/>
-    /// @access  Public                                 <br/>
-    ///                                                 <br/>
-    /// @status  200 - returns list of BookingDto       <br/>
-    /// @status  404 - Guest with given Id not found    <br/>
+    /// @route   GET /api/bookings/guest/:id                <br/>
+    /// @desc    Get list of bookings by guest id           <br/>
+    /// @access  Public                                     <br/>
+    ///                                                     <br/>
+    /// @query   SortBy - case-insensitive                  <br/>
+    ///          values: "bookingTotal", "dateCreated"      <br/>
+    /// @query   IsDescending - Sorts in descending order   <br/>
+    /// @query   PageNumber - Page to return                <br/>
+    /// @query   PageSize - Size of each page to return     <br/>
+    ///                                                     <br/>
+    /// @status  200 - returns PagedList of BookingDto      <br/>
+    /// @status  404 - Guest with given Id not found        <br/>
     /// </summary>
     [HttpGet("guest/{id}")]
-    public async Task<IActionResult> GetByGuestId([FromRoute] int id)
+    public async Task<IActionResult> GetByGuestId([FromRoute] int id, [FromQuery] BookingQuery bookingQuery)
     {
         // Check cache
-        var bookings = _cache.Get<List<Booking>>($"booking/guest:{id}");
+        var bookings = _cache.Get<PagedList<Booking>>($"booking/guest:{id}/{bookingQuery.ToCacheKey()}");
 
         // If cache is empty, retrieve from database
         if (bookings == null)
         {
-            bookings = await _bookingRepository.GetBookingsByGuestId(id);
+            bookings = await _bookingRepository.GetBookingsByGuestId(id, bookingQuery);
             // Write db response to cache
-            _cache.Set($"booking/guest:{id}", bookings, TimeSpan.FromMinutes(1));
+            _cache.Set($"booking/guest:{id}/{bookingQuery.ToCacheKey()}", bookings, TimeSpan.FromMinutes(1));
         }
 
         if (bookings == null) return StatusCode(404);
 
-        var bookingDtos = bookings?.Select(booking =>
-        {
-            return BookingMapping.MapBookingToDto(booking);
-        });
+        var bookingDtos = BookingMapping.MapPagedBookingToPagedDto(bookings);
 
         return StatusCode(200, bookingDtos);
     }
@@ -97,6 +102,12 @@ public class BookingsController : ControllerBase
     ///                                                                                     <br/>
     /// @query - email - required - email address associated with booking                   <br/>
     /// @query - lastName - required - last name of the guest associated with the booking   <br/>
+    ///
+    /// @query   SortBy - case-insensitive                                                  <br/>
+    ///          values: "bookingTotal", "dateCreated"                                      <br/>
+    /// @query   IsDescending - Sorts in descending order                                   <br/>
+    /// @query   PageNumber - Page to return                                                <br/>
+    /// @query   PageSize - Size of each page to return                                     <br/>
     ///                                                                                     <br/>
     /// @status  200 - returns list of BookingDto                                           <br/>
     /// @status  404 - Guest with given email and last name not found                       <br/>
@@ -104,29 +115,27 @@ public class BookingsController : ControllerBase
     [HttpGet("guest")]
     public async Task<IActionResult> GetBookingsByEmailAndLastName(
         [FromQuery] string email,
-        [FromQuery] string lastName
+        [FromQuery] string lastName,
+        [FromQuery] BookingQuery bookingQuery
         )
     {
         // Return 404 if any query strings are empty
         if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(lastName)) return StatusCode(404);
 
         // Check cache
-        var bookings = _cache.Get<List<Booking>>($"booking/guest:{email}-{lastName}");
+        var bookings = _cache.Get<PagedList<Booking>>($"booking/guest:{email}-{lastName}/{bookingQuery.ToCacheKey()}");
 
         // If cache is empty, retrieve from database
         if (bookings == null)
         {
-            bookings = await _bookingRepository.GetBookingsByGuestEmailAndLastName(email, lastName);
+            bookings = await _bookingRepository.GetBookingsByGuestEmailAndLastName(email, lastName, bookingQuery);
             // Write db response to cache
-            _cache.Set($"booking/guest:{email}-{lastName}", bookings, TimeSpan.FromMinutes(1));
+            _cache.Set($"booking/guest:{email}-{lastName}/{bookingQuery.ToCacheKey()}", bookings, TimeSpan.FromMinutes(1));
         }
 
         if (bookings == null) return StatusCode(404);
 
-        var bookingDtos = bookings.Select(booking =>
-        {
-            return BookingMapping.MapBookingToDto(booking);
-        });
+        var bookingDtos = BookingMapping.MapPagedBookingToPagedDto(bookings);
 
         return StatusCode(200, bookingDtos);
     }
