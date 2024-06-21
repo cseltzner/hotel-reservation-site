@@ -146,7 +146,7 @@ public class BookingsController : ControllerBase
     ///                                                                                     <br/>
     /// @body - CreateBookingDto                                                            <br/>
     ///                                                                                     <br/>
-    /// @status  200 - returns the created booking                                          <br/>
+    /// @status  200 - returns the created booking DTO                                      <br/>
     /// @status  400 - one or more Ids given were not found                                 <br/>
     /// </summary>
     [HttpPost]
@@ -216,6 +216,16 @@ public class BookingsController : ControllerBase
         return StatusCode(200, dto);
     }
 
+    /// <summary>
+    /// @route   PATCH /api/bookings/:id                                                    <br/>
+    /// @desc    Update a booking                                                           <br/>
+    /// @access  Public                                                                     <br/>
+    ///                                                                                     <br/>
+    /// @body - UpdateBookingDto - All fields optional                                      <br/>
+    ///                                                                                     <br/>
+    /// @status  200 - returns the updated booking DTO                                      <br/>
+    /// @status  404 - booking with the given id not found                                  <br/>
+    /// </summary>
     [HttpPatch("{id}")]
     public async Task<IActionResult> UpdateBooking([FromRoute] int id, [FromBody] UpdateBookingDto updateBookingDto)
     {
@@ -224,6 +234,23 @@ public class BookingsController : ControllerBase
         // Booking with given Id not found
         if (booking == null) return StatusCode(404);
 
+        var bookingDto = BookingMapping.MapBookingToDto(booking);
+        return StatusCode(200, bookingDto);
+    }
+
+    /// <summary>
+    /// @route   DELETE /api/bookings/:id                                                   <br/>
+    /// @desc    Delete a booking                                                           <br/>
+    /// @access  Public                                                                     <br/>
+    ///                                                                                     <br/>
+    /// @status  200 - returns the deleted booking                                          <br/>
+    /// @status  404 - booking with the given id not found                                  <br/>
+    /// </summary>
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteBooking([FromRoute] int id)
+    {
+        var booking = await _bookingRepository.DeleteBooking(id);
+        if (booking == null) return StatusCode(404);
         var bookingDto = BookingMapping.MapBookingToDto(booking);
         return StatusCode(200, bookingDto);
     }

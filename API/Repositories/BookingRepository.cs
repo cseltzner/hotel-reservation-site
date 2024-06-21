@@ -132,6 +132,26 @@ public class BookingRepository : IBookingRepository
         return bookingToUpdate;
     }
 
+    public async Task<Booking?> DeleteBooking(int id)
+    {
+        var bookingQuery = _context.Bookings.AsQueryable();
+        bookingQuery = AddIncludes(bookingQuery);
+
+        var booking = await bookingQuery.FirstOrDefaultAsync(b => b.Id == id);
+
+        if (booking == null) return null;
+
+        // Remove BookingRooms dependent on foreign key to the Booking
+        booking.BookingRooms.ForEach(br =>
+        {
+            _context.Remove(br);
+        });
+
+        _context.Bookings.Remove(booking);
+        await _context.SaveChangesAsync();
+        return booking;
+    }
+
     public async Task<List<Service>> GetBookingServicesByIds(List<int> serviceIds)
     {
         return await _context.Services

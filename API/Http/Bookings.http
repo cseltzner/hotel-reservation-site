@@ -123,3 +123,9 @@ Content-Type: application/json
     "email": "UpdatedEmail@email.com"
   }
 }
+
+###
+
+# Delete booking
+DELETE {{base_url}}/Bookings/1
+Accept: application/json
