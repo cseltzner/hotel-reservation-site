@@ -1,3 +1,4 @@
+using API.Dtos;
 using API.Models;
 using API.Queries;
 using API.Responses;
@@ -10,6 +11,7 @@ public interface IBookingRepository
     public Task<PagedList<Booking>?> GetBookingsByGuestId(int id, BookingQuery query);
     public Task<PagedList<Booking>?> GetBookingsByGuestEmailAndLastName(string email, string lastName, BookingQuery query);
     public Task<Booking> CreateBooking(Booking booking);
+    public Task<Booking?> UpdateBooking(int id, UpdateBookingDto updateBookingDto);
     public Task<List<Service>> GetBookingServicesByIds(List<int> serviceIds);
     public Task<List<Service>> GetBookingServices();
     public Task<PaymentMethod?> GetPaymentMethodById(int id);

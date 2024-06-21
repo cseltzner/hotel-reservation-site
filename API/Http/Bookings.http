@@ -110,3 +110,16 @@ Content-Type: application/json
 }
 
 ###
+
+# Update booking
+PATCH {{base_url}}/Bookings/1
+Content-Type: application/json
+
+{
+  "orderNotes": "Updated order notes",
+  "guest": {
+    "firstName": "Updated First",
+    "lastName": "Updated Last",
+    "email": "UpdatedEmail@email.com"
+  }
+}

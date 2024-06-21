@@ -215,4 +215,16 @@ public class BookingsController : ControllerBase
 
         return StatusCode(200, dto);
     }
+
+    [HttpPatch("{id}")]
+    public async Task<IActionResult> UpdateBooking([FromRoute] int id, [FromBody] UpdateBookingDto updateBookingDto)
+    {
+        var booking = await _bookingRepository.UpdateBooking(id, updateBookingDto);
+
+        // Booking with given Id not found
+        if (booking == null) return StatusCode(404);
+
+        var bookingDto = BookingMapping.MapBookingToDto(booking);
+        return StatusCode(200, bookingDto);
+    }
 }
