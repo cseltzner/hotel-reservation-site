@@ -10,7 +10,7 @@ public class CreateBookingDto
     [Required]
     public List<CreateBookingRoomDto> BookingRooms { get; set; }
 
-    [Required]
+    [Required(ErrorMessage = "Please select a payment method")]
     public int PaymentMethodId { get; set; }
 
     public string? OrderNotes { get; set; }
