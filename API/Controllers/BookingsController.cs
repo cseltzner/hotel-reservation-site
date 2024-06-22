@@ -200,6 +200,13 @@ public class BookingsController : ControllerBase
             return StatusCode(400, "One or more service Ids are invalid");
         }
 
+        // Verify that number of guests in each room does not exceed the room's maximum capacity
+        foreach (var br in bookingRooms)
+        {
+            if (br.NumGuests > br.Room.MaxGuests)
+                return StatusCode(400, $"{br.Room.Name} cannot exceed {br.Room.MaxGuests} guests");
+        }
+
         var booking = new Booking
         {
             Guest = BookingMapping.MapGuestDtoToGuest(bookingDto.Guest),
