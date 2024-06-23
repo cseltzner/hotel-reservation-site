@@ -4,7 +4,6 @@ namespace API.Dtos;
 
 public class UpdateGuestDto
 {
-    [EmailAddress]
     public string? Email { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
@@ -15,6 +14,5 @@ public class UpdateGuestDto
     public string? City { get; set; }
     public string? State { get; set; }
     public string? Zip { get; set; }
-    [Phone]
     public string? Phone { get; set; }
 }

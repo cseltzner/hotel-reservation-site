@@ -7,6 +7,7 @@ using API.Models;
 using API.Queries;
 using API.Responses;
 using API.Validators;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -247,6 +248,14 @@ public class BookingsController : ControllerBase
     [HttpPatch("{id}")]
     public async Task<IActionResult> UpdateBooking([FromRoute] int id, [FromBody] UpdateBookingDto updateBookingDto)
     {
+        // Validate UpdateBookingDto passed in from client
+        var bookingValidator = new UpdateBookingValidator();
+        var validationResult = await bookingValidator.ValidateAsync(updateBookingDto);
+        if (!validationResult.IsValid)
+        {
+            return StatusCode(400, new ValidationErrorResponse(validationResult.Errors));
+        }
+
         var booking = await _bookingRepository.UpdateBooking(id, updateBookingDto);
 
         // Booking with given Id not found
