@@ -1,4 +1,4 @@
-using API.Dtos;
+using API.Dtos.CreateBookingDtos;
 using API.Dtos.ResponseDtos;
 using API.Models;
 using API.Responses;

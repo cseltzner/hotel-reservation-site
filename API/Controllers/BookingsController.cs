@@ -1,10 +1,12 @@
 using API.Dtos;
+using API.Dtos.CreateBookingDtos;
 using API.Interfaces.Repositories;
 using API.Mapping;
 using API.ModelHelpers;
 using API.Models;
 using API.Queries;
 using API.Responses;
+using API.Validators;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -147,11 +149,20 @@ public class BookingsController : ControllerBase
     /// @body - CreateBookingDto                                                            <br/>
     ///                                                                                     <br/>
     /// @status  200 - returns the created booking DTO                                      <br/>
-    /// @status  400 - one or more Ids given were not found                                 <br/>
+    /// @status  400 - one or more validation errors have occurred                          <br/>
     /// </summary>
     [HttpPost]
     public async Task<IActionResult> CreateBooking([FromBody] CreateBookingDto bookingDto)
     {
+        // Validate CreateBookingDto passed in from client
+        var bookingValidator = new BookingValidator();
+        var validationResult = await bookingValidator.ValidateAsync(bookingDto);
+        if (!validationResult.IsValid)
+        {
+            return StatusCode(400, new ValidationErrorResponse(validationResult.Errors));
+        }
+
+        // Pull needed data from database
         var rooms = await _roomRepository.GetListOfRoomsByRoomIds(bookingDto.BookingRooms.Select(r => r.RoomId).ToList());
         var services = await _bookingRepository.GetBookingServices();
         var paymentMethod = await _bookingRepository.GetPaymentMethodById(bookingDto.PaymentMethodId);

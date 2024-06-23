@@ -8,6 +8,6 @@ public class ValidationErrorResponse
 
     public ValidationErrorResponse(List<ValidationFailure> validationErrors)
     {
-        Errors = validationErrors.Select(er => new ValidationError(er.PropertyName, er.ErrorCode, er.ErrorMessage));
+        Errors = validationErrors.Select(er => new ValidationError(er.PropertyName, er.AttemptedValue.ToString(), er.ErrorCode, er.ErrorMessage));
     }
 }
