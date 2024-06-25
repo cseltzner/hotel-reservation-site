@@ -1,0 +1,21 @@
+@import "/src/styles/base";
+
+.header {
+  padding: $spacing-3 0;
+  background-color: $color-surface-secondary;
+  font-size: $font-sm;
+}
+
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerLeft .headerItem:not(:first-child) {
+  margin-left: $spacing-16;
+}
+
+.tempDegrees {
+  display: inline-block;
+  margin-left: $spacing-2;
+}
