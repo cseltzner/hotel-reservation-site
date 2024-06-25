@@ -3,6 +3,7 @@
 .link {
   position: relative;
   color: $color-text;
+  padding-bottom: $spacing-1;
 }
 
 .link::before, .link::before {
