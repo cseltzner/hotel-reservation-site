@@ -4,6 +4,8 @@
              Also includes a normalize
 *****************************************************/
 @import "./preflight.scss";
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 
 /********************************
  Responsive media query variables
@@ -351,6 +353,9 @@ $spacing-80: 20rem;
 $spacing-96: 24rem;
 
 /* Fonts */
+$font-serif: "Lora", serif;
+$font-sans: "Lato", sans-serif;
+
 $font-xs: 0.75rem;
 $font-sm: 0.875rem;
 $font-base: 1rem;
@@ -400,6 +405,7 @@ $box-shadow-inset: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
  *********/
 .container {
   width: 100%;
+  margin: 0 auto;
 
   @media (min-width: $screen-sm) {
     max-width: $screen-sm;
