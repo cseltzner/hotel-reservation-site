@@ -1,7 +1,7 @@
-import styles from "./HeaderSecondary.module.scss";
+import styles from "./Header.module.scss";
 import AnimatedLink from "../../components/AnimatedLink/AnimatedLink.tsx";
 
-const HeaderSecondary = () => {
+const Header = () => {
     return (
         <div className={styles.header}>
             <div className={`container ${styles.headerContainer}`}>
@@ -17,4 +17,4 @@ const HeaderSecondary = () => {
     );
 };
 
-export default HeaderSecondary;
+export default Header;
