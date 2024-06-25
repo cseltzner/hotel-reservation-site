@@ -13,8 +13,6 @@
 $screen-sm: 640px;
 $screen-md: 768px;
 $screen-lg: 1024px;
-$screen-xl: 1280px;
-$screen-2xl: 1536px;
 
 /******
  Colors
@@ -417,13 +415,5 @@ $box-shadow-inset: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
 
   @media (min-width: $screen-lg) {
     max-width: $screen-lg;
-  }
-
-  @media (min-width: $screen-xl) {
-    max-width: $screen-xl;
-  }
-
-  @media (min-width: $screen-2xl) {
-    max-width: $screen-2xl;
   }
 }
