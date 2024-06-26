@@ -1,0 +1,14 @@
+@import "/src/styles/base";
+
+.homePage {
+  position: relative;
+}
+
+.homeImg {
+  background-image: url("https://res.cloudinary.com/dnxdsagpg/image/upload/v1719422030/hotel-site/hotel-main.jpg");
+  min-height: 600px;
+  background-position: top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
