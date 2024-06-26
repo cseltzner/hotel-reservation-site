@@ -10,7 +10,7 @@ interface Props {
 
 const Link = (props: Props) => {
     return (
-        <a className={`${styles.link} ${props.className || ""}`} style={props.styles} href={props.href || "#"}>
+        <a className={`${styles.link} ${props.className || ""}`} style={props.styles} href={props.href}>
             {props.children}
         </a>
     );

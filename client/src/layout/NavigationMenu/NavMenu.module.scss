@@ -1,0 +1,79 @@
+@import "/src/styles/base";
+
+.navRoot {
+  position: relative;
+  background-color: $color-surface;
+  padding: $spacing-6 0;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-16;
+}
+
+.navItemHead {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.navLogo {
+  display: block;
+  padding: 0 $spacing-3;
+  text-align: center;
+  font-weight: 300;
+
+  .logoName {
+    font-size: $font-2xl;
+    letter-spacing: 8px;
+  }
+
+  .logoDescription {
+    font-size: $font-sm;
+    letter-spacing: 2px;
+  }
+}
+
+.navDropdown {
+  position: absolute;
+  top: 105%;
+  overflow: hidden;
+  padding: $spacing-5 $spacing-16 $spacing-5 $spacing-8;
+  background-color: $color-surface;
+  transform-origin: top;
+
+  &[data-state="open"] {
+    animation: scaleIn .25s ease-in-out;
+  }
+
+  &[data-state="closed"] {
+    animation: scaleOut .25 ease-in-out;
+  }
+
+  ul > li {
+    padding: $spacing-3 0;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: rotateX(-30deg) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: rotateX(0deg) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: rotateX(-10deg) scale(0.95);
+  }
+}

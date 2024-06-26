@@ -1,6 +1,7 @@
 @import "/src/styles/base";
 
 .link {
+  display: inline-block;
   position: relative;
   color: $color-text;
   padding-bottom: $spacing-1;

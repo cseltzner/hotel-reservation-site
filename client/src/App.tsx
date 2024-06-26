@@ -1,10 +1,12 @@
 import { Outlet } from "react-router-dom";
-import HeaderSecondary from "./layout/HeaderSecondary/HeaderSecondary.tsx";
+import Header from "./layout/Header/Header.tsx";
+import NavMenu from "./layout/NavigationMenu/NavMenu.tsx";
 
 const App = () => {
     return (
         <div>
-            <HeaderSecondary />
+            <Header />
+            <NavMenu />
             <Outlet />
         </div>
     );
