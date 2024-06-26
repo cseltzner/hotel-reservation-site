@@ -42,5 +42,8 @@ Accept: application/json
 
 ###
 
+# Get list of room names
+GET {{base_url}}/Rooms/names?numRooms=3
+Accept: application/json
 
-
+###

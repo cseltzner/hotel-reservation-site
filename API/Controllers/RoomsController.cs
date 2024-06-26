@@ -1,3 +1,4 @@
+using API.Dtos.ResponseDtos;
 using API.Interfaces.Repositories;
 using API.Mapping;
 using API.Models;
@@ -88,5 +89,33 @@ public class RoomsController : ControllerBase
         var roomDto = RoomMapping.MapRoomToDto(room);
 
         return StatusCode(200, roomDto);
+    }
+
+    /// <summary>
+    /// @route   GET /api/rooms/names                                         <br/>
+    /// @desc    Get a number of room names as a list                         <br/>
+    /// @access  Public                                                       <br/>
+    ///                                                                       <br/>
+    /// @query   numRooms - Number of room names                              <br/>
+    ///                                                                       <br/>
+    /// @status  200 - returns RoomNameOnlyDto list                           <br/>
+    /// </summary>
+    [HttpGet("names")]
+    public async Task<IActionResult> GetRoomNames([FromQuery] int numRooms)
+    {
+        // Check cache
+        var rooms = _cache.Get<List<Room>>($"room:nameonly:{numRooms}");
+
+        // If cache is empty, retrieve from database
+        if (rooms == null)
+        {
+            rooms = await _roomRepository.GetRooms(numRooms);
+            // Write response to cache
+            _cache.Set($"room:nameonly:{numRooms}", rooms, TimeSpan.FromMinutes(10));
+        }
+
+        var roomDtos = rooms.Select(room => new RoomNameOnlyDto {Id = room.Id, Name = room.Name});
+
+        return StatusCode(200, roomDtos);
     }
 }

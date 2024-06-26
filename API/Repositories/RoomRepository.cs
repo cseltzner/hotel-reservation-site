@@ -91,4 +91,11 @@ public class RoomRepository : IRoomRepository
             .Where(r => roomIds.Contains(r.Id))
             .ToListAsync();
     }
+
+    public async Task<List<Room>> GetRooms(int numRooms)
+    {
+        return await _context.Rooms
+            .Take(numRooms)
+            .ToListAsync();
+    }
 }
