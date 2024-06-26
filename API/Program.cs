@@ -22,11 +22,18 @@ builder.Services.AddMemoryCache(); // Adds IMemoryCache to service collection
 
 builder.Services.AddApplicationServices(); // Add custom services to the service collection
 
+builder.Services.AddCors();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
 app.UseHttpsRedirection();
+
+app.UseCors(opt =>
+{
+    opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:7002");
+});
 
 app.UseAuthorization();
 
