@@ -1,6 +1,12 @@
 @import "styles/base";
+@import "react-day-picker/dist/style.css";
 
 body {
   font-family: $font-sans;
   line-height: 1.75;
+}
+
+.rdp {
+  --rdp-accent-color: hsl(15, 93%, 32%);
+  --rdp-background-color: hsl(17deg 35% 90%);
 }
