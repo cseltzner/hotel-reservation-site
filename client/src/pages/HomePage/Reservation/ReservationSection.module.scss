@@ -49,6 +49,7 @@
   gap: $spacing-24;
   border-bottom: 1px solid $color-text;
   color: $color-gray-500;
+  text-wrap: nowrap;
 
   &:focus {
     outline: 2px solid $color-primary;
