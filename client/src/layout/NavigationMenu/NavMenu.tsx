@@ -1,24 +1,13 @@
 import styles from "./NavMenu.module.scss"
 import AnimatedLink from "../../components/AnimatedLink/AnimatedLink.tsx";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import { useEffect, useState } from "react";
 import { RoomName } from "../../interfaces/RoomName.ts";
-import { apiUrls } from "../../http/urls.ts";
 
-const NUM_ROOM_NAMES_TO_FETCH = 5; // Used to fetch a certain number of room names from API for "Rooms" tab dropdown
+interface Props {
+    roomNames: RoomName[];
+}
 
-const NavMenu = () => {
-    const [roomNames, setRoomNames] = useState<RoomName[]>([]);
-
-    useEffect(() => {
-        const fetchRoomNames = async () => {
-            const response = await fetch(apiUrls.getRoomNames(NUM_ROOM_NAMES_TO_FETCH))
-            setRoomNames(await response.json());
-        }
-
-        fetchRoomNames().then();
-    }, []);
-
+const NavMenu = (props: Props) => {
     return (
         <NavigationMenu.Root className={styles.navRoot}>
             <NavigationMenu.List className={styles.navList}>
@@ -62,7 +51,7 @@ const NavMenu = () => {
                     <NavigationMenu.Content className={styles.navDropdown}>
                     {/*  Room list goes here  */}
                         <ul>
-                            {roomNames.map(roomName => (
+                            {props.roomNames.map(roomName => (
                                 <li key={roomName.id}>
                                     <AnimatedLink href={`/rooms/${roomName.id}`}>{roomName.name}</AnimatedLink>
                                 </li>
