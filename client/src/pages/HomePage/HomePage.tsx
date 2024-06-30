@@ -1,6 +1,7 @@
 import styles from "./HomePage.module.scss";
 import ReservationSection from "./Reservation/ReservationSection.tsx";
 import TestimonialSection from "./Testimonial/TestimonialSection.tsx";
+import StatsSection from "./Stats/StatsSection.tsx";
 
 const HomePage = () => {
     return (
@@ -9,6 +10,7 @@ const HomePage = () => {
             <div className={styles.homeBody}>
                 <ReservationSection />
                 <TestimonialSection />
+                <StatsSection />
             </div>
         </div>
     );

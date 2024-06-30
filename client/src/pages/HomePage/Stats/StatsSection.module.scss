@@ -1,0 +1,45 @@
+@import "/src/styles/base";
+
+.statsSection {
+  background-color: $color-surface-secondary;
+  text-align: center;
+  padding-bottom: $spacing-24;
+}
+
+.statHeader {
+  font-size: $font-6xl;
+  font-family: $font-serif;
+  color: $color-text-light;
+}
+
+.statDescription {
+  margin-top: $spacing-4;
+  font-size: $font-lg;
+}
+
+.statContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: $spacing-20;
+}
+
+.statItem {
+
+}
+
+.statItemHeader {
+  font-size: $font-2xl;
+  font-family: $font-serif;
+}
+
+.statItemDescription {
+  font-size: $font-8xl;
+  font-family: $font-serif;
+  color: $color-text-light;
+  margin-top: -$spacing-2;
+}
+
+.divider {
+  border-left: 1px solid $color-text-light;
+  transform: rotate(20deg);
+}
