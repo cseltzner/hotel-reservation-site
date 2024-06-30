@@ -1,0 +1,43 @@
+@import "/src/styles/base";
+
+.testimonialSection {
+  padding: $spacing-48 0;
+  background-color: $color-surface-secondary;
+  clip-path: polygon(0 0, 45% 0, 50% 5%, 55% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.testimonialGrid {
+
+  & > .gridRow1 {
+    display: flex;
+    align-items: flex-end;
+    gap: $spacing-6;
+  }
+
+  & > .gridRow2 {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-6;
+    margin-top: $spacing-6;
+  }
+
+  & img {
+    max-width: 400px;
+    max-height: 400px;
+    flex-shrink: 2;
+    min-width: 0;
+  }
+}
+
+.testimonialQuote {
+  font-size: $font-lg;
+  flex-grow: 0;
+  flex-shrink: 2;
+}
+
+.testimonialSignature {
+  font-size: $font-4xl;
+  font-family: $font-cursive;
+  color: $color-primary;
+  display: block;
+}

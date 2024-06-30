@@ -1,5 +1,6 @@
 import styles from "./HomePage.module.scss";
 import ReservationSection from "./Reservation/ReservationSection.tsx";
+import TestimonialSection from "./Testimonial/TestimonialSection.tsx";
 
 const HomePage = () => {
     return (
@@ -7,6 +8,7 @@ const HomePage = () => {
             <div className={styles.homeImg}></div>
             <div className={styles.homeBody}>
                 <ReservationSection />
+                <TestimonialSection />
             </div>
         </div>
     );
