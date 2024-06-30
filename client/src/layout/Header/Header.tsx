@@ -6,7 +6,7 @@ const Header = () => {
         <div className={styles.header}>
             <div className={`container ${styles.headerContainer}`}>
                 <div className={styles.headerLeft}>
-                    <AnimatedLink className={styles.headerItem} href="tel:1562409217">(156)-240-9217</AnimatedLink>
+                    <AnimatedLink className={styles.headerItem} href="tel:1234567890">(123)-456-7890</AnimatedLink>
                     <AnimatedLink className={styles.headerItem} href="mailto:help@hotelseltz.com">help@hotelseltz.com</AnimatedLink>
                 </div>
                 <div className={styles.headerRight}>
