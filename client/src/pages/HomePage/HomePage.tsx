@@ -4,6 +4,7 @@ import TestimonialSection from "./Testimonial/TestimonialSection.tsx";
 import StatsSection from "./Stats/StatsSection.tsx";
 import EventsSection from "./Events/EventsSection.tsx";
 import ContactSection from "./Contact/ContactSection.tsx";
+import NewsletterSection from "./Newsletter/NewsletterSection.tsx";
 
 const HomePage = () => {
     return (
@@ -15,6 +16,7 @@ const HomePage = () => {
                 <StatsSection />
                 <EventsSection />
                 <ContactSection />
+                <NewsletterSection />
             </div>
         </div>
     );

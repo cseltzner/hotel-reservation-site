@@ -1,0 +1,60 @@
+@import "/src/styles/base";
+
+.newsletterSection {
+  background-color: $color-surface-secondary;
+  padding-top: $spacing-24;
+  padding-bottom: $spacing-48;
+}
+
+.newsletterContainer {
+  padding: $spacing-36 0;
+  background-color: $color-surface;
+  text-align: center;
+
+  & > h3 {
+    font-family: $font-serif;
+    font-size: $font-4xl;
+  }
+}
+
+.inputContainer {
+  margin-top: $spacing-9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  & > input {
+    background-color: transparent;
+    width: 325px;
+    padding: $spacing-3 $spacing-2;
+    border-bottom: 1px solid $color-text;
+
+    &::placeholder {
+      transition: 0.3s all ease-out;
+    }
+
+    &:focus::placeholder {
+      color: $color-text;
+    }
+
+    &:focus {
+      outline: 2px solid $color-primary;
+      border-color: transparent;
+    }
+  }
+
+  & > button {
+    width: 175px;
+    padding: $spacing-3 0;
+    background-color: $color-primary-light;
+    color: #fff;
+    border-bottom: 1px solid $color-text;
+    transition: 0.3s all ease-out;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    &:hover {
+      background-color: $color-primary;
+    }
+  }
+}
