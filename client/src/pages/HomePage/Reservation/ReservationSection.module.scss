@@ -73,6 +73,7 @@
   margin-top: $spacing-4;
   border: 1px solid $color-surface-secondary;
   transform-origin: top;
+  z-index: 100;
 
   &[data-state="open"] {
     animation: scaleIn .15s ease-out;
@@ -88,6 +89,7 @@
   margin-top: $spacing-4;
   border: 1px solid $color-surface-secondary;
   transform-origin: top;
+  z-index: 100;
 
   &[data-state="open"] {
     animation: scaleIn .15s ease-out;
