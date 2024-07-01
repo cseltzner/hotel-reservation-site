@@ -7,7 +7,7 @@
   padding-bottom: $spacing-1;
 }
 
-.link::before, .link::before {
+.link::before {
   display: block;
   position: absolute;
   content: "";
@@ -20,6 +20,14 @@
   transform: scaleX(0);
   transform-origin: left;
   transition: all 0.25s ease-in-out;
+}
+
+.link.linkWhite {
+  color: #fff;
+
+  &:before {
+    background-color: #fff;
+  }
 }
 
 .link:hover::before {

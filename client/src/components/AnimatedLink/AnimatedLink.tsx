@@ -6,11 +6,12 @@ interface Props {
     href?: string;
     className?: string;
     styles?: CSSProperties;
+    isWhite?: boolean;
 }
 
 const Link = (props: Props) => {
     return (
-        <a className={`${styles.link} ${props.className || ""}`} style={props.styles} href={props.href}>
+        <a className={`${styles.link} ${props.className || ""} ${props.isWhite && styles.linkWhite}`} style={props.styles} href={props.href}>
             {props.children}
         </a>
     );
