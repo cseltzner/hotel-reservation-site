@@ -9,7 +9,11 @@ import NewsletterSection from "./Newsletter/NewsletterSection.tsx";
 const HomePage = () => {
     return (
         <div className={styles.homePage}>
-            <div className={styles.homeImg}></div>
+            <div className={styles.homeImg}>
+                <div className={styles.homeImgOverlay}>
+                    <p className={styles.overlayText}>Your next luxury resort</p>
+                </div>
+            </div>
             <div className={styles.homeBody}>
                 <ReservationSection />
                 <TestimonialSection />
