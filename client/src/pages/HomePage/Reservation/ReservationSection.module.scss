@@ -1,8 +1,23 @@
 @import "/src/styles/base";
 
 .reservationContainer {
+  position: relative;
   background-color: $color-surface;
   padding: $spacing-20 0;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    transform: translateX(-50%);
+    width: 10%;
+    height: 50px;
+    background-color: $color-primary;
+    opacity: 0.2;
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+  }
 }
 
 .reservationHeading {
