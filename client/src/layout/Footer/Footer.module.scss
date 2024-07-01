@@ -1,0 +1,40 @@
+@import "/src/styles/base";
+
+.footerPrimary {
+  padding: $spacing-36 0;
+  display: flex;
+  justify-content: space-around;
+  gap: $spacing-12;
+  background-color: $color-primary;
+}
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-5;
+
+  & > .footerColHeader {
+    font-family: $font-serif;
+    font-size: $font-2xl;
+    color: #fff;
+  }
+
+  & > .footerColItem {
+    display: flex;
+    gap: $spacing-2;
+    align-items: center;
+  }
+}
+
+.socialIcon {
+  width: 1rem;
+  fill: #fff;
+}
+
+.footerSecondary {
+  text-align: center;
+  padding: $spacing-16 0;
+  background-color: $color-primary-dark;
+  color: #fff;
+}
