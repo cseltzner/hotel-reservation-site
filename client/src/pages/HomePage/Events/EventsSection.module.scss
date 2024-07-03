@@ -10,6 +10,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: $spacing-20;
+
+  @media (max-width: $screen-lg) {
+    grid-template-columns: 1fr;
+    row-gap: $spacing-24;
+    padding: 0 $spacing-4;
+  }
 }
 
 .gridCol {
@@ -20,10 +26,18 @@
 }
 
 .eventSectionHeader {
+  @media (max-width: $screen-lg) {
+    text-align: center;
+  }
+
   & > h3 {
     font-family: $font-serif;
     font-size: $font-5xl;
     color: $color-text-light;
+
+    @media (max-width: $screen-lg) {
+      font-size: $font-4xl;
+    }
   }
 
   & > p {
@@ -34,6 +48,10 @@
 .eventItem {
   opacity: 0.9;
   transition: all 0.3s ease-out;
+
+  @media (max-width: $screen-lg) {
+    text-align: center;
+  }
 
   & > .eventItemImg {
     overflow: hidden;
@@ -48,15 +66,27 @@
     font-size: $font-4xl;
     font-family: $font-serif;
     color: $color-text-light;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-2xl;
+    }
   }
 
   & > .eventDate {
     font-size: $font-xl;
     font-family: $font-serif;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-lg;
+    }
   }
 
   & > .eventDescription {
     margin-top: $spacing-1;
+
+    @media (max-width: $screen-lg) {
+      font-size: $font-sm;
+    }
   }
 }
 
