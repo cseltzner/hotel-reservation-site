@@ -4,6 +4,10 @@
   padding: $spacing-3 0;
   background-color: $color-surface-secondary;
   font-size: $font-sm;
+
+  @media(max-width: $screen-lg) {
+    display: none;
+  }
 }
 
 .headerContainer {
