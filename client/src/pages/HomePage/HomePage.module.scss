@@ -35,5 +35,9 @@
     padding: $spacing-12 0;
     text-transform: uppercase;
     text-shadow: 1px 1px 5px #000;
+
+    @media (max-width: $screen-lg) {
+      font-size: $font-4xl;
+    }
   }
 }
