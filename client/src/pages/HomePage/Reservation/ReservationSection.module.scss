@@ -3,7 +3,7 @@
 .reservationContainer {
   position: relative;
   background-color: $color-surface;
-  padding: $spacing-20 0;
+  padding: $spacing-20 $spacing-4;
 
   &:before {
     content: "";
@@ -33,6 +33,10 @@
     @media (max-width: $screen-lg) {
       font-size: $font-6xl;
     }
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-3xl;
+    }
   }
 
   & > p {
@@ -54,7 +58,6 @@
   @media (max-width: $screen-lg) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 0 $spacing-4;
   }
 
   @media (max-width: $screen-sm) {
