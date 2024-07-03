@@ -2,10 +2,24 @@
 
 .footerPrimary {
   padding: $spacing-36 0;
+  background-color: $color-primary;
+  
+  @media (max-width: $screen-lg) {
+    display: flex;
+    align-items: center;
+    padding: $spacing-12 $spacing-8;
+  }
+}
+
+.footerCenter {
+  margin: 0 auto;
   display: flex;
   justify-content: space-around;
   gap: $spacing-12;
-  background-color: $color-primary;
+
+  @media (max-width: $screen-lg) {
+    flex-direction: column;
+  }
 }
 
 .footerCol {
@@ -14,16 +28,28 @@
   align-items: flex-start;
   gap: $spacing-5;
 
+  @media (max-width: $screen-lg) {
+    gap: $spacing-3;
+  }
+
   & > .footerColHeader {
     font-family: $font-serif;
     font-size: $font-2xl;
     color: #fff;
+
+    @media (max-width: $screen-lg) {
+      font-size: $font-lg;
+    }
   }
 
   & > .footerColItem {
     display: flex;
     gap: $spacing-2;
     align-items: center;
+
+    @media (max-width: $screen-lg) {
+      font-size: $font-sm;
+    }
   }
 }
 
