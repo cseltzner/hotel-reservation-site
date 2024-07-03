@@ -16,6 +16,7 @@ const TestimonialSection = () => {
                             src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1719600940/hotel-site/testimonials/testimonial-2.jpg"
                             alt="Hotel bed sitting next to a pool next to the ocean"/>
                     </div>
+                    {/* Grid row 2 Hidden on small screens */}
                     <div className={styles.gridRow2}>
                         <img
                             src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1719600941/hotel-site/testimonials/testimonial-3.jpg"

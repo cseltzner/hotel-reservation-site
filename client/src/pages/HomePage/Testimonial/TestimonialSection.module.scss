@@ -1,9 +1,17 @@
 @import "/src/styles/base";
 
 .testimonialSection {
-  padding: $spacing-48 0;
+  padding: $spacing-48 $spacing-4;
   background-color: $color-surface-secondary;
   clip-path: polygon(0 0, 45% 0, 50% 50px, 55% 0, 100% 0, 100% 100%, 0 100%);
+
+  @media (max-width: $screen-lg) {
+    padding: $spacing-24 $spacing-4;
+  }
+
+  @media (max-width: $screen-sm) {
+    padding: $spacing-16 $spacing-2
+  }
 }
 
 .testimonialGrid {
@@ -12,6 +20,12 @@
     display: flex;
     align-items: flex-end;
     gap: $spacing-6;
+
+    @media (max-width: $screen-lg) {
+      flex-direction: column;
+      align-items: center;
+      gap: $spacing-4;
+    }
   }
 
   & > .gridRow2 {
@@ -19,6 +33,10 @@
     align-items: flex-start;
     gap: $spacing-6;
     margin-top: $spacing-6;
+
+    @media (max-width: $screen-lg) {
+      display: none;
+    }
   }
 
   & img {
@@ -33,6 +51,12 @@
   font-size: $font-lg;
   flex-grow: 0;
   flex-shrink: 2;
+
+  @media (max-width: $screen-lg) {
+    max-width: 400px;
+    font-size: $font-base;
+    margin-bottom: $spacing-12;
+  }
 }
 
 .testimonialSignature {
