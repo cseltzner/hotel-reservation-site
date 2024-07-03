@@ -3,24 +3,46 @@
 .statsSection {
   background-color: $color-surface-secondary;
   text-align: center;
-  padding-bottom: $spacing-24;
+  padding: 0 $spacing-4 $spacing-24 $spacing-4;
+
+  @media (max-width: $screen-sm) {
+    padding-left: $spacing-2;
+    padding-right: $spacing-2;
+  }
 }
 
 .statHeader {
   font-size: $font-6xl;
   font-family: $font-serif;
   color: $color-text-light;
+
+  @media (max-width: $screen-lg) {
+    font-size: $font-5xl;
+  }
 }
 
 .statDescription {
   margin-top: $spacing-4;
   font-size: $font-lg;
+
+  @media (max-width: $screen-lg) {
+    margin-top: $spacing-2;
+    font-size: $font-base;
+  }
 }
 
 .statContainer {
   display: flex;
   justify-content: space-between;
   margin-top: $spacing-20;
+
+  @media (max-width: $screen-lg) {
+    margin-top: $spacing-12;
+    flex-direction: column;
+    gap: $spacing-8;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }
 
 .statItem {
@@ -30,6 +52,10 @@
 .statItemHeader {
   font-size: $font-2xl;
   font-family: $font-serif;
+
+  @media (max-width: $screen-lg) {
+    font-size: $font-xl;
+  }
 }
 
 .statItemDescription {
@@ -37,9 +63,17 @@
   font-family: $font-serif;
   color: $color-text-light;
   margin-top: -$spacing-2;
+
+  @media (max-width: $screen-lg) {
+    font-size: $font-6xl;
+  }
 }
 
 .divider {
   border-left: 1px solid $color-text-light;
   transform: rotate(20deg);
+
+  @media (max-width: $screen-lg) {
+    display: none;
+  }
 }
