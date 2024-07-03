@@ -4,16 +4,25 @@
   background-color: $color-surface-secondary;
   padding-top: $spacing-24;
   padding-bottom: $spacing-48;
+
+  @media (max-width: $screen-lg) {
+    padding-top: $spacing-12;
+    padding-bottom: $spacing-32;
+  }
 }
 
 .newsletterContainer {
-  padding: $spacing-36 0;
+  padding: $spacing-36 $spacing-4;
   background-color: $color-surface;
   text-align: center;
 
   & > h3 {
     font-family: $font-serif;
     font-size: $font-4xl;
+
+    @media (max-width: $screen-lg) {
+      font-size: $font-3xl;
+    }
   }
 }
 
@@ -23,11 +32,20 @@
   justify-content: center;
   align-items: center;
 
+  @media (max-width: $screen-lg) {
+    flex-direction: column;
+  }
+
   & > input {
     background-color: transparent;
     width: 325px;
     padding: $spacing-3 $spacing-2;
     border-bottom: 1px solid $color-text;
+
+    @media (max-width: $screen-lg) {
+      max-width: 325px;
+      width: 100%;
+    }
 
     &::placeholder {
       transition: 0.3s all ease-out;
@@ -52,6 +70,13 @@
     transition: 0.3s all ease-out;
     text-transform: uppercase;
     letter-spacing: 1px;
+
+    @media (max-width: $screen-lg) {
+      max-width: 325px;
+      width: 100%;
+      border: none;
+      margin-top: $spacing-6;
+    }
 
     &:hover {
       background-color: $color-primary;
