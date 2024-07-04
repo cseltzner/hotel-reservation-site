@@ -56,7 +56,7 @@ const ReservationSection = () => {
             <div className="container">
                 <div className={styles.reservationHeading}>
                     <h2>Reservation</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis perferendis sit voluptatum.</p>
+                    <p>We guarantee that your visit will be a pleasant and relaxing experience throughout your whole stay.</p>
                 </div>
                 <div className={styles.reservationForm}>
                     <div className={styles.formItem}>
