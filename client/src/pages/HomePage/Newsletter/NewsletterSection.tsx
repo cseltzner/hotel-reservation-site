@@ -1,11 +1,15 @@
 import styles from "./NewsletterSection.module.scss";
 
-const NewsletterSection = () => {
+interface Props {
+    title: string;
+}
+
+const NewsletterSection = (props: Props) => {
     return (
         <section className={styles.newsletterSection}>
             <div className="container">
                 <div className={styles.newsletterContainer}>
-                    <h3>Stay up to date on our latest events</h3>
+                    <h3>{props.title}</h3>
                     <div className={styles.inputContainer}>
                         <input type="text" placeholder="Email address"/>
                         <button>Send</button>

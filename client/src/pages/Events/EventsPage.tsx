@@ -1,4 +1,5 @@
 import styles from "./EventsPage.module.scss";
+import NewsletterSection from "../HomePage/Newsletter/NewsletterSection.tsx";
 
 const EventsPage = () => {
     return (
@@ -101,6 +102,9 @@ const EventsPage = () => {
                             reprehenderit similique sint sunt velit.</p>
                     </li>
                 </ul>
+            </div>
+            <div className={styles.newsletter}>
+                <NewsletterSection title="Stay up to date on our latest events" />
             </div>
         </main>
     );

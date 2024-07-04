@@ -20,7 +20,7 @@ const HomePage = () => {
                 <StatsSection />
                 <EventsSection />
                 <ContactSection />
-                <NewsletterSection />
+                <NewsletterSection title="Stay up to date on our latest events" />
             </div>
         </div>
     );
