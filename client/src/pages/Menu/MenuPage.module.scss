@@ -1,0 +1,148 @@
+@import "/src/styles/base";
+
+.imgBanner {
+
+  & > img {
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.menuContainer {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-24 0;
+}
+
+.menu {
+  padding: $spacing-40 $spacing-36;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: $spacing-24;
+  background-color: $color-surface-secondary;
+  text-align: center;
+
+  @media (max-width: $screen-sm) {
+    padding: $spacing-24 $spacing-4;
+  }
+
+  & > h1 {
+    font-family: $font-serif;
+    font-size: $font-6xl;
+    color: $color-text-light;
+  }
+}
+
+.menuSection {
+  & > h2 {
+    font-family: $font-serif;
+    font-size: $font-3xl;
+    text-align: center;
+    color: $color-text-light;
+    
+    @media (max-width: $screen-md) {
+
+    }
+  }
+}
+
+.menuGrid {
+  position: relative;
+  margin-top: $spacing-6;
+  margin-bottom: $spacing-24;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: $spacing-36;
+  row-gap: $spacing-16;
+  
+  @media (max-width: $screen-md) {
+    margin-top: $spacing-9;
+    grid-template-columns: 1fr;
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background-color: #777;
+
+    @media (max-width: $screen-md) {
+      display: none;
+    }
+  }
+}
+
+.menuGridItem {
+  & > h3 {
+    font-family: $font-serif;
+    font-size: $font-2xl;
+  }
+
+  & > .menuItemDescription {
+    margin-top: $spacing-3;
+    line-height: 1.85;
+  }
+
+  & > .menuItemPrice {
+    margin-top: $spacing-3;
+    font-family: $font-serif;
+    font-size: $font-4xl;
+    color: $color-text-light;
+  }
+}
+
+.imgContainer {
+  padding: $spacing-36 $spacing-12;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  column-gap: $spacing-16;
+  row-gap: $spacing-16;
+
+  @media (max-width: $screen-lg) {
+    grid-template-columns: 1fr 1fr;
+    padding: 0 $spacing-12;
+  }
+
+  @media (max-width: $screen-sm) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.img {
+  position: relative;
+  overflow: hidden;
+
+  & > img {
+    object-fit: cover;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    transition: all 0.5s ease-out;
+  }
+
+  &:hover > img {
+    transform: scale(1.08);
+  }
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 40%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba($color-primary-dark, 0.7) , transparent);
+    z-index: 2;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+  }
+
+  &:hover:before {
+    opacity: 1;
+  }
+}
