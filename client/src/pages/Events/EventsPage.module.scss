@@ -1,0 +1,75 @@
+@import "/src/styles/base";
+
+.eventsPage {
+  padding: $spacing-24 $spacing-4;
+  text-align: center;
+}
+
+.eventsHeader {
+  font-size: $font-4xl;
+  font-family: $font-serif;
+
+  @media (max-width: $screen-lg) {
+    font-size: $font-3xl;
+  }
+}
+
+.eventsHeaderDescription {
+  margin-top: $spacing-4;
+  font-size: $font-lg;
+
+  @media (max-width: $screen-lg) {
+    font-size: $font-base;
+  }
+}
+
+.eventList {
+  margin-top: $spacing-12;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  gap: $spacing-8;
+  row-gap: $spacing-16;
+}
+
+.eventCard {
+  max-width: 400px;
+  transition: all 0.3s ease-out;
+  opacity: 0.96;
+
+  & > .imgContainer {
+    overflow: hidden;
+  }
+
+  &:hover {
+    opacity: 1;
+
+    & img {
+      transform: scale(1.1);
+    }
+  }
+
+  & img {
+    transition: all 0.3s ease-out;
+  }
+
+  & > h2 {
+    margin-top: $spacing-4;
+    font-size: $font-3xl;
+    font-family: $font-serif;
+    color: $color-text-light;
+
+    @media (max-width: $screen-lg) {
+      font-size: $font-2xl;
+    }
+  }
+
+  & > p {
+    margin-top: $spacing-2;
+
+    @media (max-width: $screen-lg) {
+      font-size: $font-sm;
+    }
+  }
+}

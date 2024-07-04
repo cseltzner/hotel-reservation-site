@@ -19,7 +19,7 @@ const EventsSection = () => {
                             <p>No matter when you visit, we offer events made possible by our renowned local artists and
                                 chefs.</p>
                         </div>
-                        <a href="#" className={styles.eventItem}>
+                        <a href="/events" className={styles.eventItem}>
                             <div className={styles.eventItemImg}>
                                 <img
                                     src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1719769513/hotel-site/events/culinary.jpg"
@@ -31,7 +31,7 @@ const EventsSection = () => {
                                 by
                                 our top local chefs.</p>
                         </a>
-                        <a href="#" className={styles.eventItem}>
+                        <a href="/events" className={styles.eventItem}>
                             <div className={styles.eventItemImg}>
                                 <img
                                     src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1719769514/hotel-site/events/tea.jpg"
@@ -45,7 +45,7 @@ const EventsSection = () => {
                         </a>
                     </div>
                     <div className={styles.gridCol}>
-                        <a href="#" className={styles.eventItem}>
+                        <a href="/events" className={styles.eventItem}>
                             <div className={styles.eventItemImg}>
                                 <img
                                     src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1719769514/hotel-site/events/wine.jpg"
@@ -57,7 +57,7 @@ const EventsSection = () => {
                                 from
                                 local delicacies to rare imports.</p>
                         </a>
-                        <a href="#" className={styles.eventItem}>
+                        <a href="/events" className={styles.eventItem}>
                             <div className={styles.eventItemImg}>
                                 <img
                                     src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1719769514/hotel-site/events/art.jpg"
