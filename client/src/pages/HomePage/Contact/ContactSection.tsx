@@ -17,7 +17,7 @@ const ContactSection = () => {
                 <ul className={styles.contactList}>
                     <li className={styles.contactItem}>
                         <p className={styles.contactItemHeader}>Email</p>
-                        <AnimatedLink href="mailto:help@hotelseltz.com" className={styles.contactItemDescription}>help@hotelseltz.com</AnimatedLink>
+                        <AnimatedLink href="mailto:alpinesuites@example.com" className={styles.contactItemDescription}>alpinesuites@example.com</AnimatedLink>
                     </li>
                     <li className={styles.contactItem}>
                         <p className={styles.contactItemHeader}>Phone</p>
