@@ -1,0 +1,134 @@
+@import "/src/styles/base";
+
+.faqPage {
+  padding-bottom: $spacing-36;
+}
+
+.imgBanner {
+  & > img {
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 65%;
+  }
+}
+
+.faqContainer {
+  padding-top: $spacing-24;
+  padding-right: $spacing-4;
+  padding-left: $spacing-4;
+}
+
+.faqPage h1 {
+  font-family: $font-serif;
+  font-size: $font-4xl;
+  text-align: center;
+  color: $color-text-light;
+
+  @media (max-width: $screen-sm) {
+    font-size: $font-3xl;
+  }
+}
+
+.faqGrid {
+  margin-top: $spacing-16;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  column-gap: $spacing-12;
+
+  @media (max-width: $screen-md) {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: $spacing-24;
+  }
+}
+
+.faqInfo {
+  margin-top: $spacing-12;
+
+  & > h2 {
+    font-family: $font-serif;
+    font-size: $font-3xl;
+    color: $color-text-light;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-2xl;
+    }
+  }
+
+  & > p {
+    margin-top: $spacing-2;
+    line-height: 1.85;
+  }
+}
+
+.accordionItem {
+  padding-top: $spacing-7;
+  padding-bottom: $spacing-4;
+  border-top: 1px solid #000;
+
+  &:last-child {
+    border-bottom: 1px solid #000;
+  }
+}
+
+.accordionTrigger {
+  padding-bottom: $spacing-3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  width: 100%;
+  font-family: $font-serif;
+  font-size: $font-xl;
+
+  @media (max-width: $screen-sm) {
+    font-size: $font-lg;
+  }
+}
+
+.chevron {
+  color: #555;
+  width: 2rem;
+  height: 2rem;
+  transition: all 0.3s ease-out;
+}
+
+.accordionTrigger[data-state="open"] > .chevron {
+  transform: rotate(90deg);
+}
+
+.accordionContent {
+  overflow: hidden;
+  line-height: 1.85;
+
+  @media (max-width: $screen-sm) {
+    font-size: $font-sm;
+  }
+
+  &[data-state="open"] {
+    animation: 0.3s slideDown ease-out;
+  }
+
+  &[data-state="closed"] {
+    animation: 0.3s slideUp ease-out;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    height: var(--radix-accordion-content-height);
+  }
+  to {
+    height: 0
+  }
+}
