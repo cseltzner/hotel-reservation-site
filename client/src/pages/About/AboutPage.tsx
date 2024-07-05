@@ -17,12 +17,14 @@ const AboutPage = () => {
                             <p className={styles.infoSubtitle}>A demo hotel reservation website by Chase Seltzner</p>
                             <h2>Contact Chase</h2>
                             <p className={styles.contactText}><AnimatedLink
-                                href="mailto:chase.seltz21@gmail.com">chase.seltz21@gmail.com</AnimatedLink></p>
+                                href="mailto:chase.seltz21@gmail.com" targetBlank>chase.seltz21@gmail.com</AnimatedLink>
+                            </p>
                             <p className={styles.contactText}><AnimatedLink
-                                href="https://www.github.com/cseltzner">Github</AnimatedLink></p>
+                                href="https://www.github.com/cseltzner" targetBlank>Github</AnimatedLink></p>
                             <p className={styles.contactText}><AnimatedLink
-                                href="https://www.github.com/cseltzner/hotel-reservation-site">Source
-                                Code</AnimatedLink></p>
+                                href="https://www.github.com/cseltzner/hotel-reservation-site"
+                                targetBlank
+                            >Source Code</AnimatedLink></p>
                         </div>
                         <div className={styles.gridDetails}>
                             <p><span className={styles.authorName}>I'm Chase Seltzner,</span> a junior web developer
