@@ -12,7 +12,7 @@
 .menuContainer {
   max-width: 1200px;
   margin: 0 auto;
-  padding: $spacing-24 0;
+  padding-top: $spacing-24;
 }
 
 .menu {
@@ -98,7 +98,7 @@
 }
 
 .imgContainer {
-  padding: $spacing-36 $spacing-12;
+  padding: $spacing-24 $spacing-12;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   column-gap: $spacing-16;
@@ -106,7 +106,7 @@
 
   @media (max-width: $screen-lg) {
     grid-template-columns: 1fr 1fr;
-    padding: 0 $spacing-12;
+    padding: $spacing-12 $spacing-12;
   }
 
   @media (max-width: $screen-sm) {
