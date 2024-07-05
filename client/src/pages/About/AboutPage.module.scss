@@ -1,0 +1,97 @@
+@import "/src/styles/base";
+
+.imgBanner {
+  & > img {
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 65%;
+  }
+}
+
+.aboutContainer {
+  padding: $spacing-24 $spacing-4;
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: $spacing-16;
+
+  @media (max-width: $screen-md) {
+    grid-template-columns: 1fr;
+    row-gap: $spacing-16;
+    text-align: center;
+  }
+}
+
+.gridInfo {
+  & > h1 {
+    font-size: $font-4xl;
+    font-family: $font-serif;
+    color: $color-text-light;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-3xl;
+    }
+  }
+
+  & > .infoSubtitle {
+    margin-top: $spacing-3;
+    font-size: $font-lg;
+    font-family: $font-serif;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-base;
+    }
+  }
+
+  & > h2 {
+    margin-top: $spacing-6;
+    font-size: $font-2xl;
+    font-family: $font-serif;
+    color: $color-text-light;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-xl;
+    }
+  }
+
+  & > .contactText {
+    margin-top: $spacing-2;
+    font-style: italic;
+  }
+}
+
+.gridDetails {
+  & > p {
+    line-height: 1.75;
+
+    &:not(:first-child) {
+      margin-top: $spacing-7;
+    }
+
+    & > .authorName {
+      display: block;
+      font-size: $font-2xl;
+      color: $color-text-light;
+      font-family: $font-serif;
+    }
+  }
+}
+
+.button {
+  display: inline-block;
+  margin-top: $spacing-9;
+  padding: $spacing-4 $spacing-16;
+  color: #fff;
+  background-color: $color-primary-light;
+  transition: all 0.3s ease-out;
+  text-transform: uppercase;
+  font-size: $font-sm;
+  letter-spacing: 1px;
+
+  &:hover {
+    background-color: $color-primary;
+  }
+}

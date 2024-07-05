@@ -7,6 +7,7 @@ import FaqPage from "../pages/Faq/FaqPage.tsx";
 import ContactPage from "../pages/Contact/ContactPage.tsx";
 import ContactSubmit from "../pages/Contact/ContactSubmit.tsx";
 import NotFoundPage from "../pages/NotFound/NotFoundPage.tsx";
+import AboutPage from "../pages/About/AboutPage.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -19,6 +20,7 @@ export const router = createBrowserRouter([
             {path: "/faq", element: <FaqPage />},
             {path: "/contact", element: <ContactPage />},
             {path: "/contactsubmit", element: <ContactSubmit />},
+            {path: "/about", element: <AboutPage />},
             {path: "*", element: <NotFoundPage />}
         ]
     }
