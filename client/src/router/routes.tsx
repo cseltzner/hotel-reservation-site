@@ -6,6 +6,7 @@ import MenuPage from "../pages/Menu/MenuPage.tsx";
 import FaqPage from "../pages/Faq/FaqPage.tsx";
 import ContactPage from "../pages/Contact/ContactPage.tsx";
 import ContactSubmit from "../pages/Contact/ContactSubmit.tsx";
+import NotFoundPage from "../pages/NotFound/NotFoundPage.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -17,7 +18,8 @@ export const router = createBrowserRouter([
             {path: "/menu", element: <MenuPage />},
             {path: "/faq", element: <FaqPage />},
             {path: "/contact", element: <ContactPage />},
-            {path: "/contactsubmit", element: <ContactSubmit />}
+            {path: "/contactsubmit", element: <ContactSubmit />},
+            {path: "*", element: <NotFoundPage />}
         ]
     }
 ])
