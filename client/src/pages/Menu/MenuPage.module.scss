@@ -25,14 +25,19 @@
   background-color: $color-surface-secondary;
   text-align: center;
 
-  @media (max-width: $screen-sm) {
+  @media (max-width: $screen-md) {
     padding: $spacing-24 $spacing-4;
+    gap: $spacing-8;
   }
 
   & > h1 {
     font-family: $font-serif;
     font-size: $font-6xl;
     color: $color-text-light;
+
+    @media (max-width: $screen-md) {
+      font-size: $font-4xl;
+    }
   }
 }
 
@@ -42,10 +47,6 @@
     font-size: $font-3xl;
     text-align: center;
     color: $color-text-light;
-    
-    @media (max-width: $screen-md) {
-
-    }
   }
 }
 
@@ -59,8 +60,9 @@
   row-gap: $spacing-16;
   
   @media (max-width: $screen-md) {
-    margin-top: $spacing-9;
+    margin-top: $spacing-6;
     grid-template-columns: 1fr;
+    row-gap: $spacing-8;
   }
 
   &:before {
@@ -82,11 +84,23 @@
   & > h3 {
     font-family: $font-serif;
     font-size: $font-2xl;
+
+    @media (max-width: $screen-md) {
+      font-size: $font-xl;
+    }
   }
 
   & > .menuItemDescription {
     margin-top: $spacing-3;
     line-height: 1.85;
+
+    @media (max-width: $screen-md) {
+      max-width: 60ch;
+    }
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-sm;
+    }
   }
 
   & > .menuItemPrice {
@@ -94,6 +108,11 @@
     font-family: $font-serif;
     font-size: $font-4xl;
     color: $color-text-light;
+    
+    @media (max-width: $screen-sm) {
+      font-size: $font-2xl;
+      margin-top: $spacing-1;
+    }
   }
 }
 
