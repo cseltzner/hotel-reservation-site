@@ -1,0 +1,176 @@
+@import "src/styles/base";
+
+.contactPage p {
+  line-height: 1.75;
+}
+
+.imgBanner {
+  & > img {
+    max-height: 400px;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 65%;
+  }
+}
+
+.faqContainer {
+  padding: $spacing-24 $spacing-4;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: $spacing-16;
+
+  @media (max-width: $screen-md) {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-16;
+  }
+}
+
+.contactInfo {
+  @media (max-width: $screen-md) {
+    text-align: center;
+  }
+
+  & > h1 {
+    font-family: $font-serif;
+    font-size: $font-5xl;
+    color: $color-text-light;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-3xl;
+    }
+  }
+
+  & > .infoLarge {
+    margin-top: $spacing-9;
+    font-family: $font-serif;
+    font-size: $font-xl;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-lg;
+    }
+  }
+
+  & > .infoSmall {
+    margin-top: $spacing-2;
+    font-size: $font-sm;
+  }
+
+  & > .map {
+    margin-top: $spacing-12;
+    width: 100%;
+    min-height: 500px;
+
+    @media (max-width: $screen-sm) {
+      min-height: 350px;
+    }
+  }
+}
+
+.contactForm {
+  @media (max-width: $screen-md) {
+    text-align: center;
+  }
+
+  & > h2 {
+    font-family: $font-serif;
+    font-size: $font-3xl;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-2xl;
+    }
+  }
+
+  & > p {
+    margin-top: $spacing-3;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-sm;
+    }
+  }
+
+  & > .contactInput {
+    margin-top: $spacing-3;
+    display: block;
+    width: 100%;
+    padding: $spacing-3 $spacing-1;
+    border-bottom: 1px solid #000;
+    background-color: transparent;
+
+    &::placeholder {
+      color: #777;
+    }
+
+    &:focus {
+      outline: 2px solid $color-primary;
+      border-color: transparent;
+
+      &::placeholder {
+        color: #333;
+      }
+    }
+  }
+
+  & > .contactTextarea {
+    margin-top: $spacing-6;
+    background-color: transparent;
+    border: 1px solid #000;
+    padding: $spacing-2;
+    width: 100%;
+    min-height: 300px;
+
+    &::placeholder {
+      color: #777;
+    }
+
+    &:focus {
+      outline: 2px solid $color-primary;
+      border-color: transparent;
+
+      &::placeholder {
+        color: #333;
+      }
+    }
+  }
+}
+
+.contactButton {
+  margin-top: $spacing-9;
+  padding: $spacing-3 $spacing-16;
+  color: #fff;
+  background-color: $color-primary-light;
+  transition: all 0.3s ease-out;
+  text-transform: uppercase;
+  font-size: $font-sm;
+  letter-spacing: 1px;
+
+  &:hover {
+    background-color: $color-primary;
+  }
+}
+
+.contactThankYou {
+  margin: $spacing-16 auto;
+  padding: $spacing-12;
+  max-width: 500px;
+  text-align: center;
+  background-color: $color-surface-secondary;
+
+  & > h1 {
+    font-size: $font-4xl;
+    color: $color-text-light;
+    font-family: $font-serif;
+  }
+
+  & > p {
+    margin-top: $spacing-4;
+    line-height: 1.85;
+  }
+
+  & > button {
+
+  }
+}

@@ -4,6 +4,8 @@ import HomePage from "../pages/HomePage/HomePage.tsx";
 import EventsPage from "../pages/Events/EventsPage.tsx";
 import MenuPage from "../pages/Menu/MenuPage.tsx";
 import FaqPage from "../pages/Faq/FaqPage.tsx";
+import ContactPage from "../pages/Contact/ContactPage.tsx";
+import ContactSubmit from "../pages/Contact/ContactSubmit.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -13,7 +15,9 @@ export const router = createBrowserRouter([
             {path: "/", element: <HomePage />},
             {path: "/events", element: <EventsPage />},
             {path: "/menu", element: <MenuPage />},
-            {path: "/faq", element: <FaqPage />}
+            {path: "/faq", element: <FaqPage />},
+            {path: "/contact", element: <ContactPage />},
+            {path: "/contactsubmit", element: <ContactSubmit />}
         ]
     }
 ])
