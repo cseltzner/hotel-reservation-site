@@ -173,12 +173,12 @@ public static class SeedData
                     MaxGuests = 3,
                     BasePrice = 300,
                     AdditionalGuestPrice = 35,
-                    PrimaryImageUrl = "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/basic-suite/basic-suite-main",
+                    PrimaryImageUrl = "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720292326/hotel-site/basic-suite/basic-main.jpg",
                     SecondaryImageUrls = new List<string>
                     {
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/basic-suite/basic-1",
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/basic-suite/basic-2",
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/basic-suite/basic-3"
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720292326/hotel-site/basic-suite/basic-1.jpg",
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720292326/hotel-site/basic-suite/basic-2.jpg",
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720292326/hotel-site/basic-suite/basic-3.jpg"
                     },
                     Features = new List<Feature>
                     {
@@ -202,12 +202,12 @@ public static class SeedData
                     MaxGuests = 4,
                     BasePrice = 550,
                     AdditionalGuestPrice = 50,
-                    PrimaryImageUrl = "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/seaside-suite/seaside-main",
+                    PrimaryImageUrl = "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293416/hotel-site/seaside-suite/seaside-main.jpg",
                     SecondaryImageUrls = new List<string>
                     {
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/seaside-suite/seaside-2",
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/seaside-suite/seaside-3",
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/seaside-suite/seaside-4"
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293416/hotel-site/seaside-suite/seaside-1.jpg",
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293416/hotel-site/seaside-suite/seaside-2.jpg",
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293416/hotel-site/seaside-suite/seaside-3.jpg",
                     },
                     Features = new List<Feature>
                     {
@@ -231,12 +231,12 @@ public static class SeedData
                     MaxGuests = 2,
                     BasePrice = 150,
                     AdditionalGuestPrice = 25,
-                    PrimaryImageUrl = "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/single-suite/single-suite-1",
+                    PrimaryImageUrl = "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293796/hotel-site/single-suite/single-main.jpg",
                     SecondaryImageUrls = new List<string>
                     {
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/single-suite/single-suite-2",
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/single-suite/single-suite-3",
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/single-suite/single-suite-4"
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293796/hotel-site/single-suite/single-1.jpg",
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293796/hotel-site/single-suite/single-2.jpg",
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293796/hotel-site/single-suite/single-3.jpg",
                     },
                     Features = new List<Feature>
                     {
@@ -260,12 +260,12 @@ public static class SeedData
                     MaxGuests = 4,
                     BasePrice = 500,
                     AdditionalGuestPrice = 50,
-                    PrimaryImageUrl = "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/luxury-suite/luxury-1",
+                    PrimaryImageUrl = "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293066/hotel-site/luxury-suite/luxury-main.jpg",
                     SecondaryImageUrls = new List<string>
                     {
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/luxury-suite/luxury-2",
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/luxury-suite/luxury-3",
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/luxury-suite/luxury-4"
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293066/hotel-site/luxury-suite/luxury-1.jpg",
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293066/hotel-site/luxury-suite/luxury-2.jpg",
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720293066/hotel-site/luxury-suite/luxury-3.jpg",
                     },
                     Features = new List<Feature>
                     {
@@ -289,12 +289,12 @@ public static class SeedData
                     MaxGuests = 6,
                     BasePrice = 400,
                     AdditionalGuestPrice = 50,
-                    PrimaryImageUrl = "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/jumbo-room/jumbo-1",
+                    PrimaryImageUrl = "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720292794/hotel-site/jumbo-room/jumbo-main.jpg",
                     SecondaryImageUrls = new List<string>
                     {
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/jumbo-room/jumbo-2",
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/jumbo-room/jumbo-3",
-                        "https://res.cloudinary.com/dnxdsagpg/image/upload/f_auto,q_auto/v1/hotel-site/jumbo-room/jumbo-4"
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720292794/hotel-site/jumbo-room/jumbo-1.jpg",
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720292794/hotel-site/jumbo-room/jumbo-2.jpg",
+                        "https://res.cloudinary.com/dnxdsagpg/image/upload/v1720292794/hotel-site/jumbo-room/jumbo-3.jpg"
                     },
                     Features = new List<Feature>
                     {
