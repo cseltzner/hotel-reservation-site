@@ -1,0 +1,53 @@
+@import "/src/styles/base";
+
+.newsletterPage {
+  padding: $spacing-24 $spacing-4;
+}
+
+.thankYouContainer {
+  margin: 0 auto;
+  max-width: 450px;
+  text-align: center;
+
+  & > h1 {
+    font-size: $font-3xl;
+    font-family: $font-serif;
+    color: $color-text-light;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-2xl;
+    }
+  }
+
+  & > p {
+    margin-top: $spacing-4;
+    line-height: 1.75;
+  }
+}
+
+.img {
+  margin-top: $spacing-16;
+  display: block;
+
+  & > img {
+    max-height: 400px;
+    width: 100%;
+    object-fit: contain;
+  }
+}
+
+.button {
+  display: inline-block;
+  margin-top: $spacing-9;
+  padding: $spacing-4 $spacing-16;
+  color: #fff;
+  background-color: $color-primary-light;
+  transition: all 0.3s ease-out;
+  text-transform: uppercase;
+  font-size: $font-sm;
+  letter-spacing: 1px;
+
+  &:hover {
+    background-color: $color-primary;
+  }
+}
