@@ -1,0 +1,77 @@
+@import "src/styles/base";
+
+.room {
+  background-color: $color-surface-secondary;
+}
+
+.roomBody {
+  padding: $spacing-9;
+}
+
+.roomHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  & > h3 {
+    font-family: $font-serif;
+    font-size: $font-3xl;
+  }
+
+  & > .roomPrice {
+    font-family: $font-serif;
+
+    & > .basePrice {
+      display: inline-block;
+      margin-left: $spacing-2;
+      font-size: $font-3xl;
+    }
+  }
+}
+
+.roomDetails {
+  margin-top: $spacing-2;
+  display: flex;
+  justify-content: flex-start;
+  gap: $spacing-4;
+
+  & > .roomDetailDivider {
+    width: 1px;
+    background-color: #777;
+  }
+}
+
+.roomDetail {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: $spacing-2;
+
+  & > .detailIcon {
+    width: 15px;
+    height: 15px;
+  }
+}
+
+.roomDescription {
+  margin-top: $spacing-4;
+  line-height: 1.75;
+  max-width: 65ch;
+}
+
+
+.button {
+  display: inline-block;
+  margin-top: $spacing-9;
+  padding: $spacing-4 $spacing-16;
+  color: #fff;
+  background-color: $color-primary-light;
+  transition: all 0.3s ease-out;
+  text-transform: uppercase;
+  font-size: $font-sm;
+  letter-spacing: 1px;
+
+  &:hover {
+    background-color: $color-primary;
+  }
+}

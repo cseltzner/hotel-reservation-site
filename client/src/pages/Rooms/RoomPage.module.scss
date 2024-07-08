@@ -1,0 +1,24 @@
+@import "src/styles/base";
+
+.roomPage {
+  padding: $spacing-16 $spacing-4;
+
+  & h1 {
+    text-transform: uppercase;
+    font-family: $font-serif;
+    font-size: $font-5xl;
+  }
+}
+
+.roomPageGrid {
+  margin-top: $spacing-16;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  column-gap: $spacing-8;
+}
+
+.roomList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-24;
+}
