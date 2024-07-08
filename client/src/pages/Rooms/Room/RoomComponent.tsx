@@ -2,12 +2,15 @@ import styles from "./RoomComponent.module.scss";
 import { Room } from "../../../interfaces/models/Room.ts";
 import Bed from "../../../components/Icons/Bed.tsx";
 import Person from "../../../components/Icons/Person.tsx";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     room: Room;
 }
 
 const RoomComponent = ({room}: Props) => {
+    const navigate = useNavigate();
+
     return (
         <article className={styles.room}>
             <div className={styles.roomImg}>
@@ -34,7 +37,7 @@ const RoomComponent = ({room}: Props) => {
                 </div>
                 <p className={styles.roomDescription}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi
                     deserunt dicta, dolorum et illo nihil provident sed sequi sint voluptates.</p>
-                <button className={styles.button}>Book Now</button>
+                <button className={styles.button} onClick={() => navigate(`/rooms/${room.id}`)}>Book Now</button>
             </div>
         </article>
     );
