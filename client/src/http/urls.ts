@@ -20,12 +20,14 @@ export const apiUrls = {
 
 
 // Query interfaces
-interface GetRoomsQueries {
+export interface GetRoomsQueries {
     roomName?: string;
     maxPrice?: string;
     minPrice?: string;
-    sortBy?: "RoomName" | "Price" | "MaxGuests" | "Beds";
+    sortBy?: SortQuery
     isDescending?: boolean;
     pageNumber?: number;
     pageSize?: number;
 }
+
+export type SortQuery = "RoomName" | "Price" | "MaxGuests" | "Beds";
