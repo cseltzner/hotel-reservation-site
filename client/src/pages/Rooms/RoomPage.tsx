@@ -5,6 +5,7 @@ import { apiUrls, GetRoomsQueries, SortQuery } from "../../http/urls.ts";
 import { PagedList } from "../../interfaces/PagedList.ts";
 import RoomComponent from "./Room/RoomComponent.tsx";
 import FormSelect, { SelectItem } from "../../components/FormSelect/FormSelect.tsx";
+import * as Slider from '@radix-ui/react-slider';
 
 const sortBySelectItems: SelectItem[] = [
     {value: "featured", displayValue: "Featured"},
@@ -26,6 +27,8 @@ const RoomPage = () => {
     
     // Filter form state
     const [filter, setFilter] = useState<string>("");
+    const [maxPrice, setMaxPrice] = useState(850);
+    const [minPrice, setMinPrice] = useState(150);
 
     const onSetSortBy = (sort: string) => {
         setSortByTouched(true);
@@ -81,6 +84,21 @@ const RoomPage = () => {
         })
     }
 
+    const onSetPrice = (prices: number[]) => {
+        setMinPrice(prices[0]);
+        setMaxPrice(prices[1]);
+    }
+
+    const onPriceCommitted = (prices: number[]) => {
+        setCurrentRoomQuery(prevState => {
+            return {
+                ...prevState,
+                minPrice: prices[0].toString(),
+                maxPrice: prices[1].toString()
+            }
+        })
+    }
+
     useEffect(() => {
         const fetchRooms = async () => {
             const response = await fetch(apiUrls.getRooms(currentRoomQuery));
@@ -112,7 +130,7 @@ const RoomPage = () => {
                         <h2>Find Your Room</h2>
                         <div className={styles.filterForm}>
                             <div className={styles.filterFormTextInputGroup}>
-                                <label htmlFor="filter">Search</label>
+                                <label className={styles.formLabel} htmlFor="filter">Search</label>
                                 <input type="text" placeholder="Search Suites..."
                                        onBlur={(e) => onFilterChange(e.target.value)}
                                        onKeyDown={(e) => e.key === "Enter" && onFilterChange((e as any).target.value)}
@@ -125,6 +143,29 @@ const RoomPage = () => {
                                 label="Sort"
                                 selectItems={sortBySelectItems}
                                 />
+                            <div className={styles.sliderInputGroup}>
+                                <label className={styles.formLabel}>Price</label>
+                                <div className={styles.sliderContainer}>
+                                    <div className={styles.sliderValue}>${minPrice}</div>
+                                    <Slider.Root
+                                        className={styles.sliderRoot}
+                                        defaultValue={[minPrice, maxPrice]}
+                                        min={100}
+                                        max={900}
+                                        step={50}
+                                        minStepsBetweenThumbs={1}
+                                        onValueChange={onSetPrice}
+                                        onValueCommit={onPriceCommitted}
+                                    >
+                                        <Slider.Track className={styles.sliderTrack}>
+                                            <Slider.Range className={styles.sliderRange} />
+                                        </Slider.Track>
+                                        <Slider.Thumb className={styles.sliderThumb} defaultValue={0} />
+                                        <Slider.Thumb className={styles.sliderThumb} defaultValue={1000} />
+                                    </Slider.Root>
+                                    <div className={styles.sliderValue}>${maxPrice}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -55,18 +55,18 @@
 .filterForm {
   margin-top: $spacing-12;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   gap: $spacing-6;
 }
 
-.filterFormTextInputGroup {
-  & > label {
-    display: block;
-    font-size: $font-xs;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+.formLabel {
+  display: block;
+  font-size: $font-xs;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
 
+.filterFormTextInputGroup {
   & > input[type="text"] {
     display: block;
     width: 100%;
@@ -155,5 +155,57 @@
       background-color: $color-primary;
       color: #fff;
     }
+  }
+}
+
+.sliderContainer {
+  margin-top: $spacing-4;
+  display: flex;
+  gap: $spacing-6;
+}
+
+.sliderValue {
+  font-size: $font-sm;
+}
+
+.sliderRoot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+  width: 165px;
+  height: 20px;
+}
+
+.sliderTrack {
+  background-color: #aaa;
+  position: relative;
+  flex-grow: 1;
+  border-radius: 9999px;
+  height: 3px;
+}
+
+.sliderRange {
+  position: absolute;
+  background-color: $color-primary-light;
+  border-radius: 9999px;
+  height: 100%;
+}
+
+.sliderThumb {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-color: $color-primary;
+  border-radius: 10px;
+  transition: background-color 0.3s ease-out;
+
+  &:hover {
+      background-color: $color-primary-dark;
+  }
+
+  &:focus {
+    outline: 2px solid #000;
   }
 }
