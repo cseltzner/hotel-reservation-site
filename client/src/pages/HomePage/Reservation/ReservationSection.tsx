@@ -102,6 +102,7 @@ const ReservationSection = () => {
                         onValueChange={onSetNumGuests}
                         isTouched={numGuestsTouched}
                         selectTriggerValue={`${numGuests} Guest${numGuests > 1 ? "s" : ""}`}
+                        label="Guests"
                         selectItems={[
                             {value: "1", displayValue: "1"},
                             {value: "2", displayValue: "2"},

@@ -20,9 +20,12 @@ const RoomPage = () => {
     const [rooms, setRooms] = useState<Room[]>([]);
     const [currentRoomQuery, setCurrentRoomQuery] = useState<GetRoomsQueries>({})
 
-    // Filter form state
+    // Sort form state
     const [sortBy, setSortBy] = useState<SelectItem>(sortBySelectItems[0]);
     const [sortByTouched, setSortByTouched] = useState(false);
+    
+    // Filter form state
+    const [filter, setFilter] = useState<string>("");
 
     const onSetSortBy = (sort: string) => {
         setSortByTouched(true);
@@ -65,6 +68,19 @@ const RoomPage = () => {
         })
     }
 
+
+    const onFilterChange = (newFilter: string) => {
+        // Ignore unchanged values
+        if (newFilter === filter) return;
+        setFilter(newFilter);
+        setCurrentRoomQuery(prevState => {
+            return {
+                ...prevState,
+                roomName: newFilter.trim()
+            }
+        })
+    }
+
     useEffect(() => {
         const fetchRooms = async () => {
             const response = await fetch(apiUrls.getRooms(currentRoomQuery));
@@ -85,14 +101,28 @@ const RoomPage = () => {
                         {rooms.map(room => (
                             <RoomComponent key={room.id} room={room}/>
                         ))}
+                        {rooms.length === 0 && (
+                            <div className={styles.emptyRoomList}>
+                                <h2>No Rooms Found.</h2>
+                                <p>No rooms were found with the given search term. Please check your search query and try again.</p>
+                            </div>
+                        )}
                     </div>
                     <div className={styles.filterList}>
                         <h2>Find Your Room</h2>
                         <div className={styles.filterForm}>
+                            <div className={styles.filterFormTextInputGroup}>
+                                <label htmlFor="filter">Search</label>
+                                <input type="text" placeholder="Search Suites..."
+                                       onBlur={(e) => onFilterChange(e.target.value)}
+                                       onKeyDown={(e) => e.key === "Enter" && onFilterChange((e as any).target.value)}
+                                />
+                            </div>
                             <FormSelect
                                 onValueChange={onSetSortBy}
                                 isTouched={sortByTouched}
                                 selectTriggerValue={sortBy.displayValue}
+                                label="Sort"
                                 selectItems={sortBySelectItems}
                                 />
                         </div>

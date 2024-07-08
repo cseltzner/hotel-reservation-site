@@ -11,13 +11,14 @@ interface Props {
     onValueChange: (value: string) => void;
     isTouched: boolean;
     selectTriggerValue: string;
-    selectItems: SelectItem[]
+    label: string;
+    selectItems: SelectItem[];
 }
 
 const FormSelect = (props: Props) => {
     return (
         <div className={styles.select}>
-            <label htmlFor="guests">Guests</label>
+            <label>{props.label}</label>
             <Select.Root defaultValue={"1"} onValueChange={props.onValueChange}>
                 <Select.Trigger
                     className={`${styles.dropdownTrigger} ${props.isTouched && styles.dropdownTriggerTouched}`}>
