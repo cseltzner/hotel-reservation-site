@@ -1,0 +1,88 @@
+@import "src/styles/base";
+
+.select {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+
+  & > label {
+    font-size: $font-xs;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+}
+
+.dropdownTrigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-3 0;
+  gap: $spacing-24;
+  border-bottom: 1px solid $color-text;
+  color: $color-gray-500;
+  text-wrap: nowrap;
+
+  @media (max-width: $screen-lg) {
+    gap: $spacing-12;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+    border-color: transparent;
+  }
+
+  .chevron {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.dropdownTriggerTouched {
+  color: $color-text;
+}
+
+.dropdownContent {
+  background-color: #fff;
+  padding: $spacing-3;
+  margin-top: $spacing-4;
+  border: 1px solid $color-surface-secondary;
+  transform-origin: top;
+  z-index: 100;
+
+  &[data-state="open"] {
+    animation: scaleIn .15s ease-out;
+  }
+
+  &[data-state="closed"] {
+    animation: scaleOut .15s ease-out;
+  }
+}
+
+.selectContent {
+  background-color: #fff;
+  margin-top: $spacing-4;
+  border: 1px solid $color-surface-secondary;
+  transform-origin: top;
+  z-index: 100;
+
+  &[data-state="open"] {
+    animation: scaleIn .15s ease-out;
+  }
+
+  &[data-state="closed"] {
+    animation: scaleOut .15s ease-out;
+  }
+
+  & .selectItem {
+    padding: $spacing-4 $spacing-16;
+    font-size: $font-lg;
+    outline: none;
+    transition: 0.1s all ease-in-out;
+
+    &:hover {
+      background-color: $color-primary;
+      color: #fff;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import * as Select from '@radix-ui/react-select';
 import { add, format, compareAsc } from "date-fns";
 import ChevronDown from "../../../components/Icons/ChevronDown.tsx";
 import { useNavigate } from "react-router-dom";
+import FormSelect from "../../../components/FormSelect/FormSelect.tsx";
 
 const currentDate = new Date();
 
@@ -97,25 +98,20 @@ const ReservationSection = () => {
                             </DropdownMenu.Content>
                         </DropdownMenu.Root>
                     </div>
-                    <div className={styles.formItem}>
-                        <label htmlFor="guests">Guests</label>
-                        <Select.Root defaultValue={"1"} onValueChange={onSetNumGuests}>
-                            <Select.Trigger className={`${styles.dropdownTrigger} ${numGuestsTouched && styles.dropdownTriggerTouched}`}>
-                                <Select.Value>{numGuests} Guest{numGuests > 1 && "s"}</Select.Value>
-                                <span className={styles.chevron}><ChevronDown /></span>
-                            </Select.Trigger>
-                            <Select.Content className={styles.selectContent} position="popper">
-                                <Select.Viewport>
-                                    <Select.Item value={"1"} className={styles.selectItem}>1</Select.Item>
-                                    <Select.Item value={"2"} className={styles.selectItem}>2</Select.Item>
-                                    <Select.Item value={"3"} className={styles.selectItem}>3</Select.Item>
-                                    <Select.Item value={"4"} className={styles.selectItem}>4</Select.Item>
-                                    <Select.Item value={"5"} className={styles.selectItem}>5</Select.Item>
-                                    <Select.Item value={"6"} className={styles.selectItem}>6</Select.Item>
-                                </Select.Viewport>
-                            </Select.Content>
-                        </Select.Root>
-                    </div>
+                    <FormSelect
+                        onValueChange={onSetNumGuests}
+                        isTouched={numGuestsTouched}
+                        selectTriggerValue={`${numGuests} Guest${numGuests > 1 ? "s" : ""}`}
+                        selectItems={[
+                            {value: "1", displayValue: "1"},
+                            {value: "2", displayValue: "2"},
+                            {value: "3", displayValue: "3"},
+                            {value: "4", displayValue: "4"},
+                            {value: "5", displayValue: "5"},
+                            {value: "6", displayValue: "6"},
+                        ]
+                        }
+                    />
                     <button
                         className={styles.submitBtn}
                         onClick={() => navigate(`/rooms?guests=${numGuests}`, {state: {checkinDate, checkoutDate}})}
