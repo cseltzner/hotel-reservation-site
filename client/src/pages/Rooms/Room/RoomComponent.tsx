@@ -13,12 +13,12 @@ const RoomComponent = ({room}: Props) => {
 
     return (
         <article className={styles.room}>
-            <div className={styles.roomImg}>
+            <a href={`/rooms/${room.id}`} className={styles.roomImg}>
                 <img src={room.primaryImageUrl} alt={room.name}/>
-            </div>
+            </a>
             <div className={styles.roomBody}>
                 <div className={styles.roomHeader}>
-                    <h3>{room.name}</h3>
+                    <h3><a href={`/rooms/${room.id}`}>{room.name}</a></h3>
                     <p className={styles.roomPrice}>From <span className={styles.basePrice}>${room.basePrice}</span></p>
                 </div>
                 <div className={styles.roomDetails}>

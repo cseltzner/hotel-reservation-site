@@ -4,6 +4,19 @@
   background-color: $color-surface-secondary;
 }
 
+.roomImg {
+  display: block;
+  overflow: hidden;
+
+  & > img {
+    transition: all 0.5s ease-out;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+  }
+}
+
 .roomBody {
   padding: $spacing-9;
 }
@@ -16,6 +29,11 @@
   & > h3 {
     font-family: $font-serif;
     font-size: $font-3xl;
+
+    &:hover {
+      text-decoration: underline 2px;
+      text-underline-offset: 4px;
+    }
   }
 
   & > .roomPrice {
