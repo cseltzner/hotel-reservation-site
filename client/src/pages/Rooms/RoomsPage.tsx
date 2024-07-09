@@ -17,7 +17,7 @@ const sortBySelectItems: SelectItem[] = [
     {value: "beds", displayValue: "Number of beds"},
 ]
 
-const RoomPage = () => {
+const RoomsPage = () => {
     const [rooms, setRooms] = useState<Room[]>([]);
     const [currentRoomQuery, setCurrentRoomQuery] = useState<GetRoomsQueries>({})
 
@@ -174,4 +174,4 @@ const RoomPage = () => {
     );
 };
 
-export default RoomPage;
+export default RoomsPage;

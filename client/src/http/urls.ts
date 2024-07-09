@@ -16,6 +16,7 @@ const getRooms = (query: GetRoomsQueries) => {
 export const apiUrls = {
     getRoomNames: (numRooms: number) => baseUrl + "/rooms/names?numRooms=" + numRooms,
     getRooms,
+    getRoom: (roomId: string) => baseUrl + "/rooms/" + roomId
 }
 
 

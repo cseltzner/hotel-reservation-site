@@ -1,0 +1,84 @@
+@import "src/styles/base";
+
+.roomPage {
+
+}
+
+.roomImgBanner {
+  position: relative;
+
+  & > img {
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+  }
+}
+
+.imgBannerDetails {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: 500px;
+  background-color: #fff;
+  padding: $spacing-9;
+
+  & > .price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: $spacing-3;
+    font-family: $font-serif;
+    font-size: $font-sm;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    & > .priceValue {
+      color: $color-text-light;
+      font-size: $font-5xl;
+    }
+  }
+
+  & > .button {
+    margin-top: $spacing-3;
+    text-transform: uppercase;
+    font-size: $font-xs;
+    letter-spacing: 1px;
+    width: 100%;
+    padding: $spacing-4 $spacing-12;
+    background-color: $color-primary;
+    color: #fff;
+    transition: all 0.3s ease-out;
+
+    &:hover {
+      background-color: $color-primary-dark;
+    }
+  }
+}
+
+.bannerFeatureList {
+  margin-top: $spacing-6;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: $spacing-3;
+
+  & > .bannerFeature {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+
+    & > .bannerIcon {
+      width: 25px;
+      height: 25px;
+      stroke: #000;
+      fill: #fff;
+      color: #fff;
+    }
+
+    & > p {
+      font-size: $font-sm;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+}

@@ -9,7 +9,8 @@ import ContactSubmit from "../pages/Contact/ContactSubmit.tsx";
 import NotFoundPage from "../pages/NotFound/NotFoundPage.tsx";
 import AboutPage from "../pages/About/AboutPage.tsx";
 import NewsletterCompleted from "../pages/Newsletter/NewsletterCompleted.tsx";
-import RoomPage from "../pages/Rooms/RoomPage.tsx";
+import RoomPage from "../pages/Room/RoomPage.tsx";
+import RoomsPage from "../pages/Rooms/RoomsPage.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -24,7 +25,8 @@ export const router = createBrowserRouter([
             {path: "/contactsubmit", element: <ContactSubmit />},
             {path: "/about", element: <AboutPage />},
             {path: "/newslettercomplete", element: <NewsletterCompleted />},
-            {path: "/rooms", element: <RoomPage />},
+            {path: "/rooms", element: <RoomsPage />},
+            {path: "/rooms/:id", element: <RoomPage />},
             {path: "*", element: <NotFoundPage />}
         ]
     }
