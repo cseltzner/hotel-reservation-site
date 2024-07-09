@@ -6,6 +6,8 @@
 
 .roomImgBanner {
   position: relative;
+  border-bottom: 1px solid $color-surface-secondary;
+  border-top: 1px solid $color-surface-secondary;
 
   & > img {
     width: 100%;
@@ -19,8 +21,10 @@
   bottom: 0;
   left: 0;
   max-width: 500px;
-  background-color: #fff;
+  background-color: $color-surface;
   padding: $spacing-9;
+  border: 1px solid $color-surface-secondary;
+  border-bottom: none;
 
   & > .price {
     display: flex;
@@ -71,8 +75,8 @@
       width: 25px;
       height: 25px;
       stroke: #000;
-      fill: #fff;
-      color: #fff;
+      fill: transparent;
+      color: transparent;
     }
 
     & > p {
@@ -81,4 +85,170 @@
       letter-spacing: 1px;
     }
   }
+}
+
+.roomMain {
+  padding: $spacing-16 $spacing-4;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: $spacing-9;
+}
+
+.roomMainDescription {
+  & > h1 {
+    font-family: $font-serif;
+    font-size: $font-5xl;
+  }
+
+  & > .roomDescription {
+    margin-top: $spacing-6;
+    line-height: 1.75;
+  }
+
+  & > .gallery {
+    margin-top: $spacing-9;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: $spacing-4;
+    column-gap: $spacing-4;
+    align-items: stretch;
+
+    & > .galleryImg {
+      display: block;
+      overflow: hidden;
+    }
+
+    & > .galleryImg:first-child {
+      grid-column: 1 / span 2;
+    }
+
+    & img {
+      height: 100%;
+      object-fit: fill;
+      transition: all 0.5s ease-out;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+}
+
+.featuresContainer {
+  margin-top: $spacing-24;
+  padding: $spacing-16 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+
+  & > h3 {
+    font-family: $font-serif;
+    font-size: $font-3xl;
+  }
+
+  & > p {
+    margin-top: $spacing-4;
+  }
+}
+
+.featureList {
+  margin-top: $spacing-9;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: $spacing-4;
+  justify-content: space-between;
+
+  & > .feature {
+    display: flex;
+    align-items: center;
+    gap: $spacing-4;
+
+    & > .featureIcon {
+      width: 28px;
+      height: 28px;
+      stroke: #000;
+      stroke-width: 1px;
+      fill: transparent;
+    }
+  }
+}
+
+.relatedContainer {
+  padding: $spacing-16 $spacing-4;
+
+  & > h3 {
+    font-family: $font-serif;
+    font-size: $font-3xl;
+  }
+}
+
+.relatedList {
+  margin-top: $spacing-12;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: $spacing-5;
+}
+
+.relatedRoom {
+  &:hover img {
+    transform: scale(1.03);
+  }
+}
+
+.relatedImgContainer {
+  position: relative;
+  overflow: hidden;
+
+  & > img {
+    transition: all 0.5s ease-out;
+  }
+
+  & > .relatedImgDetails {
+    position: absolute;
+    right: 0;
+    bottom: 10%;
+    background-color: $color-surface;
+    padding: $spacing-2 $spacing-5;
+    font-family: $font-serif;
+    font-size: $font-sm;
+    text-transform: uppercase;
+
+    & > .relatedImgPrice {
+      display: inline-block;
+      margin-left: $spacing-1;
+      font-size: $font-xl;
+    }
+  }
+}
+
+.relatedFeatures {
+  padding: $spacing-2 0;
+  display: flex;
+  align-items: center;
+  gap: $spacing-4;
+
+  & > .relatedFeatureDivider {
+    width: 1px;
+    height: 12px;
+    background-color: #000;
+  }
+}
+
+.relatedFeature {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  font-size: $font-sm;
+
+  & > .relatedIcon {
+    width: 16px;
+    height: 16px;
+    stroke: #000;
+    fill: transparent;
+    stroke-width: 1px;
+  }
+}
+
+.relatedRoomName {
+  font-family: $font-serif;
+  font-size: $font-xl;
 }
