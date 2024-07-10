@@ -111,7 +111,7 @@ const RoomPage = () => {
                                 </div>
                             </div>
                             <div className={styles.roomReservation}>
-                                <ReservationForm room={room} />
+                                <ReservationForm room={room}/>
                             </div>
                         </main>
                         <div className={styles.relatedContainer}>
@@ -125,18 +125,20 @@ const RoomPage = () => {
                                                 <div className={styles.relatedImgDetails}>From <span
                                                     className={styles.relatedImgPrice}>${room.basePrice}</span></div>
                                             </div>
-                                            <ul className={styles.relatedFeatures}>
-                                                <li className={styles.relatedFeature}>
-                                                    <Person className={styles.relatedIcon}/>
-                                                    <p>1-{room.maxGuests} Guests</p>
-                                                </li>
-                                                <div className={styles.relatedFeatureDivider}></div>
-                                                <li className={styles.relatedFeature}>
-                                                    <KingBed className={styles.relatedIcon}/>
-                                                    <p>{room.numBeds} Bed{room.numBeds > 1 ? "s" : ""}</p>
-                                                </li>
-                                            </ul>
-                                            <h4 className={styles.relatedRoomName}>{room.name}</h4>
+                                            <div className={styles.relatedDetails}>
+                                                <ul className={styles.relatedFeatures}>
+                                                    <li className={styles.relatedFeature}>
+                                                        <Person className={styles.relatedIcon}/>
+                                                        <p>1-{room.maxGuests} Guests</p>
+                                                    </li>
+                                                    <div className={styles.relatedFeatureDivider}></div>
+                                                    <li className={styles.relatedFeature}>
+                                                        <KingBed className={styles.relatedIcon}/>
+                                                        <p>{room.numBeds} Bed{room.numBeds > 1 ? "s" : ""}</p>
+                                                    </li>
+                                                </ul>
+                                                <h4 className={styles.relatedRoomName}>{room.name}</h4>
+                                            </div>
                                         </a>
                                     </li>
                                 ))}
