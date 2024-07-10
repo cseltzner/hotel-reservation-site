@@ -1,4 +1,4 @@
-import styles from "./RoomPage.module.scss";
+import styles from "./RoomsPage.module.scss";
 import { useEffect, useState } from "react";
 import { Room } from "../../interfaces/models/Room";
 import { apiUrls, GetRoomsQueries, SortQuery } from "../../http/urls.ts";
