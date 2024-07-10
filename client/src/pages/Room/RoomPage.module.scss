@@ -43,7 +43,9 @@
   }
 
   & > .button {
+    display: block;
     margin-top: $spacing-3;
+    text-align: center;
     text-transform: uppercase;
     font-size: $font-xs;
     letter-spacing: 1px;

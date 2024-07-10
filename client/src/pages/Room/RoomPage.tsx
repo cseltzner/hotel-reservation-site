@@ -57,7 +57,7 @@ const RoomPage = () => {
                         <div className={styles.imgBannerDetails}>
                             <p className={styles.price}><span>From</span><span
                                 className={styles.priceValue}>${room.basePrice}</span></p>
-                            <button className={styles.button}>View More</button>
+                            <a href="#main" className={styles.button}>View More</a>
                             <ul className={styles.bannerFeatureList}>
                                 <li className={styles.bannerFeature}>
                                     <KingBed className={styles.bannerIcon}/>
@@ -75,7 +75,7 @@ const RoomPage = () => {
                         </div>
                     </div>
                     <div className="container">
-                        <main className={styles.roomMain}>
+                        <main className={styles.roomMain} id="main">
                             <div className={styles.roomMainDescription}>
                                 <h1>{room.name}</h1>
                                 <p className={styles.roomDescription}>Lorem ipsum dolor sit amet, consectetur

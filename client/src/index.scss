@@ -1,6 +1,10 @@
 @import "styles/base";
 @import "react-day-picker/dist/style.css";
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: $font-sans;
   line-height: 1.75;
