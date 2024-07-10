@@ -1,19 +1,24 @@
 import styles from "./ReservationForm.module.scss";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import { add, compareAsc, format } from "date-fns";
+import { add, compareAsc, format, intervalToDuration } from "date-fns";
 import ChevronDown from "../../components/Icons/ChevronDown.tsx";
 import { DayPicker } from "react-day-picker";
 import { useEffect, useState } from "react";
 import FormSelect from "../../components/FormSelect/FormSelect.tsx";
 import { Service } from "../../interfaces/models/Service.ts";
 import { apiUrls } from "../../http/urls.ts";
+import { Room } from "../../interfaces/models/Room.ts";
+
+interface Props {
+    room: Room;
+}
 
 const currentDate = new Date();
 
 const tomorrowDate = new Date();
 tomorrowDate.setDate(tomorrowDate.getDate() + 1);
 
-const ReservationForm = () => {
+const ReservationForm = ({room}: Props) => {
     const [services, setServices] = useState<Service[]>([]);
     const [servicesSelected, setServicesSelected] = useState<Service[]>([]);
 
@@ -78,6 +83,20 @@ const ReservationForm = () => {
         fetchServices();
     }, []);
 
+    const calculateNumNights = () => {
+        return intervalToDuration({
+            start: checkinDate,
+            end: checkoutDate
+        }).days || 0;
+    }
+
+    const calculatePriceEstimate = () => {
+        const numNights = calculateNumNights();
+        let extraServicesCost = 0;
+        servicesSelected.forEach(service => extraServicesCost += service.cost);
+        return (room.basePrice + (room.additionalGuestPrice * numGuests) + extraServicesCost) * numNights
+    }
+
     return (
         <div className={styles.reservationForm}>
             <h2>Reserve your Suite</h2>
@@ -140,6 +159,7 @@ const ReservationForm = () => {
             </div>
             <div className={styles.servicesContainer}>
                 <h3>Extra Services</h3>
+                <p className={styles.servicesDescription}>(Charged per night)</p>
                 <ul className={styles.checkboxList}>
                     {services && services.map(service => (
                         <li key={service.id} className={styles.checkboxContainer}>
@@ -160,8 +180,9 @@ const ReservationForm = () => {
             </div>
             <div className={styles.priceContainer}>
                 <p className={styles.priceDescription}>Your Price</p>
-                <p className={styles.priceValue}>$999</p>
+                <p className={styles.priceValue}>${calculatePriceEstimate()}</p>
             </div>
+            <p className={styles.nights}>({calculateNumNights()} Nights)</p>
             <div className={styles.bookButton}>Book Now</div>
         </div>
     );

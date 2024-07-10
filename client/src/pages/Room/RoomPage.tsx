@@ -111,7 +111,7 @@ const RoomPage = () => {
                                 </div>
                             </div>
                             <div className={styles.roomReservation}>
-                                <ReservationForm />
+                                <ReservationForm room={room} />
                             </div>
                         </main>
                         <div className={styles.relatedContainer}>

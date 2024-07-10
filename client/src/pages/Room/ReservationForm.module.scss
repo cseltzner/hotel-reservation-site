@@ -89,6 +89,10 @@
     font-family: $font-serif;
     font-size: $font-2xl;
   }
+
+  & > .servicesDescription {
+    font-size: $font-sm;
+  }
 }
 
 .checkboxList {
@@ -128,6 +132,12 @@
   justify-content: space-between;
   font-family: $font-serif;
   font-size: $font-2xl;
+}
+
+.nights {
+  text-align: end;
+  font-family: $font-serif;
+  font-size: $font-sm;
 }
 
 .bookButton {
