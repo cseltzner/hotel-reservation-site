@@ -30,10 +30,10 @@ const ReservationForm = ({room}: Props) => {
     const [services, setServices] = useState<Service[]>([]);
     const [servicesSelected, setServicesSelected] = useState<Service[]>([]);
 
-    const [checkinDate, setCheckinDate] = useState<Date>(currentDate)
+    const [checkinDate, setCheckinDate] = useState<Date>(add(currentDate, {days: 1}))
     const [checkinDateTouched, setCheckinDateTouched] = useState(false);
 
-    const [checkoutDate, setCheckOutDate] = useState<Date>(tomorrowDate)
+    const [checkoutDate, setCheckOutDate] = useState<Date>(add(tomorrowDate, {days: 1}))
     const [checkoutDateTouched, setCheckOutDateTouched] = useState(false);
 
     const [numGuests, setNumGuests] = useState(1);
@@ -124,7 +124,7 @@ const ReservationForm = ({room}: Props) => {
                                 mode="single"
                                 defaultMonth={checkinDate}
                                 required
-                                disabled={{before: currentDate}}
+                                disabled={{before: add(currentDate, {days: 1})}}
                                 selected={checkinDate}
                                 onSelect={onSetCheckinDate}/>
                         </DropdownMenu.Content>
