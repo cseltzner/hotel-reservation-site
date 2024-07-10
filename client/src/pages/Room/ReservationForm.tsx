@@ -4,7 +4,7 @@ import { add, compareAsc, format, intervalToDuration } from "date-fns";
 import ChevronDown from "../../components/Icons/ChevronDown.tsx";
 import { DayPicker } from "react-day-picker";
 import { useEffect, useState } from "react";
-import FormSelect from "../../components/FormSelect/FormSelect.tsx";
+import FormSelect, { SelectItem } from "../../components/FormSelect/FormSelect.tsx";
 import { Service } from "../../interfaces/models/Service.ts";
 import { apiUrls } from "../../http/urls.ts";
 import { Room } from "../../interfaces/models/Room.ts";
@@ -38,6 +38,14 @@ const ReservationForm = ({room}: Props) => {
 
     const [numGuests, setNumGuests] = useState(1);
     const [numGuestsTouched, setNumGuestsTouched] = useState(false);
+
+    const formSelectItems: SelectItem[] = [];
+    for (let i = 0; i < room.maxGuests; i++) {
+        formSelectItems.push({
+            value: (i + 1).toString(),
+            displayValue: (i + 1).toString()
+        })
+    }
 
     const onSetCheckinDate = (date: Date | undefined) => {
         if (date === undefined) {
@@ -160,15 +168,7 @@ const ReservationForm = ({room}: Props) => {
                     isTouched={numGuestsTouched}
                     selectTriggerValue={`${numGuests} Guest${numGuests > 1 ? "s" : ""}`}
                     label="Guests"
-                    selectItems={[
-                        {value: "1", displayValue: "1"},
-                        {value: "2", displayValue: "2"},
-                        {value: "3", displayValue: "3"},
-                        {value: "4", displayValue: "4"},
-                        {value: "5", displayValue: "5"},
-                        {value: "6", displayValue: "6"},
-                    ]
-                    }
+                    selectItems={formSelectItems}
                 />
             </div>
             <div className={styles.servicesContainer}>
