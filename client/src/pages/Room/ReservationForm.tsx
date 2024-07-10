@@ -101,7 +101,7 @@ const ReservationForm = ({room}: Props) => {
     const calculatePriceEstimate = () => {
         let extraServicesCost = 0;
         servicesSelected.forEach(service => extraServicesCost += service.cost);
-        return (room.basePrice + (room.additionalGuestPrice * numGuests) + extraServicesCost) * calculateNumNights()
+        return (room.basePrice + (room.additionalGuestPrice * (numGuests - 1)) + extraServicesCost) * calculateNumNights()
     }
 
     const numNights = calculateNumNights();
