@@ -8,6 +8,7 @@ import Person from "../../components/Icons/Person.tsx";
 import Coffee from "../../components/Icons/Coffee.tsx";
 import { getFeatureIcon } from "../../components/Icons/IconHelpers.tsx";
 import { PagedList } from "../../interfaces/PagedList.ts";
+import ReservationForm from "./ReservationForm.tsx";
 
 const RoomPage = () => {
     const navigate = useNavigate();
@@ -54,8 +55,8 @@ const RoomPage = () => {
                     <div className={styles.roomImgBanner}>
                         <img src={room.primaryImageUrl} alt={room.name}/>
                         <div className={styles.imgBannerDetails}>
-                            <p className={styles.price}><p>From</p><p
-                                className={styles.priceValue}>${room.basePrice}</p></p>
+                            <p className={styles.price}><span>From</span><span
+                                className={styles.priceValue}>${room.basePrice}</span></p>
                             <button className={styles.button}>View More</button>
                             <ul className={styles.bannerFeatureList}>
                                 <li className={styles.bannerFeature}>
@@ -101,7 +102,7 @@ const RoomPage = () => {
                                     <p>Consectetur adipisicing elit. Exercitationem rem tenetur ut.</p>
                                     <ul className={styles.featureList}>
                                         {room.features.map(feature => (
-                                            <li className={styles.feature}>
+                                            <li key={feature.id} className={styles.feature}>
                                                 {getFeatureIcon(feature.id, styles.featureIcon)}
                                                 <p className={styles.featureName}>{feature.featureName}</p>
                                             </li>
@@ -110,14 +111,14 @@ const RoomPage = () => {
                                 </div>
                             </div>
                             <div className={styles.roomReservation}>
-                                <h2>Reserve your Suite</h2>
+                                <ReservationForm />
                             </div>
                         </main>
                         <div className={styles.relatedContainer}>
                             <h3>Related Suites</h3>
                             <ul className={styles.relatedList}>
                                 {relatedRooms.map(room => (
-                                    <li className={styles.relatedRoom}>
+                                    <li key={room.id} className={styles.relatedRoom}>
                                         <a href={`/rooms/${room.id}`} target="_blank">
                                             <div className={styles.relatedImgContainer}>
                                                 <img src={room.primaryImageUrl} alt={room.name} loading="lazy"/>

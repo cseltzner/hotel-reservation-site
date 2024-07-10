@@ -75,14 +75,24 @@
   }
 
   & .selectItem {
-    padding: $spacing-4 $spacing-16;
+    padding: $spacing-3 $spacing-16;
     font-size: $font-lg;
     outline: none;
     transition: 0.1s all ease-in-out;
+    cursor: pointer;
 
     &:hover {
       background-color: $color-primary;
       color: #fff;
     }
   }
+}
+
+.selectViewport {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectContent[data-side="top"] .selectViewport {
+  flex-direction: column-reverse;
 }

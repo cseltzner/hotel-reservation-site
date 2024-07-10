@@ -25,10 +25,10 @@ const FormSelect = (props: Props) => {
                     <Select.Value>{props.selectTriggerValue}</Select.Value>
                     <span className={styles.chevron}><ChevronDown/></span>
                 </Select.Trigger>
-                <Select.Content className={styles.selectContent} position="popper">
-                    <Select.Viewport>
+                <Select.Content className={styles.selectContent} position="popper" side="bottom" align="center">
+                    <Select.Viewport className={styles.selectViewport}>
                         {props.selectItems.map(item => (
-                            <Select.Item value={item.value} className={styles.selectItem}>{item.displayValue}</Select.Item>
+                            <Select.Item key={item.value} value={item.value} className={styles.selectItem}>{item.displayValue}</Select.Item>
                         ))}
                     </Select.Viewport>
                 </Select.Content>
