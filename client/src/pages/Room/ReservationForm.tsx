@@ -14,9 +14,17 @@ interface Props {
 }
 
 const currentDate = new Date();
+currentDate.setHours(0);
+currentDate.setMinutes(0);
+currentDate.setSeconds(0);
+currentDate.setMilliseconds(0);
 
 const tomorrowDate = new Date();
 tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+tomorrowDate.setHours(0);
+tomorrowDate.setMinutes(0);
+tomorrowDate.setSeconds(0);
+currentDate.setMilliseconds(0);
 
 const ReservationForm = ({room}: Props) => {
     const [services, setServices] = useState<Service[]>([]);
@@ -91,11 +99,12 @@ const ReservationForm = ({room}: Props) => {
     }
 
     const calculatePriceEstimate = () => {
-        const numNights = calculateNumNights();
         let extraServicesCost = 0;
         servicesSelected.forEach(service => extraServicesCost += service.cost);
-        return (room.basePrice + (room.additionalGuestPrice * numGuests) + extraServicesCost) * numNights
+        return (room.basePrice + (room.additionalGuestPrice * numGuests) + extraServicesCost) * calculateNumNights()
     }
+
+    const numNights = calculateNumNights();
 
     return (
         <div className={styles.reservationForm}>
@@ -135,7 +144,12 @@ const ReservationForm = ({room}: Props) => {
                                 mode="single"
                                 defaultMonth={checkoutDate}
                                 required
-                                disabled={{before: add(checkinDate, {days: 1})}}
+                                disabled={
+                                    {
+                                        before: add(checkinDate, {days: 1}),
+                                        after: add(checkinDate, {days: 14})
+                                    }
+                                }
                                 selected={checkoutDate}
                                 onSelect={onSetCheckoutDate}/>
                         </DropdownMenu.Content>
@@ -182,7 +196,7 @@ const ReservationForm = ({room}: Props) => {
                 <p className={styles.priceDescription}>Your Price</p>
                 <p className={styles.priceValue}>${calculatePriceEstimate()}</p>
             </div>
-            <p className={styles.nights}>({calculateNumNights()} Nights)</p>
+            <p className={styles.nights}>({numNights} Night{numNights > 1 ? "s" : ""})</p>
             <div className={styles.bookButton}>Book Now</div>
         </div>
     );
