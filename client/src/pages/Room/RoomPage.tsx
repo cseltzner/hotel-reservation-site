@@ -9,12 +9,17 @@ import Coffee from "../../components/Icons/Coffee.tsx";
 import { getFeatureIcon } from "../../components/Icons/IconHelpers.tsx";
 import { PagedList } from "../../interfaces/PagedList.ts";
 import ReservationForm from "./ReservationForm.tsx";
+import { Service } from "../../interfaces/models/Service.ts";
+import { BookingRoom } from "../../interfaces/models/BookingRoom.ts";
+import { generateId } from "../../helpers/generateId.ts";
+import { useReservationContext } from "../../context/useReservationContext.ts";
 
 const RoomPage = () => {
     const navigate = useNavigate();
     const roomId = useParams().id;
     const [room, setRoom] = useState<Room | undefined>();
     const [relatedRooms, setRelatedRooms] = useState<Room[]>([]);
+    const reservationContext = useReservationContext()
 
     // Fetch current room
     useEffect(() => {
@@ -47,6 +52,20 @@ const RoomPage = () => {
 
         fetchRelatedRooms();
     }, [roomId]);
+
+    const onBookRoom = (checkinDate: Date, checkoutDate: Date, numGuests: number, services: Service[]) => {
+        const bookingRoom: BookingRoom = {
+            id: generateId(),
+            room: room!, // Impossible to call this function unless room is available
+            checkInDate: checkinDate,
+            checkOutDate: checkoutDate,
+            numGuests: numGuests,
+            extraServices: services
+        }
+
+        reservationContext.addBookingRoom(bookingRoom);
+        navigate("/cart");
+    }
 
     return (
         <>
@@ -111,7 +130,7 @@ const RoomPage = () => {
                                 </div>
                             </div>
                             <div className={styles.roomReservation}>
-                                <ReservationForm room={room}/>
+                                <ReservationForm room={room} onBook={onBookRoom}/>
                             </div>
                         </main>
                         <div className={styles.relatedContainer}>

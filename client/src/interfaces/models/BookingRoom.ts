@@ -7,5 +7,5 @@ export interface BookingRoom {
     checkInDate: Date;
     checkOutDate: Date;
     numGuests: number;
-    extraServiceIds: Service[]
+    extraServices: Service[]
 }

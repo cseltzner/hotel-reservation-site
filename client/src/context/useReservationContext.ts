@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ReservationContext } from "./reservationContext.ts";
 import { BookingRoom } from "../interfaces/models/BookingRoom.ts";
 
@@ -9,9 +9,20 @@ export const useReservationContext = () => {
 export const useReservationContextDefaults = () => {
     const [bookingRooms, setBookingRooms] = useState<BookingRoom[]>([]);
 
+    // Set state on startup
+    useEffect(() => {
+        const localStorageBookingRooms = localStorage.getItem("bookingRooms");
+        if (localStorageBookingRooms !== null) {
+            const br: BookingRoom[] = JSON.parse(localStorageBookingRooms);
+            setBookingRooms(br);
+        }
+    }, [])
+
     const addBookingRoom = (bookingRoom: BookingRoom) => {
         setBookingRooms(prevState => {
-            return [...prevState, bookingRoom]
+            const newBookingRooms = [...prevState, bookingRoom];
+            localStorage.setItem("bookingRooms", JSON.stringify(newBookingRooms));
+            return newBookingRooms;
         })
     }
 
@@ -22,7 +33,9 @@ export const useReservationContextDefaults = () => {
             : null;
 
         setBookingRooms(prevState => {
-            return prevState.filter(br => br.id !== id)
+            const newBookingRooms = prevState.filter(br => br.id !== id);
+            localStorage.setItem("bookingRooms", JSON.stringify(newBookingRooms));
+            return newBookingRooms;
         })
 
         return bookingRoom
@@ -31,6 +44,7 @@ export const useReservationContextDefaults = () => {
     const clearBookingRooms = () => {
         const bookingRoomsCopy = bookingRooms.map(br => br);
         setBookingRooms([]);
+        localStorage.setItem("bookingRooms", JSON.stringify([]))
         return bookingRoomsCopy;
     }
 

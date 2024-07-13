@@ -11,6 +11,7 @@ import { Room } from "../../interfaces/models/Room.ts";
 
 interface Props {
     room: Room;
+    onBook: (checkinDate: Date, checkoutDate: Date, numGuests: number, services: Service[]) => void;
 }
 
 const currentDate = new Date();
@@ -26,7 +27,7 @@ tomorrowDate.setMinutes(0);
 tomorrowDate.setSeconds(0);
 currentDate.setMilliseconds(0);
 
-const ReservationForm = ({room}: Props) => {
+const ReservationForm = ({room, onBook}: Props) => {
     const [services, setServices] = useState<Service[]>([]);
     const [servicesSelected, setServicesSelected] = useState<Service[]>([]);
 
@@ -197,7 +198,7 @@ const ReservationForm = ({room}: Props) => {
                 <p className={styles.priceValue}>${calculatePriceEstimate()}</p>
             </div>
             <p className={styles.nights}>({numNights} Night{numNights > 1 ? "s" : ""})</p>
-            <div className={styles.bookButton}>Book Now</div>
+            <button className={styles.bookButton} onClick={() => onBook(checkinDate, checkoutDate, numGuests, services)}>Book Now</button>
         </div>
     );
 };
