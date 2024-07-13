@@ -7,6 +7,8 @@ import { RoomName } from "./interfaces/RoomName.ts";
 import { apiUrls } from "./http/urls.ts";
 import Footer from "./layout/Footer/Footer.tsx";
 import Github from "./components/Icons/Github.tsx";
+import { ReservationContext } from "./context/reservationContext.ts";
+import { useReservationContextDefaults } from "./context/useReservationContext.ts";
 
 const NUM_ROOM_NAMES_TO_FETCH = 5; // Used to fetch a certain number of room names from API for "Rooms" tab dropdown
 
@@ -23,15 +25,17 @@ const App = () => {
     }, []);
 
     return (
-        <div className={styles.appWrapper}>
-            <Header />
-            <NavMenu roomNames={roomNames} />
-            <Outlet />
-            <Footer roomNames={roomNames} />
-            <a href="https://www.github.com/cseltzner" target="_blank">
-                <Github className={styles.github} />
-            </a>
-        </div>
+        <ReservationContext.Provider value={useReservationContextDefaults()}>
+            <div className={styles.appWrapper}>
+                <Header/>
+                <NavMenu roomNames={roomNames}/>
+                <Outlet/>
+                <Footer roomNames={roomNames}/>
+                <a href="https://www.github.com/cseltzner" target="_blank">
+                    <Github className={styles.github}/>
+                </a>
+            </div>
+        </ReservationContext.Provider>
     );
 };
 
