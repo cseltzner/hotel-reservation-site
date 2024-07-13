@@ -7,12 +7,17 @@ import { useState } from "react";
 import Close from "../../components/Icons/Close.tsx";
 import ChevronDown from "../../components/Icons/ChevronDown.tsx";
 import ChevronRight from "../../components/Icons/ChevronRight.tsx";
+import ShoppingBag from "../../components/Icons/ShoppingBag.tsx";
+import { useReservationContext } from "../../context/useReservationContext.ts";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     roomNames: RoomName[];
 }
 
 const NavMenu = (props: Props) => {
+    const navigate = useNavigate();
+    const { bookingRooms } = useReservationContext();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [mobileNavItemOpen, setMobileNavItemOpen] = useState("");
 
@@ -23,10 +28,13 @@ const NavMenu = (props: Props) => {
     const onMobileNavClick = (id: string) => {
         if (id === mobileNavItemOpen) {
             setMobileNavItemOpen("");
-        }
-        else {
+        } else {
             setMobileNavItemOpen(id);
         }
+    }
+
+    const onCartClicked = () => {
+        navigate("cart");
     }
 
     const desktopMenu = (
@@ -83,24 +91,40 @@ const NavMenu = (props: Props) => {
                     <AnimatedLink className={styles.navItemHead} href="/about">About</AnimatedLink>
                 </NavigationMenu.Item>
             </NavigationMenu.List>
+            <button className={styles.cart} onClick={onCartClicked}>
+                <div className={`${styles.cartQuantity} ${!bookingRooms.length ? styles.cartQuantityHidden : ""}`}
+                >
+                    {bookingRooms.length || ""}
+                </div>
+                <ShoppingBag className={styles.cartIcon}/>
+            </button>
         </NavigationMenu.Root>
     );
 
     const mobileMenu = (
         <nav className={styles.mobileNavMenu}>
-            {/* Logo on left */}
-            <a href="/" className={styles.navLogo}>
-                <p className={styles.logoName}>Alpine</p>
-                <p className={styles.logoDescription}>Luxury Suites</p>
-            </a>
-
-            {/* Menu icon on right */}
+            {/* Menu icon on left */}
             {isMobileMenuOpen ? (
                 <Close className={styles.menuIcon} onClick={onMenuClick}/>
             ) : (
                 <MenuMobile className={styles.menuIcon} onClick={onMenuClick}/>
 
             )}
+
+            {/* Logo in center */}
+            <a href="/" className={styles.navLogo}>
+                <p className={styles.logoName}>Alpine</p>
+                <p className={styles.logoDescription}>Luxury Suites</p>
+            </a>
+
+            {/* Cart on left */}
+            <button className={styles.cart} onClick={onCartClicked}>
+                <div className={`${styles.cartQuantity} ${!bookingRooms.length ? styles.cartQuantityHidden : ""}`}
+                >
+                    {bookingRooms.length || ""}
+                </div>
+                <ShoppingBag className={styles.cartIcon}/>
+            </button>
 
             {/* Main mobile dropdown */}
             <div className={`${styles.mobileNavDropdown} ${isMobileMenuOpen ? styles.open : styles.closed}`}>

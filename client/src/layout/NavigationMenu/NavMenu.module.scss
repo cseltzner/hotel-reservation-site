@@ -12,6 +12,7 @@
 }
 
 .navList {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,6 +31,10 @@
   padding: 0 $spacing-3;
   text-align: center;
   font-weight: 300;
+
+  @media (max-width: 350px) {
+    display: none;
+  }
 
   .logoName {
     font-size: $font-2xl;
@@ -61,6 +66,45 @@
 
   ul > li {
     padding: $spacing-3 0;
+  }
+}
+
+.cart {
+  position: absolute;
+  right: $spacing-12;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  @media (max-width: $screen-lg) {
+    position: relative;
+    transform: none;
+    right: 0;
+  }
+
+  & > .cartQuantity {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    font-family: $font-serif;
+    background-color: $color-primary-dark;
+    color: #fff;
+    border-radius: $border-rounded-full;
+  }
+
+  & > .cartQuantityHidden {
+    display: none;
+  }
+
+  & > .cartIcon {
+    width: 30px;
+    height: 30px;
+    fill: transparent;
+    stroke: $color-text;
+    stroke-width: 1.25;
   }
 }
 
