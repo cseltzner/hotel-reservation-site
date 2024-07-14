@@ -123,11 +123,18 @@
 }
 
 .menuIcon {
+  stroke: $color-primary;
   fill: $color-primary;
-  stroke-width: 1px;
-  height: 1.5rem;
-  width: 1.5rem;
+  stroke-width: 2px;
+  height: 24px;
+  width: 24px;
   cursor: pointer;
+
+  &.menuIconClose {
+    height: 26px;
+    width: 26px;
+    fill: transparent;
+  }
 }
 
 .mobileNavDropdown {

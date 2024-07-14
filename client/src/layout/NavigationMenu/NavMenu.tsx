@@ -105,7 +105,7 @@ const NavMenu = (props: Props) => {
         <nav className={styles.mobileNavMenu}>
             {/* Menu icon on left */}
             {isMobileMenuOpen ? (
-                <Close className={styles.menuIcon} onClick={onMenuClick}/>
+                <Close className={`${styles.menuIcon} ${styles.menuIconClose}`} onClick={onMenuClick}/>
             ) : (
                 <MenuMobile className={styles.menuIcon} onClick={onMenuClick}/>
 
