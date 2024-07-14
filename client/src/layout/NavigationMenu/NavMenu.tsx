@@ -161,6 +161,7 @@ const NavMenu = (props: Props) => {
                         </div>
                         {/* Rooms sublist */}
                         <ul className={`${styles.mobileNavSubList} ${mobileNavItemOpen === "rooms" && styles.open}`}>
+                            <li><a href="/rooms" className={styles.fontLg}>All Rooms</a></li>
                             {props.roomNames.map(room => (
                                 <li key={room.id}><a href={`/rooms/${room.id}`}>{room.name}</a></li>
                             ))}
