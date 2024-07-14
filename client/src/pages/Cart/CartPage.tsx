@@ -7,6 +7,11 @@ import { BookingRoom } from "../../interfaces/models/BookingRoom.ts";
 const CartPage = () => {
     const {bookingRooms, removeBookingRoom, clearBookingRooms} = useReservationContext();
 
+    const currencyFormatter = Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+    })
+
     const calculateNumNights = (checkinDate: Date, checkoutDate: Date) => {
         return intervalToDuration({
             start: checkinDate,
@@ -14,10 +19,18 @@ const CartPage = () => {
         }).days || 0;
     }
 
-    const calculatePriceEstimate = (bookingRoom: BookingRoom) => {
+    const calculateRoomPriceEstimate = (bookingRoom: BookingRoom) => {
         let extraServicesCost = 0;
         bookingRoom.extraServices.forEach(service => extraServicesCost += service.cost);
         return (bookingRoom.room.basePrice + (bookingRoom.room.additionalGuestPrice * (bookingRoom.numGuests - 1)) + extraServicesCost) * calculateNumNights(bookingRoom.checkInDate, bookingRoom.checkOutDate)
+    }
+
+    const calculateTotalPriceEstimate = () => {
+        let totalPrice = 0;
+        bookingRooms.forEach(br => {
+            totalPrice += calculateRoomPriceEstimate(br);
+        })
+        return totalPrice;
     }
 
     const onDeleteClicked = (id: string) => {
@@ -76,7 +89,7 @@ const CartPage = () => {
                                 </td>
                                 <td className={styles.roomDetails}>
                                     <p className={styles.roomPrice}>
-                                        ${calculatePriceEstimate(bookingRoom)}
+                                        {currencyFormatter.format(calculateRoomPriceEstimate(bookingRoom))}
                                     </p>
                                 </td>
                             </tr>
@@ -84,6 +97,22 @@ const CartPage = () => {
                         </tbody>
                     </table>
                 )}
+                <div className={styles.totalsContainer}>
+                    <h3>Total Price</h3>
+                    <div className={styles.totalsRow}>
+                        <p>Subtotal</p>
+                        <p>{currencyFormatter.format(calculateTotalPriceEstimate())}</p>
+                    </div>
+                    <div className={styles.totalsRow}>
+                        <p>Tax</p>
+                        <p>$0.00</p>
+                    </div>
+                    <div className={styles.totalsRow}>
+                        <p>Total</p>
+                        <p>{currencyFormatter.format(calculateTotalPriceEstimate())}</p>
+                    </div>
+                    <button className={styles.checkoutBtn}>Checkout</button>
+                </div>
             </div>
         </main>
     );

@@ -142,3 +142,42 @@
     display: none;
   }
 }
+
+.totalsContainer {
+  display: flex;
+  flex-direction: column;
+
+  & > h3 {
+    margin-top: $spacing-9;
+    margin-bottom: $spacing-4;
+    font-family: $font-serif;
+    font-size: $font-2xl;
+  }
+
+  & > .totalsRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $spacing-5 0;
+    border-bottom: 1px solid #aaa;
+    font-family: $font-serif;
+  }
+}
+
+.checkoutBtn {
+  margin-top: $spacing-9;
+  margin-left: auto;
+  padding: $spacing-3 $spacing-20;
+  background-color: $color-primary;
+  color: #fff;
+  transition: all 0.3s ease-out;
+
+  @media (max-width: $screen-sm) {
+    width: 100%;
+    padding: $spacing-3;
+  }
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+}
