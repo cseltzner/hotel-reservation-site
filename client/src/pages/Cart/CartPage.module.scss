@@ -1,0 +1,144 @@
+@import "src/styles/base";
+
+.cartPage {
+  padding: $spacing-12 $spacing-4;
+
+  & h1 {
+    font-family: $font-serif;
+    font-size: $font-5xl;
+
+    @media (max-width: $screen-md) {
+      font-size: $font-4xl;
+    }
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-3xl;
+    }
+  }
+}
+
+.cartTable {
+  margin-top: $spacing-16;
+  width: 100%;
+
+  @media (max-width: $screen-md) {
+    margin-top: $spacing-8;
+  }
+
+  & th {
+    padding: $spacing-4 $spacing-6;
+    font-family: $font-serif;
+    font-size: $font-xl;
+    font-weight: normal;
+    text-align: start;
+  }
+}
+
+.roomRow {
+  border-bottom: 1px solid #aaa;
+
+  &:first-child {
+    border-top: 1px solid #aaa;
+  }
+
+  & > td {
+    padding: $spacing-8 $spacing-6;
+
+    @media (max-width: $screen-sm) {
+      padding: $spacing-8 $spacing-1;
+    }
+  }
+}
+
+.deleteBtn {
+  width: 26px;
+  height: 26px;
+  stroke: $color-primary-dark;
+  fill: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    stroke: $color-red-600;
+  }
+}
+
+.tableImg {
+  overflow: hidden;
+  width: 250px;
+
+  @media (max-width: $screen-sm) {
+    max-width: 115px;
+  }
+}
+
+.tableImgAnchor {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  overflow: hidden;
+
+  & > img {
+    object-fit: cover;
+    aspect-ratio: 1 / 1;
+    max-height: 250px;
+    transition: all 0.5s ease-out;
+
+    &:hover {
+      transform: scale(1.01);
+    }
+  }
+}
+
+.tableDetails {
+  max-width: 55ch;
+
+  & > a {
+    display: inline-block;
+    width: fit-content;
+  }
+
+  & h2 {
+    font-family: $font-serif;
+    font-size: $font-2xl;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-lg;
+    }
+
+    &:hover {
+      text-decoration: underline;
+      text-underline-offset: 6px;
+    }
+  }
+
+  & > .roomDetails {
+    padding-top: $spacing-2;
+  }
+
+  & .days {
+    display: inline-block;
+    margin-left: $spacing-2;
+    color: hsl(15, 35%, 35%)
+  }
+}
+
+.extraServices {
+  display: inline-block;
+  margin-right: $spacing-2;
+}
+
+.roomPrice {
+  font-family: $font-serif;
+  font-size: $font-xl;
+
+  @media (max-width: $screen-sm) {
+    font-size: $font-base;
+  }
+}
+
+.smHidden {
+  @media (max-width: $screen-sm) {
+    display: none;
+  }
+}

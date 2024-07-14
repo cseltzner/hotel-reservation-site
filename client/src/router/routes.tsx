@@ -11,6 +11,7 @@ import AboutPage from "../pages/About/AboutPage.tsx";
 import NewsletterCompleted from "../pages/Newsletter/NewsletterCompleted.tsx";
 import RoomPage from "../pages/Room/RoomPage.tsx";
 import RoomsPage from "../pages/Rooms/RoomsPage.tsx";
+import CartPage from "../pages/Cart/CartPage.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,7 @@ export const router = createBrowserRouter([
             {path: "/newslettercomplete", element: <NewsletterCompleted />},
             {path: "/rooms", element: <RoomsPage />},
             {path: "/rooms/:id", element: <RoomPage />},
+            {path: "/cart", element: <CartPage />},
             {path: "*", element: <NotFoundPage />}
         ]
     }

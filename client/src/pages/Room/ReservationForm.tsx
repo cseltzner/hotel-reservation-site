@@ -198,7 +198,7 @@ const ReservationForm = ({room, onBook}: Props) => {
                 <p className={styles.priceValue}>${calculatePriceEstimate()}</p>
             </div>
             <p className={styles.nights}>({numNights} Night{numNights > 1 ? "s" : ""})</p>
-            <button className={styles.bookButton} onClick={() => onBook(checkinDate, checkoutDate, numGuests, services)}>Book Now</button>
+            <button className={styles.bookButton} onClick={() => onBook(checkinDate, checkoutDate, numGuests, servicesSelected)}>Book Now</button>
         </div>
     );
 };
