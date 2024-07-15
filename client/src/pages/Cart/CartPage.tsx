@@ -1,37 +1,22 @@
 import styles from "./CartPage.module.scss";
 import { useReservationContext } from "../../context/useReservationContext.ts";
 import Close from "../../components/Icons/Close.tsx";
-import { format, intervalToDuration } from "date-fns";
-import { BookingRoom } from "../../interfaces/models/BookingRoom.ts";
+import { format } from "date-fns";
+import { useNavigate } from "react-router-dom";
+import {
+    calculateNumNights,
+    calculateRoomPriceEstimate,
+    calculateTotalPriceEstimate
+} from "../../helpers/bookingHelpers.ts";
 
 const CartPage = () => {
-    const {bookingRooms, removeBookingRoom, clearBookingRooms} = useReservationContext();
+    const navigate = useNavigate();
+    const {bookingRooms, removeBookingRoom} = useReservationContext();
 
     const currencyFormatter = Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
     })
-
-    const calculateNumNights = (checkinDate: Date, checkoutDate: Date) => {
-        return intervalToDuration({
-            start: checkinDate,
-            end: checkoutDate
-        }).days || 0;
-    }
-
-    const calculateRoomPriceEstimate = (bookingRoom: BookingRoom) => {
-        let extraServicesCost = 0;
-        bookingRoom.extraServices.forEach(service => extraServicesCost += service.cost);
-        return (bookingRoom.room.basePrice + (bookingRoom.room.additionalGuestPrice * (bookingRoom.numGuests - 1)) + extraServicesCost) * calculateNumNights(bookingRoom.checkInDate, bookingRoom.checkOutDate)
-    }
-
-    const calculateTotalPriceEstimate = () => {
-        let totalPrice = 0;
-        bookingRooms.forEach(br => {
-            totalPrice += calculateRoomPriceEstimate(br);
-        })
-        return totalPrice;
-    }
 
     const onDeleteClicked = (id: string) => {
         removeBookingRoom(id);
@@ -112,7 +97,7 @@ const CartPage = () => {
                         <h3>Total Price</h3>
                         <div className={styles.totalsRow}>
                             <p>Subtotal</p>
-                            <p>{currencyFormatter.format(calculateTotalPriceEstimate())}</p>
+                            <p>{currencyFormatter.format(calculateTotalPriceEstimate(bookingRooms))}</p>
                         </div>
                         <div className={styles.totalsRow}>
                             <p>Tax</p>
@@ -120,9 +105,9 @@ const CartPage = () => {
                         </div>
                         <div className={styles.totalsRow}>
                             <p>Total</p>
-                            <p>{currencyFormatter.format(calculateTotalPriceEstimate())}</p>
+                            <p>{currencyFormatter.format(calculateTotalPriceEstimate(bookingRooms))}</p>
                         </div>
-                        <button className={styles.checkoutBtn}>Checkout</button>
+                        <button className={styles.checkoutBtn} onClick={() => navigate("/checkout")}>Checkout</button>
                     </div>
                 )}
             </div>

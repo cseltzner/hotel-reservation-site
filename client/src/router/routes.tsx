@@ -12,6 +12,7 @@ import NewsletterCompleted from "../pages/Newsletter/NewsletterCompleted.tsx";
 import RoomPage from "../pages/Room/RoomPage.tsx";
 import RoomsPage from "../pages/Rooms/RoomsPage.tsx";
 import CartPage from "../pages/Cart/CartPage.tsx";
+import CheckoutPage from "../pages/Checkout/CheckoutPage.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +30,7 @@ export const router = createBrowserRouter([
             {path: "/rooms", element: <RoomsPage />},
             {path: "/rooms/:id", element: <RoomPage />},
             {path: "/cart", element: <CartPage />},
+            {path: "/checkout", element: <CheckoutPage />},
             {path: "*", element: <NotFoundPage />}
         ]
     }

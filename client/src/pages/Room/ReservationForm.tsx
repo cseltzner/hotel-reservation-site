@@ -8,6 +8,7 @@ import FormSelect, { SelectItem } from "../../components/FormSelect/FormSelect.t
 import { Service } from "../../interfaces/models/Service.ts";
 import { apiUrls } from "../../http/urls.ts";
 import { Room } from "../../interfaces/models/Room.ts";
+import { calculateNumNights } from "../../helpers/bookingHelpers.ts";
 
 interface Props {
     room: Room;
@@ -100,20 +101,13 @@ const ReservationForm = ({room, onBook}: Props) => {
         fetchServices();
     }, []);
 
-    const calculateNumNights = () => {
-        return intervalToDuration({
-            start: checkinDate,
-            end: checkoutDate
-        }).days || 0;
-    }
-
     const calculatePriceEstimate = () => {
         let extraServicesCost = 0;
         servicesSelected.forEach(service => extraServicesCost += service.cost);
-        return (room.basePrice + (room.additionalGuestPrice * (numGuests - 1)) + extraServicesCost) * calculateNumNights()
+        return (room.basePrice + (room.additionalGuestPrice * (numGuests - 1)) + extraServicesCost) * calculateNumNights(checkinDate, checkoutDate)
     }
 
-    const numNights = calculateNumNights();
+    const numNights = calculateNumNights(checkinDate, checkoutDate);
 
     return (
         <div className={styles.reservationForm}>
