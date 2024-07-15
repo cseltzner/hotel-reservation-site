@@ -181,3 +181,43 @@
     background-color: $color-primary-dark;
   }
 }
+
+.emptyCart {
+  margin: 0 auto;
+  padding: $spacing-24 0;
+  text-align: center;
+  max-width: 500px;
+
+  & > h2 {
+    font-family: $font-serif;
+    font-size: $font-4xl;
+    color: $color-primary-light;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-2xl;
+    }
+  }
+
+  & > p {
+    margin-top: $spacing-2;
+    line-height: 1.75;
+    font-size: $font-lg;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-base;
+    }
+  }
+
+  & > a {
+    display: inline-block;
+    margin-top: $spacing-6;
+    padding: $spacing-3 $spacing-16;
+    background-color: $color-primary-light;
+    color: #fff;
+    transition: all 0.3s ease-out;
+
+    &:hover {
+      background-color: $color-primary-dark;
+    }
+  }
+}

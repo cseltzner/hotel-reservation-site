@@ -41,6 +41,7 @@ const CartPage = () => {
         <main className={styles.cartPage}>
             <div className="container">
                 <h1>Cart</h1>
+                {/* List populated with bookingRooms */}
                 {bookingRooms.length > 0 && (
                     <table className={styles.cartTable}>
                         <thead>
@@ -97,22 +98,33 @@ const CartPage = () => {
                         </tbody>
                     </table>
                 )}
-                <div className={styles.totalsContainer}>
-                    <h3>Total Price</h3>
-                    <div className={styles.totalsRow}>
-                        <p>Subtotal</p>
-                        <p>{currencyFormatter.format(calculateTotalPriceEstimate())}</p>
+                {/* Empty list styles */}
+                {bookingRooms.length === 0 && (
+                    <div className={styles.emptyCart}>
+                        <h2>Your Cart Is Empty</h2>
+                        <p>Enjoy browsing our wide range of suites for your next visit.</p>
+                        <a href="/rooms">View Rooms</a>
                     </div>
-                    <div className={styles.totalsRow}>
-                        <p>Tax</p>
-                        <p>$0.00</p>
+                )}
+                {/* Totals container */}
+                {bookingRooms.length > 0 && (
+                    <div className={styles.totalsContainer}>
+                        <h3>Total Price</h3>
+                        <div className={styles.totalsRow}>
+                            <p>Subtotal</p>
+                            <p>{currencyFormatter.format(calculateTotalPriceEstimate())}</p>
+                        </div>
+                        <div className={styles.totalsRow}>
+                            <p>Tax</p>
+                            <p>$0.00</p>
+                        </div>
+                        <div className={styles.totalsRow}>
+                            <p>Total</p>
+                            <p>{currencyFormatter.format(calculateTotalPriceEstimate())}</p>
+                        </div>
+                        <button className={styles.checkoutBtn}>Checkout</button>
                     </div>
-                    <div className={styles.totalsRow}>
-                        <p>Total</p>
-                        <p>{currencyFormatter.format(calculateTotalPriceEstimate())}</p>
-                    </div>
-                    <button className={styles.checkoutBtn}>Checkout</button>
-                </div>
+                )}
             </div>
         </main>
     );
