@@ -93,6 +93,10 @@
     background-color: $color-primary-dark;
     color: #fff;
     border-radius: $border-rounded-full;
+    
+    @media (max-width: 350px) {
+      top: -8px;
+    }
   }
 
   & > .cartQuantityHidden {
