@@ -1,3 +1,5 @@
+import { BookingRequest } from "../interfaces/requests/BookingRequest.ts";
+
 const baseUrl = "http://localhost:7000/api"
 
 const getRooms = (query: GetRoomsQueries) => {
@@ -17,7 +19,8 @@ export const apiUrls = {
     getRoomNames: (numRooms: number) => baseUrl + "/rooms/names?numRooms=" + numRooms,
     getRooms,
     getRoom: (roomId: string) => baseUrl + "/rooms/" + roomId,
-    getServices: () => baseUrl + "/services"
+    getServices: () => baseUrl + "/services",
+    createBooking: () => baseUrl + "/bookings"
 }
 
 

@@ -8,6 +8,14 @@ import {
     calculateRoomPriceEstimate,
     calculateTotalPriceEstimate
 } from "../../helpers/bookingHelpers.ts";
+import { BookingRequest } from "../../interfaces/requests/BookingRequest.ts";
+import { mapBookingRoomToRequestObj } from "../../interfaces/requests/BookingRoomRequest.ts";
+import { apiUrls } from "../../http/urls.ts";
+import { useState } from "react";
+import { ValidationError } from "../../interfaces/errors/validationError.ts";
+import { useNavigate } from "react-router-dom";
+import { Booking } from "../../interfaces/models/Booking.ts";
+import Spinner from "../../components/LoadingSpinner/Spinner.tsx";
 
 interface Inputs {
     email: string;
@@ -30,16 +38,61 @@ const phoneRegex = /^(?:\+1)?\s?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/;
 const zipRegex = /^[0-9]{4}?[0-9]$|^[0-9]{4}?[0-9]-[0-9]{4}$/;
 
 const CheckoutPage = () => {
-    const {bookingRooms} = useReservationContext();
+    const navigate = useNavigate();
+    const {bookingRooms, clearBookingRooms} = useReservationContext();
     const {register, handleSubmit, reset, formState: {errors}} = useForm<Inputs>({mode: "onBlur"})
+    const [submitLoading, setSubmitLoading] = useState(false);
+    const [validationError, setValidationError] = useState("");
 
     const currencyFormatter = Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",
     })
 
-    const onSubmit = (inputs: Inputs) => {
-        console.log(inputs);
+    const onSubmit = async (inputs: Inputs) => {
+        setSubmitLoading(true);
+
+        const booking: BookingRequest = {
+            guest: {
+                firstName: inputs.firstName,
+                lastName: inputs.lastName,
+                email: inputs.email,
+                companyName: inputs.companyName,
+                address: inputs.address,
+                address2: inputs.address2,
+                city: inputs.city,
+                state: inputs.state,
+                zip: inputs.zip,
+                country: inputs.country,
+                phone: inputs.phone
+            },
+            bookingRooms: bookingRooms.map(br => mapBookingRoomToRequestObj(br)),
+            orderNotes: inputs.orderNotes,
+            paymentMethodId: inputs.paymentMethodId
+        }
+
+        const response = await fetch(apiUrls.createBooking(), {
+            method: "POST",
+            body: JSON.stringify(booking),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (response.status === 400) {
+            const error: ValidationError = await response.json();
+            setValidationError(error.errors[0].errorMessage);
+        }
+
+        if (response.status === 200) {
+            const bookingResponse: Booking = await response.json();
+            clearBookingRooms();
+            navigate("/booking-success", {
+                state: bookingResponse
+            })
+        }
+
+        setSubmitLoading(false);
     }
 
     return (
@@ -242,7 +295,8 @@ const CheckoutPage = () => {
                                     <p>Total</p>
                                     <p className={styles.bold}>{currencyFormatter.format(calculateTotalPriceEstimate(bookingRooms))}</p>
                                 </div>
-                                <button className={styles.orderBtn}>Place Order</button>
+                                <small className={styles.validationError}>{validationError}</small>
+                                <button className={styles.orderBtn} disabled={submitLoading} data-loading={submitLoading}><p>Place Order</p>{submitLoading && <Spinner position="absolute" size={7} color="#fff" />}</button>
                             </div>
                         </div>
                     </div>

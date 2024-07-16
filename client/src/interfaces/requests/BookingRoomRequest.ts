@@ -14,7 +14,7 @@ export const mapBookingRoomToRequestObj = (bookingRoom: BookingRoom) => {
         checkInDate: bookingRoom.checkInDate,
         checkOutDate: bookingRoom.checkOutDate,
         numGuests: bookingRoom.numGuests,
-        extraServiceIds: bookingRoom.extraServiceIds.map(service => service.id)
+        extraServiceIds: bookingRoom.extraServices.map(service => service.id)
     }
 
     return bookingRoomRequest;

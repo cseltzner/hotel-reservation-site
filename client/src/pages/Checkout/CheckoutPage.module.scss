@@ -263,6 +263,7 @@
 }
 
 .orderBtn {
+  position: relative;
   display: block;
   margin-left: auto;
   margin-top: $spacing-9;
@@ -280,4 +281,19 @@
   &:hover {
     background-color: $color-primary-dark;
   }
+
+  &[data-loading="true"] {
+    opacity: 0.7;
+  }
+
+  &[data-loading="true"] > p {
+    visibility: hidden;
+  }
+}
+
+.validationError {
+  display: block;
+  margin-top: $spacing-3;
+  font-size: $font-base;
+  color: $color-red-700;
 }
