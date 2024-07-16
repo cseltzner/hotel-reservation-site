@@ -18,7 +18,7 @@ public static class SeedData
                 new PaymentMethod
                 {
                     Id = 1,
-                    Name = "Cash - In person"
+                    Name = "In Person - Cash/Card"
                 },
                 new PaymentMethod
                 {
