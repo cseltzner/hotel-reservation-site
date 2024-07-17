@@ -56,6 +56,9 @@ const NavMenu = (props: Props) => {
                                 <AnimatedLink href="/menu">Restaurant menu</AnimatedLink>
                             </li>
                             <li>
+                                <AnimatedLink href="/bookings">My Bookings</AnimatedLink>
+                            </li>
+                            <li>
                                 <AnimatedLink href="/about">About us</AnimatedLink>
                             </li>
                             <li>

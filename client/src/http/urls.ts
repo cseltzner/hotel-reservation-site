@@ -14,13 +14,22 @@ const getRooms = (query: GetRoomsQueries) => {
     return url;
 }
 
+const getBookingsByEmailAndLastName = (email: string, lastName: string) => {
+    const url = new URL(baseUrl + "/bookings/guest");
+    url.searchParams.append("email", email);
+    url.searchParams.append("lastName", lastName);
+    return url;
+}
+
 // All Urls
 export const apiUrls = {
     getRoomNames: (numRooms: number) => baseUrl + "/rooms/names?numRooms=" + numRooms,
     getRooms,
     getRoom: (roomId: string) => baseUrl + "/rooms/" + roomId,
     getServices: () => baseUrl + "/services",
-    createBooking: () => baseUrl + "/bookings"
+    createBooking: () => baseUrl + "/bookings",
+    getBookingById: (id: string) => baseUrl + `/bookings/${id}`,
+    getBookingsByEmailAndLastName
 }
 
 
