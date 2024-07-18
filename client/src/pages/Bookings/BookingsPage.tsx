@@ -31,8 +31,6 @@ const BookingsPage = () => {
     const [hasSearched, setHasSearched] = useState(false);
     const [formError, setFormError] = useState(false);
 
-    console.log(bookingSearchState);
-
     const currencyFormatter = Intl.NumberFormat("en-US", {
         style: "currency",
         currency: "USD",

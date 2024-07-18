@@ -17,7 +17,6 @@ const currencyFormatter = Intl.NumberFormat("en-US", {
 })
 
 const BookingComponent = ({booking}: Props) => {
-    console.log(booking);
     return (
         <div className={styles.booking}>
             <div className={styles.bookingDetailsContainer}>
