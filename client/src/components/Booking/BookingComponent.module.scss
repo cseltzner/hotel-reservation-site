@@ -1,0 +1,93 @@
+@import "src/styles/base";
+
+.booking {
+  & h2 {
+    margin-top: $spacing-12;
+    font-family: $font-serif;
+    font-size: $font-4xl;
+  }
+}
+
+.bookingDetailsContainer {
+  margin-top: $spacing-6;
+
+  & > .bookingDetail {
+    padding: $spacing-4 0;
+    border-bottom: 1px solid #bbb;
+    font-size: $font-lg;
+
+    & > .bookingDetailData {
+      display: inline-block;
+      margin-left: $spacing-2;
+      font-weight: bold;
+    }
+  }
+}
+
+.orderList {
+  margin-top: $spacing-6;
+}
+
+.orderItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacing-16;
+  padding: $spacing-3 0;
+  border-top: 1px solid #bbb;
+
+  &:last-child {
+    border-bottom: 1px solid #bbb;
+  }
+}
+
+.orderItemDetails {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-1;
+
+  @media (max-width: $screen-sm) {
+    font-size: $font-sm;
+    gap: 0;
+  }
+
+  & > *:first-child {
+    font-family: $font-serif;
+    font-size: $font-xl;
+    color: $color-primary-dark;
+  }
+
+  & .orderItemDays {
+    margin-left: $spacing-2;
+    display: inline-block;
+    color: $color-primary-dark;
+  }
+}
+
+.orderItemPrice {
+  font-family: $font-serif;
+  font-size: $font-lg;
+
+  @media (max-width: $screen-sm) {
+    font-size: $font-base;
+  }
+}
+
+.totalsContainer {
+  padding: $spacing-7 0;
+  border-bottom: 1px solid #bbb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: $font-serif;
+  font-size: $font-lg;
+
+  & > .bold {
+    font-weight: bold;
+    font-size: $font-xl;
+
+    @media (max-width: $screen-sm) {
+      font-size: $font-lg;
+    }
+  }
+}
