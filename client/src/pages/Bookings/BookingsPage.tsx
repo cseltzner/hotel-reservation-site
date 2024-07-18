@@ -1,7 +1,7 @@
 import styles from "./BookingsPage.module.scss";
 import { useForm } from "react-hook-form";
 import Spinner from "../../components/LoadingSpinner/Spinner.tsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Booking } from "../../interfaces/models/Booking.ts";
 import { apiUrls } from "../../http/urls.ts";
 import { PagedList } from "../../interfaces/PagedList.ts";
@@ -35,6 +35,10 @@ const BookingsPage = () => {
         style: "currency",
         currency: "USD",
     })
+
+    useEffect(() => {
+        bookingSearchState && onSubmit(bookingSearchState as Inputs);
+    }, []);
 
     const onSubmit = async ({id, email, lastName}: Inputs) => {
         setSubmitLoading(true);
