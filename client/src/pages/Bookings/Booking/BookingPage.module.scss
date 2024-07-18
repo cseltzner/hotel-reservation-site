@@ -12,3 +12,16 @@
     }
   }
 }
+
+.returnButton {
+  display: inline-block;
+  margin-top: $spacing-12;
+  padding: $spacing-3 $spacing-16;
+  background-color: $color-primary;
+  color: #fff;
+  transition: all 0.3s ease-out;
+
+  &:hover {
+    background-color: $color-primary-dark;
+  }
+}

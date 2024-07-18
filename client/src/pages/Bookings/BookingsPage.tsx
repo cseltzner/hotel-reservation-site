@@ -7,6 +7,8 @@ import { apiUrls } from "../../http/urls.ts";
 import { PagedList } from "../../interfaces/PagedList.ts";
 import { format } from "date-fns";
 import ChevronRight from "../../components/Icons/ChevronRight.tsx";
+import { useLocation, useNavigate } from "react-router-dom";
+import { BookingSearchState } from "./BookingSearchState.ts";
 
 interface Inputs {
     id: string;
@@ -15,11 +17,21 @@ interface Inputs {
 }
 
 const BookingsPage = () => {
-    const {register, handleSubmit} = useForm<Inputs>()
+    const navigate = useNavigate();
+    const [bookingSearchState, setBookingSearchState] = useState<BookingSearchState | undefined>(useLocation().state)
+    const {register, handleSubmit} = useForm<Inputs>({
+        defaultValues: {
+            id: bookingSearchState?.id,
+            lastName: bookingSearchState?.lastName,
+            email: bookingSearchState?.email
+        }
+    })
     const [submitLoading, setSubmitLoading] = useState(false);
     const [bookings, setBookings] = useState<Booking[]>([]);
     const [hasSearched, setHasSearched] = useState(false);
     const [formError, setFormError] = useState(false);
+
+    console.log(bookingSearchState);
 
     const currencyFormatter = Intl.NumberFormat("en-US", {
         style: "currency",
@@ -35,6 +47,8 @@ const BookingsPage = () => {
             setSubmitLoading(false);
             return;
         }
+
+        setBookingSearchState({id, email, lastName})
 
         // Use Email and Last name to search if user left Id field empty
         // (Search via Id takes preference if both input groups are filled)
@@ -60,6 +74,12 @@ const BookingsPage = () => {
 
         setSubmitLoading(false);
         setHasSearched(true);
+    }
+
+    const onBookingClicked = (id: number) => {
+        navigate(`/bookings/${id}`, {
+            state: bookingSearchState
+        })
     }
 
     return (
@@ -105,7 +125,7 @@ const BookingsPage = () => {
                         <ul className={styles.bookingsList}>
                             {bookings.map(booking => (
                                 <li key={booking.id} className={styles.bookingListItem}>
-                                    <a href={`/bookings/${booking.id}`} className={styles.bookingDetailsContainer}>
+                                    <button onClick={() => onBookingClicked(booking.id)} className={styles.bookingDetailsContainer}>
                                         <div className={styles.bookingDetailsGrid}>
                                             <p className={styles.bookingDetail}>Order Number: <span
                                                 className={styles.bookingDetailData}>{booking.id}</span></p>
@@ -119,7 +139,7 @@ const BookingsPage = () => {
                                         <div className={styles.chevron}>
                                             <ChevronRight />
                                         </div>
-                                    </a>
+                                    </button>
                                 </li>
                             ))}
                         </ul>

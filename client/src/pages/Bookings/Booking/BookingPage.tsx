@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { apiUrls } from "../../../http/urls.ts";
 import { Booking } from "../../../interfaces/models/Booking.ts";
 import BookingComponent from "../../../components/Booking/BookingComponent.tsx";
+import { BookingSearchState } from "../BookingSearchState.ts";
 
 const BookingPage = () => {
     const navigate = useNavigate();
+    const bookingSearchState: BookingSearchState | undefined = useLocation().state;
     const bookingId = useParams().id;
     const [booking, setBooking] = useState<Booking | undefined>();
 
@@ -22,6 +24,12 @@ const BookingPage = () => {
         fetchBooking();
     }, [bookingId]);
 
+    const onReturn = () => {
+        navigate("/bookings", {
+            state: bookingSearchState
+        })
+    }
+
     return (
         <main className={styles.bookingPage}>
             <div className="container">
@@ -29,6 +37,7 @@ const BookingPage = () => {
                 {booking && (
                     <BookingComponent booking={booking}/>
                 )}
+                <button className={styles.returnButton} onClick={onReturn}>Return</button>
             </div>
         </main>
     );
