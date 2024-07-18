@@ -176,6 +176,8 @@ public class BookingRepository : IBookingRepository
             .Include(b => b.BookingRooms)
             .ThenInclude(br => br.Room)
             .Include(b => b.BookingRooms)
+            .ThenInclude(br => br.ExtraServices)
+            .Include(b => b.BookingRooms)
             .ThenInclude(br => br.Room)
             .ThenInclude(r => r.Features);
     }
