@@ -15,6 +15,7 @@ import CartPage from "../pages/Cart/CartPage.tsx";
 import CheckoutPage from "../pages/Checkout/CheckoutPage.tsx";
 import CheckoutSuccessPage from "../pages/CheckoutSuccess/CheckoutSuccessPage.tsx";
 import BookingsPage from "../pages/Bookings/BookingsPage.tsx";
+import BookingPage from "../pages/Bookings/Booking/BookingPage.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -35,6 +36,7 @@ export const router = createBrowserRouter([
             {path: "/checkout", element: <CheckoutPage />},
             {path: "/booking-success", element: <CheckoutSuccessPage />},
             {path: "/bookings", element: <BookingsPage />},
+            {path: "/bookings/:id", element: <BookingPage />},
             {path: "*", element: <NotFoundPage />}
         ]
     }
