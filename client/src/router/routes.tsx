@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, createHashRouter } from "react-router-dom";
 import App from "../App.tsx";
 import HomePage from "../pages/HomePage/HomePage.tsx";
 import EventsPage from "../pages/Events/EventsPage.tsx";
@@ -17,7 +17,7 @@ import CheckoutSuccessPage from "../pages/CheckoutSuccess/CheckoutSuccessPage.ts
 import BookingsPage from "../pages/Bookings/BookingsPage.tsx";
 import BookingPage from "../pages/Bookings/Booking/BookingPage.tsx";
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
     {
         path: "/",
         element: <App />,
