@@ -39,7 +39,7 @@ const CartPage = () => {
                         </thead>
                         <tbody>
                         {bookingRooms.map(bookingRoom => (
-                            <tr className={styles.roomRow}>
+                            <tr key={bookingRoom.id} className={styles.roomRow}>
                                 <td>
                                     <button onClick={() => onDeleteClicked(bookingRoom.id)}>
                                         <Close className={styles.deleteBtn}/>
