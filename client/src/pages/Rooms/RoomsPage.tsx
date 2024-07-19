@@ -6,6 +6,9 @@ import { PagedList } from "../../interfaces/PagedList.ts";
 import RoomComponent from "./Room/RoomComponent.tsx";
 import FormSelect, { SelectItem } from "../../components/FormSelect/FormSelect.tsx";
 import * as Slider from '@radix-ui/react-slider';
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
+
 
 const sortBySelectItems: SelectItem[] = [
     {value: "featured", displayValue: "Featured"},
@@ -18,6 +21,7 @@ const sortBySelectItems: SelectItem[] = [
 ]
 
 const RoomsPage = () => {
+    const [isLoading, setIsLoading] = useState(false);
     const [rooms, setRooms] = useState<Room[]>([]);
     const [currentRoomQuery, setCurrentRoomQuery] = useState<GetRoomsQueries>({})
 
@@ -101,10 +105,12 @@ const RoomsPage = () => {
 
     useEffect(() => {
         const fetchRooms = async () => {
+            setIsLoading(true);
             const response = await fetch(apiUrls.getRooms(currentRoomQuery));
             const json: PagedList<Room> = await response.json();
             const roomsResponse = json.data
             setRooms(roomsResponse);
+            setIsLoading(false);
         }
 
         fetchRooms();
@@ -116,10 +122,23 @@ const RoomsPage = () => {
                 <h1>Rooms</h1>
                 <div className={styles.roomPageGrid}>
                     <div className={styles.roomList}>
+                        {/* Loading Skeleton */}
+                        {isLoading && (
+                            <div className={styles.skeletonContainer}>
+                                <SkeletonTheme baseColor={"hsl(18deg 55% 88%)"} highlightColor={"hsl(23deg 68% 94%)"}>
+                                    <Skeleton height={350} />
+                                    <div className={styles.skeletonDetailsContainer}>
+                                        <Skeleton count={4} />
+                                    </div>
+                                </SkeletonTheme>
+                            </div>
+                        )}
+                        {/* Rooms List */}
                         {rooms.map(room => (
                             <RoomComponent key={room.id} room={room}/>
                         ))}
-                        {rooms.length === 0 && (
+                        {/* Rooms not found list */}
+                        {rooms.length === 0 && !isLoading && (
                             <div className={styles.emptyRoomList}>
                                 <h2>No Rooms Found.</h2>
                                 <p>No rooms were found with the given search term. Please check your search query and try again.</p>

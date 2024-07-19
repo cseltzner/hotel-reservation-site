@@ -13,6 +13,7 @@ import { Service } from "../../interfaces/models/Service.ts";
 import { BookingRoom } from "../../interfaces/models/BookingRoom.ts";
 import { generateId } from "../../helpers/generateId.ts";
 import { useReservationContext } from "../../context/useReservationContext.ts";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const RoomPage = () => {
     const navigate = useNavigate();
@@ -164,6 +165,17 @@ const RoomPage = () => {
                             </ul>
                         </div>
                     </div>
+                </div>
+            )}
+            {/* Loading Skeleton */}
+            {!room && (
+                <div className={styles.skeletonContainer}>
+                    <SkeletonTheme baseColor={"hsl(18deg 55% 88%)"} highlightColor={"hsl(23deg 68% 94%)"}>
+                        <Skeleton height={450}/>
+                        <div className="container">
+                            <Skeleton containerClassName={styles.skeletonDetails} height={30} count={5}/>
+                        </div>
+                    </SkeletonTheme>
                 </div>
             )}
         </>
