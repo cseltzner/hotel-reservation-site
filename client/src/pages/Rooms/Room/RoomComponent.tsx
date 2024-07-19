@@ -2,7 +2,7 @@ import styles from "./RoomComponent.module.scss";
 import { Room } from "../../../interfaces/models/Room.ts";
 import Bed from "../../../components/Icons/Bed.tsx";
 import Person from "../../../components/Icons/Person.tsx";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 interface Props {
     room: Room;
@@ -13,12 +13,12 @@ const RoomComponent = ({room}: Props) => {
 
     return (
         <article className={styles.room}>
-            <a href={`/rooms/${room.id}`} className={styles.roomImg}>
+            <NavLink to={`/rooms/${room.id}`} className={styles.roomImg}>
                 <img src={room.primaryImageUrl} alt={room.name}/>
-            </a>
+            </NavLink>
             <div className={styles.roomBody}>
                 <div className={styles.roomHeader}>
-                    <h3><a href={`/rooms/${room.id}`}>{room.name}</a></h3>
+                    <h3><NavLink to={`/rooms/${room.id}`}>{room.name}</NavLink></h3>
                     <p className={styles.roomPrice}>From <span className={styles.basePrice}>${room.basePrice}</span></p>
                 </div>
                 <div className={styles.roomDetails}>

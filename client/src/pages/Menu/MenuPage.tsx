@@ -1,5 +1,6 @@
 import styles from "./MenuPage.module.scss";
 import NewsletterSection from "../HomePage/Newsletter/NewsletterSection.tsx";
+import { NavLink } from "react-router-dom";
 
 const MenuPage = () => {
     return (
@@ -108,26 +109,26 @@ const MenuPage = () => {
                 </div>
             </div>
             <div className={styles.imgContainer}>
-                <a href="https://www.instagram.com" target="_blank" className={styles.img}>
+                <NavLink to="https://www.instagram.com" target="_blank" className={styles.img}>
                     <img
                         src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1720126170/hotel-site/menu/food-1.jpg"
                         alt="Well presented food dish"/>
-                </a>
-                <a href="https://www.instagram.com" target="_blank" className={styles.img}>
+                </NavLink>
+                <NavLink to="https://www.instagram.com" target="_blank" className={styles.img}>
                     <img
                         src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1720122152/hotel-site/menu/food-2.jpg"
                         alt="Well presented food dish"/>
-                </a>
-                <a href="https://www.instagram.com" target="_blank" className={styles.img}>
+                </NavLink>
+                <NavLink to="https://www.instagram.com" target="_blank" className={styles.img}>
                     <img
                         src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1720131483/hotel-site/menu/food-3.jpg"
                         alt="Well presented food dish"/>
-                </a>
-                <a href="https://www.instagram.com" target="_blank" className={styles.img}>
+                </NavLink>
+                <NavLink to="https://www.instagram.com" target="_blank" className={styles.img}>
                     <img
                         src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1720122152/hotel-site/menu/food-4.jpg"
                         alt="Well presented food dish"/>
-                </a>
+                </NavLink>
             </div>
             <NewsletterSection title="Never Miss A Dish"/>
         </main>

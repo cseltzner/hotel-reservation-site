@@ -1,5 +1,6 @@
 import styles from "./AboutPage.module.scss";
 import AnimatedLink from "../../components/AnimatedLink/AnimatedLink.tsx";
+import { NavLink } from "react-router-dom";
 
 const AboutPage = () => {
     return (
@@ -38,7 +39,7 @@ const AboutPage = () => {
                                 were created by me using SCSS. The site is fully responsive all the way down to 300px
                                 screens. Give
                                 it a try!</p>
-                            <a href="/" className={styles.button}>Return Home</a>
+                            <NavLink to="/" className={styles.button}>Return Home</NavLink>
                         </div>
                     </div>
                 </div>

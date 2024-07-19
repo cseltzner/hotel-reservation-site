@@ -2,7 +2,7 @@ import styles from "./CartPage.module.scss";
 import { useReservationContext } from "../../context/useReservationContext.ts";
 import Close from "../../components/Icons/Close.tsx";
 import { format } from "date-fns";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
     calculateNumNights,
     calculateRoomPriceEstimate,
@@ -46,14 +46,14 @@ const CartPage = () => {
                                     </button>
                                 </td>
                                 <td className={styles.tableImg}>
-                                    <a href={`/rooms/${bookingRoom.room.id}`} className={styles.tableImgAnchor}>
+                                    <NavLink to={`/rooms/${bookingRoom.room.id}`} className={styles.tableImgAnchor}>
                                         <img src={bookingRoom.room.primaryImageUrl} alt={bookingRoom.room.name}/>
-                                    </a>
+                                    </NavLink>
                                 </td>
                                 <td className={styles.tableDetails}>
-                                    <a href={`/rooms/${bookingRoom.room.id}`}>
+                                    <NavLink to={`/rooms/${bookingRoom.room.id}`}>
                                         <h2 className={styles.roomName}>{bookingRoom.room.name}</h2>
-                                    </a>
+                                    </NavLink>
                                     <p className={`${styles.roomDetails} ${styles.smHidden}`}>
                                         {format(bookingRoom.checkInDate, "MMMM d")} -
                                         {format(bookingRoom.checkOutDate, "MMMM d")}
@@ -88,7 +88,7 @@ const CartPage = () => {
                     <div className={styles.emptyCart}>
                         <h2>Your Cart Is Empty</h2>
                         <p>Enjoy browsing our wide range of suites for your next visit.</p>
-                        <a href="/rooms">View Rooms</a>
+                        <NavLink to="/rooms">View Rooms</NavLink>
                     </div>
                 )}
                 {/* Totals container */}

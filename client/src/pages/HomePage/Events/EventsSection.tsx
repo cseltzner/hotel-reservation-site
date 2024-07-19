@@ -1,4 +1,5 @@
 import styles from "./EventsSection.module.scss";
+import { NavLink } from "react-router-dom";
 
 /**
  *  Events:
@@ -19,7 +20,7 @@ const EventsSection = () => {
                             <p>No matter when you visit, we offer events made possible by our renowned local artists and
                                 chefs.</p>
                         </div>
-                        <a href="/events" className={styles.eventItem}>
+                        <NavLink to="/events" className={styles.eventItem}>
                             <div className={styles.eventItemImg}>
                                 <img
                                     src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1719769513/hotel-site/events/culinary.jpg"
@@ -30,8 +31,8 @@ const EventsSection = () => {
                             <p className={styles.eventDescription}>Enjoy a curated menu of our local delicacies prepared
                                 by
                                 our top local chefs.</p>
-                        </a>
-                        <a href="/events" className={styles.eventItem}>
+                        </NavLink>
+                        <NavLink to="/events" className={styles.eventItem}>
                             <div className={styles.eventItemImg}>
                                 <img
                                     src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1719769514/hotel-site/events/tea.jpg"
@@ -42,10 +43,10 @@ const EventsSection = () => {
                             <p className={styles.eventDescription}>Gather with fellow guests and experience our wide
                                 variety
                                 of imported teas from across the world.</p>
-                        </a>
+                        </NavLink>
                     </div>
                     <div className={styles.gridCol}>
-                        <a href="/events" className={styles.eventItem}>
+                        <NavLink to="/events" className={styles.eventItem}>
                             <div className={styles.eventItemImg}>
                                 <img
                                     src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1719769514/hotel-site/events/wine.jpg"
@@ -56,8 +57,8 @@ const EventsSection = () => {
                             <p className={styles.eventDescription}>Experience the vast offering of our wine collection,
                                 from
                                 local delicacies to rare imports.</p>
-                        </a>
-                        <a href="/events" className={styles.eventItem}>
+                        </NavLink>
+                        <NavLink to="/events" className={styles.eventItem}>
                             <div className={styles.eventItemImg}>
                                 <img
                                     src="https://res.cloudinary.com/dnxdsagpg/image/upload/v1719769514/hotel-site/events/art.jpg"
@@ -67,7 +68,7 @@ const EventsSection = () => {
                             <p className={styles.eventDate}>Wednesday</p>
                             <p className={styles.eventDescription}>Enjoy a guided tour of our most renowned local
                                 artists' finest work.</p>
-                        </a>
+                        </NavLink>
                     </div>
                 </div>
             </div>

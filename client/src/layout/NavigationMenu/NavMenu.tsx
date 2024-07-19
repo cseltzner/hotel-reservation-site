@@ -9,7 +9,7 @@ import ChevronDown from "../../components/Icons/ChevronDown.tsx";
 import ChevronRight from "../../components/Icons/ChevronRight.tsx";
 import ShoppingBag from "../../components/Icons/ShoppingBag.tsx";
 import { useReservationContext } from "../../context/useReservationContext.ts";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 interface Props {
     roomNames: RoomName[];
@@ -71,9 +71,11 @@ const NavMenu = (props: Props) => {
                     </NavigationMenu.Content>
                 </NavigationMenu.Item>
                 <NavigationMenu.Item className={styles.navItem}>
-                    <NavigationMenu.Link href="/" className={styles.navLogo}>
-                        <p className={styles.logoName}>Alpine</p>
-                        <p className={styles.logoDescription}>Luxury Suites</p>
+                    <NavigationMenu.Link asChild className={styles.navLogo}>
+                        <NavLink to="/">
+                            <p className={styles.logoName}>Alpine</p>
+                            <p className={styles.logoDescription}>Luxury Suites</p>
+                        </NavLink>
                     </NavigationMenu.Link>
                 </NavigationMenu.Item>
                 <NavigationMenu.Item className={styles.navItem}>
@@ -115,10 +117,10 @@ const NavMenu = (props: Props) => {
             )}
 
             {/* Logo in center */}
-            <a href="/" className={styles.navLogo}>
+            <NavLink to="/" className={styles.navLogo}>
                 <p className={styles.logoName}>Alpine</p>
                 <p className={styles.logoDescription}>Luxury Suites</p>
-            </a>
+            </NavLink>
 
             {/* Cart on left */}
             <button className={styles.cart} onClick={onCartClicked}>
@@ -135,7 +137,7 @@ const NavMenu = (props: Props) => {
                     {/* List of mobile menu items */}
                     {/* Home */}
                     <li className={styles.mobileListItem}>
-                        <a href="/" className={styles.mobileNavItemHeader}>Home</a>
+                        <NavLink to="/" className={styles.mobileNavItemHeader}>Home</NavLink>
                     </li>
                     {/* Pages */}
                     <li className={styles.mobileListItem}>
@@ -147,11 +149,11 @@ const NavMenu = (props: Props) => {
                         </div>
                         {/* Pages sublist */}
                         <ul className={`${styles.mobileNavSubList} ${mobileNavItemOpen === "pages" && styles.open}`}>
-                            <li><a href="/events">Events</a></li>
-                            <li><a href="/menu">Restaurant menu</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="/faq">FAQs</a></li>
-                            <li><a href="/contact">Contact Us</a></li>
+                            <li><NavLink to="/events">Events</NavLink></li>
+                            <li><NavLink to="/menu">Restaurant menu</NavLink></li>
+                            <li><NavLink to="/about">About Us</NavLink></li>
+                            <li><NavLink to="/faq">FAQs</NavLink></li>
+                            <li><NavLink to="/contact">Contact Us</NavLink></li>
                         </ul>
                     </li>
                     {/* Rooms */}
@@ -164,15 +166,15 @@ const NavMenu = (props: Props) => {
                         </div>
                         {/* Rooms sublist */}
                         <ul className={`${styles.mobileNavSubList} ${mobileNavItemOpen === "rooms" && styles.open}`}>
-                            <li><a href="/rooms" className={styles.fontLg}>All Rooms</a></li>
+                            <li><NavLink to="/rooms" className={styles.fontLg}>All Rooms</NavLink></li>
                             {props.roomNames.map(room => (
-                                <li key={room.id}><a href={`/rooms/${room.id}`}>{room.name}</a></li>
+                                <li key={room.id}><NavLink to={`/rooms/${room.id}`}>{room.name}</NavLink></li>
                             ))}
                         </ul>
                     </li>
                     {/* About */}
                     <li className={styles.mobileListItem}>
-                        <a href="/about" className={styles.mobileNavItemHeader}>About</a>
+                        <NavLink to="/about" className={styles.mobileNavItemHeader}>About</NavLink>
                     </li>
                 </ul>
             </div>

@@ -6,6 +6,7 @@ import {
     calculateTotalPriceEstimate
 } from "../../helpers/bookingHelpers.ts";
 import { Booking } from "../../interfaces/models/Booking.ts";
+import { NavLink } from "react-router-dom";
 
 interface Props {
     booking: Booking
@@ -33,7 +34,7 @@ const BookingComponent = ({booking}: Props) => {
                 {booking.bookingRooms.map(br => (
                     <li key={br.id} className={styles.orderItem}>
                         <div className={styles.orderItemDetails}>
-                            <a href={`/rooms/${br.room.id}`}>{br.room.name}</a>
+                            <NavLink to={`/rooms/${br.room.id}`}>{br.room.name}</NavLink>
                             <p>{format(br.checkInDate, "MMMM d")} -
                                 {format(br.checkOutDate, "MMMM d")}
                                 <span

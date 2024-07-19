@@ -1,5 +1,5 @@
 import styles from "./CheckoutSuccessPage.module.scss";
-import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { Booking } from "../../interfaces/models/Booking.ts";
 import { format } from "date-fns";
 import {
@@ -24,7 +24,7 @@ const CheckoutSuccessPage = () => {
                 <div className="container">
                     <h1>Thank you for your order.</h1>
                     <BookingComponent booking={booking}/>
-                    <a href="/" className={styles.returnButton}>Return Home</a>
+                    <NavLink to="/" className={styles.returnButton}>Return Home</NavLink>
                 </div>
             )}
         </main>

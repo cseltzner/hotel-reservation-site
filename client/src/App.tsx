@@ -1,8 +1,8 @@
 import styles from "./App.module.scss";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet, useLocation } from "react-router-dom";
 import Header from "./layout/Header/Header.tsx";
 import NavMenu from "./layout/NavigationMenu/NavMenu.tsx";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { RoomName } from "./interfaces/RoomName.ts";
 import { apiUrls } from "./http/urls.ts";
 import Footer from "./layout/Footer/Footer.tsx";
@@ -14,6 +14,7 @@ const NUM_ROOM_NAMES_TO_FETCH = 5; // Used to fetch a certain number of room nam
 
 const App = () => {
     const [roomNames, setRoomNames] = useState<RoomName[]>([]);
+    const location = useLocation();
 
     useEffect(() => {
         const fetchRoomNames = async () => {
@@ -24,6 +25,11 @@ const App = () => {
         fetchRoomNames().then();
     }, []);
 
+    // Scroll to top of page on page change
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     return (
         <ReservationContext.Provider value={useReservationContextDefaults()}>
             <div className={styles.appWrapper}>
@@ -31,9 +37,9 @@ const App = () => {
                 <NavMenu roomNames={roomNames}/>
                 <Outlet/>
                 <Footer roomNames={roomNames}/>
-                <a href="https://www.github.com/cseltzner" target="_blank">
+                <NavLink to="https://www.github.com/cseltzner" target="_blank">
                     <Github className={styles.github}/>
-                </a>
+                </NavLink>
             </div>
         </ReservationContext.Provider>
     );

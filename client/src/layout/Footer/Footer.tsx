@@ -41,10 +41,10 @@ const Footer = (props: Props) => {
                     </div>
                     <div className={styles.footerCol}>
                         <p className={styles.footerColHeader}>Company</p>
-                        <AnimatedLink href="#" isWhite className={styles.footerColItem}>FAQ</AnimatedLink>
-                        <AnimatedLink href="#" isWhite className={styles.footerColItem}>About Us</AnimatedLink>
+                        <AnimatedLink href="/faq" isWhite className={styles.footerColItem}>FAQ</AnimatedLink>
+                        <AnimatedLink href="/about" isWhite className={styles.footerColItem}>About Us</AnimatedLink>
                         <AnimatedLink href="#" isWhite className={styles.footerColItem}>Privacy Policy</AnimatedLink>
-                        <AnimatedLink href="#" isWhite className={styles.footerColItem}>Contact Us</AnimatedLink>
+                        <AnimatedLink href="/contact" isWhite className={styles.footerColItem}>Contact Us</AnimatedLink>
                     </div>
                 </div>
             </div>

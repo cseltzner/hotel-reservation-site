@@ -1,5 +1,5 @@
 import styles from "./RoomPage.module.scss";
-import { useNavigate, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Room } from "../../interfaces/models/Room.ts";
 import { apiUrls } from "../../http/urls.ts";
@@ -77,7 +77,7 @@ const RoomPage = () => {
                         <div className={styles.imgBannerDetails}>
                             <p className={styles.price}><span>From</span><span
                                 className={styles.priceValue}>${room.basePrice}</span></p>
-                            <a href="#main" className={styles.button}>View More</a>
+                            <NavLink to="#main" className={styles.button}>View More</NavLink>
                             <ul className={styles.bannerFeatureList}>
                                 <li className={styles.bannerFeature}>
                                     <KingBed className={styles.bannerIcon}/>
@@ -110,12 +110,12 @@ const RoomPage = () => {
                                     soluta suscipit ullam vel veniam vitae voluptate? Accusantium dicta dignissimos
                                     eligendi qui ullam voluptatem.</p>
                                 <div className={styles.gallery}>
-                                    <a className={styles.galleryImg} href={room.secondaryImageUrls[0]}
-                                       target="_blank"><img src={room.secondaryImageUrls[0]} alt={room.name}/></a>
-                                    <a className={styles.galleryImg} href={room.secondaryImageUrls[1]}
-                                       target="_blank"><img src={room.secondaryImageUrls[1]} alt={room.name}/></a>
-                                    <a className={styles.galleryImg} href={room.secondaryImageUrls[2]}
-                                       target="_blank"><img src={room.secondaryImageUrls[2]} alt={room.name}/></a>
+                                    <NavLink className={styles.galleryImg} to={room.secondaryImageUrls[0]}
+                                       target="_blank"><img src={room.secondaryImageUrls[0]} alt={room.name}/></NavLink>
+                                    <NavLink className={styles.galleryImg} to={room.secondaryImageUrls[1]}
+                                       target="_blank"><img src={room.secondaryImageUrls[1]} alt={room.name}/></NavLink>
+                                    <NavLink className={styles.galleryImg} to={room.secondaryImageUrls[2]}
+                                       target="_blank"><img src={room.secondaryImageUrls[2]} alt={room.name}/></NavLink>
                                 </div>
                                 <div className={styles.featuresContainer}>
                                     <h3>Room Features</h3>
@@ -139,7 +139,7 @@ const RoomPage = () => {
                             <ul className={styles.relatedList}>
                                 {relatedRooms.map(room => (
                                     <li key={room.id} className={styles.relatedRoom}>
-                                        <a href={`/rooms/${room.id}`} target="_blank">
+                                        <NavLink to={`/rooms/${room.id}`} target="_blank">
                                             <div className={styles.relatedImgContainer}>
                                                 <img src={room.primaryImageUrl} alt={room.name} loading="lazy"/>
                                                 <div className={styles.relatedImgDetails}>From <span
@@ -159,7 +159,7 @@ const RoomPage = () => {
                                                 </ul>
                                                 <h4 className={styles.relatedRoomName}>{room.name}</h4>
                                             </div>
-                                        </a>
+                                        </NavLink>
                                     </li>
                                 ))}
                             </ul>

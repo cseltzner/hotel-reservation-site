@@ -13,7 +13,7 @@ import { mapBookingRoomToRequestObj } from "../../interfaces/requests/BookingRoo
 import { apiUrls } from "../../http/urls.ts";
 import { useState } from "react";
 import { ValidationError } from "../../interfaces/errors/validationError.ts";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Booking } from "../../interfaces/models/Booking.ts";
 import Spinner from "../../components/LoadingSpinner/Spinner.tsx";
 
@@ -270,7 +270,7 @@ const CheckoutPage = () => {
                                     {bookingRooms.map(br => (
                                         <li key={br.id} className={styles.orderItem}>
                                             <div className={styles.orderItemDetails}>
-                                                <a href={`/rooms/${br.room.id}`}>{br.room.name}</a>
+                                                <NavLink to={`/rooms/${br.room.id}`}>{br.room.name}</NavLink>
                                                 <p>{format(br.checkInDate, "MMMM d")} -
                                                     {format(br.checkOutDate, "MMMM d")}
                                                     <span className={styles.orderItemDays}>({calculateNumNights(br.checkInDate, br.checkOutDate)} day{calculateNumNights(br.checkInDate, br.checkOutDate) > 1 ? "s" : ""})</span>

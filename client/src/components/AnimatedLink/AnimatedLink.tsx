@@ -1,5 +1,6 @@
 import styles from "./AnimatedLink.module.scss";
 import { CSSProperties, ReactNode } from "react";
+import { NavLink } from "react-router-dom";
 
 interface Props {
     children?: ReactNode;
@@ -12,9 +13,9 @@ interface Props {
 
 const Link = (props: Props) => {
     return (
-        <a className={`${styles.link} ${props.className || ""} ${props.isWhite && styles.linkWhite}`} style={props.styles} href={props.href} target={`${props.targetBlank ? "_blank" : ""}`}>
+        <NavLink className={`${styles.link} ${props.className || ""} ${props.isWhite && styles.linkWhite}`} style={props.styles} to={props.href || ""} target={`${props.targetBlank ? "_blank" : ""}`}>
             {props.children}
-        </a>
+        </NavLink>
     );
 };
 
