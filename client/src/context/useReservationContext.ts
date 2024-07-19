@@ -26,7 +26,7 @@ export const useReservationContextDefaults = () => {
         })
     }
 
-    const removeBookingRoom = (id: number) => {
+    const removeBookingRoom = (id: string) => {
         const bookingRoomIndex = bookingRooms.findIndex(br => br.id === id);
         const bookingRoom = bookingRoomIndex !== -1
             ? bookingRooms[bookingRoomIndex]
