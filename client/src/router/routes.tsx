@@ -17,7 +17,7 @@ import CheckoutSuccessPage from "../pages/CheckoutSuccess/CheckoutSuccessPage.ts
 import BookingsPage from "../pages/Bookings/BookingsPage.tsx";
 import BookingPage from "../pages/Bookings/Booking/BookingPage.tsx";
 
-export const router = createHashRouter([
+export const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
