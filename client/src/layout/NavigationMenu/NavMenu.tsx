@@ -150,7 +150,8 @@ const NavMenu = (props: Props) => {
                         {/* Pages sublist */}
                         <ul className={`${styles.mobileNavSubList} ${mobileNavItemOpen === "pages" && styles.open}`}>
                             <li><NavLink to="/events">Events</NavLink></li>
-                            <li><NavLink to="/menu">Restaurant menu</NavLink></li>
+                            <li><NavLink to="/menu">Restaurant Menu</NavLink></li>
+                            <li><NavLink to="/bookings">My Bookings</NavLink></li>
                             <li><NavLink to="/about">About Us</NavLink></li>
                             <li><NavLink to="/faq">FAQs</NavLink></li>
                             <li><NavLink to="/contact">Contact Us</NavLink></li>

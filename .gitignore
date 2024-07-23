@@ -485,3 +485,6 @@ $RECYCLE.BIN/
 
 # Misc
 notes.md
+db/password.txt
+API/appsettings.Production.json
+client/.env.production

@@ -1,6 +1,6 @@
 import { BookingRequest } from "../interfaces/requests/BookingRequest.ts";
 
-const baseUrl = "http://localhost:7000/api"
+const baseUrl = import.meta.env.VITE_API_BASE;
 
 const getRooms = (query: GetRoomsQueries) => {
     const url = new URL(baseUrl + "/rooms");
