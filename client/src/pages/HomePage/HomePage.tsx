@@ -5,8 +5,13 @@ import StatsSection from "./Stats/StatsSection.tsx";
 import EventsSection from "./Events/EventsSection.tsx";
 import ContactSection from "./Contact/ContactSection.tsx";
 import NewsletterSection from "./Newsletter/NewsletterSection.tsx";
+import { useEffect } from "react";
 
 const HomePage = () => {
+    useEffect(() => {
+        document.title = "Alpine Luxury Suites";
+    }, []);
+
     return (
         <div className={styles.homePage}>
             <div className={styles.homeImg}>

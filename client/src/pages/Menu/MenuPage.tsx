@@ -1,8 +1,13 @@
 import styles from "./MenuPage.module.scss";
 import NewsletterSection from "../HomePage/Newsletter/NewsletterSection.tsx";
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
 const MenuPage = () => {
+    useEffect(() => {
+        document.title = "Menu | Alpine Luxury Suites"
+    }, []);
+
     return (
         <main className={styles.menuPage}>
             <div className={styles.imgBanner}>

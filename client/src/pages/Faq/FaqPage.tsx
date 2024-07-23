@@ -1,8 +1,13 @@
 import styles from "./FaqPage.module.scss";
 import * as Accordion from '@radix-ui/react-accordion';
 import ChevronRight from "../../components/Icons/ChevronRight.tsx";
+import { useEffect } from "react";
 
 const FaqPage = () => {
+    useEffect(() => {
+        document.title = "FAQ | Alpine Luxury Suites"
+    }, []);
+
     return (
         <main className={styles.faqPage}>
             <div className={styles.imgBanner}>

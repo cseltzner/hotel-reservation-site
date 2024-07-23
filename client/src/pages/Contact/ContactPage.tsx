@@ -1,9 +1,14 @@
 import styles from "./ContactPage.module.scss";
 import AnimatedLink from "../../components/AnimatedLink/AnimatedLink.tsx";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const ContactPage = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        document.title = "Contact | Alpine Luxury Suites"
+    }, []);
 
     return (
         <main className={styles.contactPage}>

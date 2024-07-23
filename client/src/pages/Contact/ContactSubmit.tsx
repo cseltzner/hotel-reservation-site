@@ -1,8 +1,13 @@
 import styles from "./ContactPage.module.scss";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const ContactSubmit = () => {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        document.title = "Thank you | Alpine Luxury Suites"
+    }, []);
 
     return (
         <main className={styles.contactPage}>

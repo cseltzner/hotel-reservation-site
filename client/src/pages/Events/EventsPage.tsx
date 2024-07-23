@@ -1,7 +1,12 @@
 import styles from "./EventsPage.module.scss";
 import NewsletterSection from "../HomePage/Newsletter/NewsletterSection.tsx";
+import { useEffect } from "react";
 
 const EventsPage = () => {
+    useEffect(() => {
+        document.title = "Events | Alpine Luxury Suites"
+    }, []);
+
     return (
         <main className={styles.eventsPage}>
             <div className="container">

@@ -8,6 +8,7 @@ import {
     calculateRoomPriceEstimate,
     calculateTotalPriceEstimate
 } from "../../helpers/bookingHelpers.ts";
+import { useEffect } from "react";
 
 const CartPage = () => {
     const navigate = useNavigate();
@@ -17,6 +18,10 @@ const CartPage = () => {
         style: "currency",
         currency: "USD",
     })
+
+    useEffect(() => {
+        document.title = "Cart | Alpine Luxury Suites"
+    }, []);
 
     const onDeleteClicked = (id: string) => {
         removeBookingRoom(id);

@@ -16,6 +16,7 @@ const CheckoutSuccessPage = () => {
 
     useEffect(() => {
         if (!booking) navigate("/");
+        document.title = "Thank you | Alpine Luxury Suites"
     }, []);
 
     return (

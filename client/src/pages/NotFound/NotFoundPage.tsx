@@ -1,7 +1,12 @@
 import styles from "./NotFoundPage.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const NotFoundPage = () => {
+    useEffect(() => {
+        document.title = "Page Not Found | Alpine Luxury Suites"
+    }, []);
+
     return (
         <main className={styles.notFound}>
             <div className={styles.errorContainer}>

@@ -24,6 +24,10 @@ const BookingPage = () => {
         fetchBooking();
     }, [bookingId]);
 
+    useEffect(() => {
+        document.title = `Booking #${booking?.id} | Alpine Luxury Suites`
+    }, [booking]);
+
     const onReturn = () => {
         navigate("/bookings", {
             state: bookingSearchState

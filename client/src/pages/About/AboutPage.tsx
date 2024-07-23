@@ -1,8 +1,13 @@
 import styles from "./AboutPage.module.scss";
 import AnimatedLink from "../../components/AnimatedLink/AnimatedLink.tsx";
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
 const AboutPage = () => {
+    useEffect(() => {
+        document.title = "About | Alpine Luxury Suites"
+    }, []);
+
     return (
         <main className={styles.aboutPage}>
             <div className={styles.imgBanner}>

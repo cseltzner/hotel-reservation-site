@@ -11,7 +11,7 @@ import {
 import { BookingRequest } from "../../interfaces/requests/BookingRequest.ts";
 import { mapBookingRoomToRequestObj } from "../../interfaces/requests/BookingRoomRequest.ts";
 import { apiUrls } from "../../http/urls.ts";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ValidationError } from "../../interfaces/errors/validationError.ts";
 import { NavLink, useNavigate } from "react-router-dom";
 import { Booking } from "../../interfaces/models/Booking.ts";
@@ -43,6 +43,10 @@ const CheckoutPage = () => {
     const {register, handleSubmit, reset, formState: {errors}} = useForm<Inputs>({mode: "onBlur"})
     const [submitLoading, setSubmitLoading] = useState(false);
     const [validationError, setValidationError] = useState("");
+
+    useEffect(() => {
+        document.title = "Checkout | Alpine Luxury Suites"
+    }, []);
 
     const currencyFormatter = Intl.NumberFormat("en-US", {
         style: "currency",

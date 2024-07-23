@@ -40,6 +40,10 @@ const BookingsPage = () => {
         bookingSearchState && onSubmit(bookingSearchState as Inputs);
     }, []);
 
+    useEffect(() => {
+        document.title = "My Bookings | Alpine Luxury Suites"
+    }, []);
+
     const onSubmit = async ({id, email, lastName}: Inputs) => {
         setSubmitLoading(true);
 

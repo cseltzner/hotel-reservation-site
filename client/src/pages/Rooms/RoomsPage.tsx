@@ -116,6 +116,10 @@ const RoomsPage = () => {
         fetchRooms();
     }, [currentRoomQuery])
 
+    useEffect(() => {
+        document.title = "Rooms | Alpine Luxury Suites"
+    }, []);
+
     return (
         <main className={styles.roomPage}>
             <div className="container">

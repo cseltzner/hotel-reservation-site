@@ -37,6 +37,10 @@ const RoomPage = () => {
         fetchRoom();
     }, [roomId])
 
+    useEffect(() => {
+        document.title = `${room?.name} | Alpine Luxury Suites`
+    }, [room]);
+
     // Fetch related rooms
     useEffect(() => {
         const fetchRelatedRooms = async () => {

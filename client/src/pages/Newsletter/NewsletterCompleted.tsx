@@ -1,7 +1,12 @@
 import styles from "./NewsletterCompleted.module.scss";
 import { NavLink } from "react-router-dom";
+import { useEffect } from "react";
 
 const NewsletterCompleted = () => {
+    useEffect(() => {
+        document.title = "Thank you | Alpine Luxury Suites"
+    }, []);
+
     return (
         <main className={styles.newsletterPage}>
             <div className={styles.thankYouContainer}>
