@@ -34,6 +34,7 @@ app.UseCors(opt =>
 {
     opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:7002");
     opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("https://alpineluxurysuites.com");
+    opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("https://www.alpineluxurysuites.com");
 });
 
 app.UseAuthorization();
