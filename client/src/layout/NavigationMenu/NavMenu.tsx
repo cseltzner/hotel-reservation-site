@@ -33,6 +33,10 @@ const NavMenu = (props: Props) => {
         }
     }
 
+    const onMobileNavItemClicked = () => {
+        setIsMobileMenuOpen(false);
+    }
+
     const onCartClicked = () => {
         navigate("cart");
     }
@@ -122,7 +126,7 @@ const NavMenu = (props: Props) => {
                 <p className={styles.logoDescription}>Luxury Suites</p>
             </NavLink>
 
-            {/* Cart on left */}
+            {/* Cart on right */}
             <button className={styles.cart} onClick={onCartClicked}>
                 <div className={`${styles.cartQuantity} ${!bookingRooms.length ? styles.cartQuantityHidden : ""}`}
                 >
@@ -137,7 +141,7 @@ const NavMenu = (props: Props) => {
                     {/* List of mobile menu items */}
                     {/* Home */}
                     <li className={styles.mobileListItem}>
-                        <NavLink to="/" className={styles.mobileNavItemHeader}>Home</NavLink>
+                        <NavLink to="/" onClick={onMobileNavItemClicked} className={styles.mobileNavItemHeader}>Home</NavLink>
                     </li>
                     {/* Pages */}
                     <li className={styles.mobileListItem}>
@@ -149,12 +153,12 @@ const NavMenu = (props: Props) => {
                         </div>
                         {/* Pages sublist */}
                         <ul className={`${styles.mobileNavSubList} ${mobileNavItemOpen === "pages" && styles.open}`}>
-                            <li><NavLink to="/events">Events</NavLink></li>
-                            <li><NavLink to="/menu">Restaurant Menu</NavLink></li>
-                            <li><NavLink to="/bookings">My Bookings</NavLink></li>
-                            <li><NavLink to="/about">About Us</NavLink></li>
-                            <li><NavLink to="/faq">FAQs</NavLink></li>
-                            <li><NavLink to="/contact">Contact Us</NavLink></li>
+                            <li><NavLink to="/events" onClick={onMobileNavItemClicked}>Events</NavLink></li>
+                            <li><NavLink to="/menu" onClick={onMobileNavItemClicked}>Restaurant Menu</NavLink></li>
+                            <li><NavLink to="/bookings" onClick={onMobileNavItemClicked}>My Bookings</NavLink></li>
+                            <li><NavLink to="/about" onClick={onMobileNavItemClicked}>About Us</NavLink></li>
+                            <li><NavLink to="/faq" onClick={onMobileNavItemClicked}>FAQs</NavLink></li>
+                            <li><NavLink to="/contact" onClick={onMobileNavItemClicked}>Contact Us</NavLink></li>
                         </ul>
                     </li>
                     {/* Rooms */}
@@ -167,15 +171,15 @@ const NavMenu = (props: Props) => {
                         </div>
                         {/* Rooms sublist */}
                         <ul className={`${styles.mobileNavSubList} ${mobileNavItemOpen === "rooms" && styles.open}`}>
-                            <li><NavLink to="/rooms" className={styles.fontLg}>All Rooms</NavLink></li>
+                            <li><NavLink to="/rooms" className={styles.fontLg} onClick={onMobileNavItemClicked}>All Rooms</NavLink></li>
                             {props.roomNames.map(room => (
-                                <li key={room.id}><NavLink to={`/rooms/${room.id}`}>{room.name}</NavLink></li>
+                                <li key={room.id}><NavLink to={`/rooms/${room.id}`} onClick={onMobileNavItemClicked}>{room.name}</NavLink></li>
                             ))}
                         </ul>
                     </li>
                     {/* About */}
                     <li className={styles.mobileListItem}>
-                        <NavLink to="/about" className={styles.mobileNavItemHeader}>About</NavLink>
+                        <NavLink to="/about" className={styles.mobileNavItemHeader} onClick={onMobileNavItemClicked}>About</NavLink>
                     </li>
                 </ul>
             </div>
